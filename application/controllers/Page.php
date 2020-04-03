@@ -199,7 +199,7 @@ class Page extends CI_Controller{
 		$this->load->library('upload', $config);
 		if (!$this->upload->do_upload('photo')) {
 			$this->session->set_flashdata('msg', $this->upload->display_errors('',''));
-			redirect('welcome');
+			redirect('data_guru');
 		}
 		return $this->upload->data('file_name');
 	}
@@ -211,15 +211,18 @@ class Page extends CI_Controller{
 	}
 	
 	public function save_edit_guru(){
-			$id     = $this->input->post('id');
-			$username = $this->input->post('Username');
-            $password = $this->input->post('Password');
-            $grup = $this->input->post('Akses');
+			$niy = $this->input->post('Niy');
+            $nama = $this->input->post('Nama');
+            $alamat = $this->input->post('Alamat');
+			$jenkel = $this->input->post('Jenkel');
+			$id = $this->input->post('Id');
 
             $data = array(
-                'username' => $username,
-                'password' => $password,
-                'akses' => $grup
+                'nip' => $niy,
+                'nama_guru' => $nama,
+                'alamat' => $alamat,
+				'jenis_kelamin' => $jenkel,
+				'id' =>$id,
             );
        
         $this->InputUser_model->save_edit_data_guru($id,$data);

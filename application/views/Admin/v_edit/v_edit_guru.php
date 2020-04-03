@@ -3,7 +3,7 @@
 <div class="p-5"> <div class="text-center"> 
 <h1 class="h4 text-gray-900 mb-4">Edit Data Guru</h1>
 </div> 
-<form class="user" action="<?php echo base_url().'index.php/Page/tambah_proses_guru'; ?>" method="post" enctype="multipart/form-data"> 
+<form class="user" action="<?php echo base_url().'index.php/Page/save_edit_guru'; ?>" method="post" enctype="multipart/form-data"> 
 <div class="form-group">                      
 <input type="text" class="form-control form-control-user" id="niy" name="Niy" value="<?php echo $list['nip'] ?>" require> 
 </div>
@@ -27,7 +27,7 @@ Pilih Jenis Kelamin</option>
 <div class="form-group"> 
 <input type="hidden" class="form-control form-controluser" id="id" name="Id" value="<?php echo $list['id'] ?>" require> 
 </div> 
-<input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Tambah"> 
+<input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Simpan"> 
 </form><hr> 
 <div class="text-center"> <a class="small" href="Index">Kembali</a> 
 </div>
