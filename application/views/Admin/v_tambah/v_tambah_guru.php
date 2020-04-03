@@ -24,6 +24,9 @@ Pilih Jenis Kelamin</option>
 <div class="form-group"> 
 <input type="file" class="form-control form-controluser" id="foto" name="photo" placeholder="Pilih Foto" require> 
 </div>  
+<div class="form-group"> 
+<input type="hidden" class="form-control form-controluser" id="id" name="Id" value="<?php echo $list['id'] ?>" require> 
+</div> 
 <input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Tambah"> 
 </form><hr> 
 <div class="text-center"> <a class="small" href="Index">Kembali</a> 

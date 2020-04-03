@@ -10,7 +10,7 @@
 			
 <div> 
 
-<form class="user" action="<?php echo base_url().'index.php/Page/save_edit'; ?>" method="post"> 
+<form class="user" action="<?php echo base_url().'Page/save_edit'; ?>" method="post"> 
 <div class="form-group">                      
  <input type="hidden" name="id" value="<?php echo $list['id']; ?>">
 <input type="text" class="form-control " id="username" name="Username" value="<?php echo $list['username']; ?>" > 

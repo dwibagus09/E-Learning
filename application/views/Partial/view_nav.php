@@ -11,8 +11,23 @@
 		
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <div class="navbar-form navbar-right">
-                <a href="<?php echo base_url() ?>index.php/dashboard/logout" type="submit" class="btn btn-success"><i class="fa fa-sign-out"></i> Logout</a>
-            </div>
-      </div>
-    </nav>
+        <div class="navbar-form navbar-right">
+               
+        <li class="nav-item dropdown no-arrow">
+		<a class="nav-link dropdown-list" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<?php if($this->session->userdata('akses')=='1'):?>
+		<span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin </span>
+		<img class="img-circle" height="40px" width="40px"  src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+	<?php endif;?>
+		</a>&nbsp;
+		<!-- Dropdown - User Information -->
+		<div class="dropdown-menu  " aria-labelledby="userDropdown">
+		<a class="dropdown-item" href="<?php echo base_url() ?>index.php/dashboard/logout" data-toggle="modal" data-target="#logoutModal">
+        <i class="fa fa-sign-out fa-sm fa-fw mr-2 text-gray-400"></i>
+        Logout
+		</a>
+		</div>
+	</li>
+		</div>		 
+		</div>  
+</nav>

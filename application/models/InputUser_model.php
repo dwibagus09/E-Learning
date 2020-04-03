@@ -31,18 +31,26 @@ class InputUser_model extends CI_Model
 	// Awal Model Tb_Login untuk Pengguna
 	public function getAll()
 	{
-		return $this->db->get($this->_table)->result();
+		$this->db->select('*');
+		$this->db->from('tb_login');
+		$this->db->where('akses', 2);
+		return $this->db->get()->result();
 	}
 	
 	public function getById($id)
 	{
-		return $this->db->get_where($this->_table, ["id" => $id])->row();
+		$this->db->select('*');
+    $this->db->from('tb_login');
+    $this->db->where('username', $id);
+    return $this->db->get()->row_array();
 	}
+	
 	
 	public function save($data,$table)
 	{
 		$this->db->insert($table,$data);
 	}
+	
 	
 	function edit($id)
 {
@@ -58,11 +66,11 @@ class InputUser_model extends CI_Model
     $berhasil = $this->db->update('tb_login', $data);
     if($berhasil)
     {
-        redirect('Page/edit/'.$id.'?update=1','refresh');
+        redirect('edit'.$id.'?update=1','refresh');
     }
     else
     {
-        redirect('Page/edit/'.$id.'?update=2','refresh');
+        redirect('edit'.$id.'?update=2','refresh');
     }
 }
 	
@@ -83,6 +91,59 @@ class InputUser_model extends CI_Model
 	// Akhir Model Untuk Tb_Login
 	
 //=========================================================================//
+
+// Awal Model Untuk Tb_Jurusan
+	public function getAll_jurusan()
+	{
+		$this->db->select('*');
+		$this->db->from('tb_jurusan');
+		return $this->db->get()->result();
+	}
+	
+	
+	public function save_jurusan($data,$table)
+	{
+		$this->db->insert_batch($table,$data);
+	}
+	
+	
+	function edit_jurusan($id)
+{
+    $this->db->select('*');
+    $this->db->from('tb_jurusan');
+    $this->db->where('id', $id);
+    return $this->db->get()->row_array();
+}
+
+	function save_edit_data_jurusan($id, $data)
+{
+    $this->db->where('id', $id);
+    $berhasil = $this->db->update('tb_jurusan', $data);
+    if($berhasil)
+    {
+        redirect('Page/edit_jurusan/'.$id.'?update=1','refresh');
+    }
+    else
+    {
+        redirect('Page/edit_jurusan/'.$id.'?update=2','refresh');
+    }
+}
+	
+	function delete_data_jurusan($id)
+{
+    $this->db->where('id_jurusan', $id);
+    $berhasil = $this->db->delete('tb_jurusan');
+    if($berhasil)
+       {
+            redirect('Page/data_jurusan/'.$id.'?delete=1','refresh');
+       }
+    else
+       {
+            redirect('Page/data_jurusan/'.$id.'?delete=2','refresh');
+       }
+}
+// Akhir Model Untuk Tb_Jurusan
+//===========================================================================//
 
 // Awal Model Untuk Tb_Guru
 public function getAll_guru()
@@ -110,11 +171,11 @@ public function getAll_guru()
     $berhasil = $this->db->update('tb_guru', $data);
     if($berhasil)
     {
-        redirect('Page/edit/'.$id.'?update=1','refresh');
+        redirect('Page/edit_guru/'.$id.'?update=1','refresh');
     }
     else
     {
-        redirect('Page/edit/'.$id.'?update=2','refresh');
+        redirect('Page/edit_guru/'.$id.'?update=2','refresh');
     }
 }
 	
@@ -124,11 +185,11 @@ public function getAll_guru()
     $berhasil = $this->db->delete('tb_guru');
     if($berhasil)
        {
-            redirect('Page/data_login/'.$id.'?delete=1','refresh');
+            redirect('Page/data_guru/'.$id.'?delete=1','refresh');
        }
     else
        {
-            redirect('Page/data_login/'.$id.'?delete=2','refresh');
+            redirect('Page/data_guru/'.$id.'?delete=2','refresh');
        }
 	}
 

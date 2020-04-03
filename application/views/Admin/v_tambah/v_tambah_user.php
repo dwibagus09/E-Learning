@@ -15,8 +15,8 @@
 <select id="akses" class="form-control" name="Akses" require> 
 <option value="0">
 Pilih Grup User</option> 
-<option value="1">Admin</option> 
-<option value="2">User</option> 
+<option value="2">Guru</option> 
+<option value="3">Siswa</option> 
 </select> 
 </div> 
 <input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Tambah"> 
