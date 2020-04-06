@@ -12,7 +12,7 @@
 			  <div class="dropdown-menu" aria-labelledby="pagesDropdown">
 					<h6 class="dropdown-header">Menu :</h6>
 					<a href="data_jurusan" class="list-group-item"><i class="fa fa-folder"></i> Data Jurusan</a>
-					<a href="Page/Data_Kelas" class="list-group-item"><i class="fa fa-folder"></i> Data Kelas</a>
+					<a href="data_kelas" class="list-group-item"><i class="fa fa-folder"></i> Data Kelas</a>
 			 </div>
       </li>  
 	  

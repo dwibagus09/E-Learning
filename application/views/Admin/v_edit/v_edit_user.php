@@ -22,7 +22,7 @@
 <option value="1">Admin</option>
 <option value="2">Guru</option>
 </select> 
-</div> <br>
+<br>
 <input type="submit" class="btn btn-success btn-icon-split" style="float:right;" name="submit" value="Simpan">
 </form>
 <a href="<?php echo base_url().'index.php/page/data_login'?>"><button class="btn btn-warning btn-icon-split" >&xlarr;&nbsp;Kembali</button></a><hr>

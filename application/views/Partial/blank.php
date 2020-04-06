@@ -6,7 +6,7 @@
 </head>
 <body>
   <?php echo @$navbar; ?>
-<div class="container" style="margin-top: 60px; padding:40px;">
+<div class="container" style="margin-top: 60px; padding:55px;">
     <div class="row">
         <div class="col-md-3">
             <div class="list-group">

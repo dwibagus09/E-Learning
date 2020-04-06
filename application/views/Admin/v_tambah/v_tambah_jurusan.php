@@ -4,7 +4,7 @@
 <h1 class="h4 text-gray-900 mb-4">Tambah Jurusan</h1>
 </div> 
 <form class="user" action="<?php echo base_url().'index.php/Page/tambah_proses_jurusan';?>" method="post"> 
-<input type="hidden" name="total" value="<?=@$_POST['count_data']?> ">
+<input type="hidden" name="total[]" value="<?=@$_POST['count_data']?> ">
 		<table class="table">
 		<tr>
 			<th>No.</th>
@@ -15,7 +15,7 @@
 			<tr>
 			<td><?=$i?></td>
 			<td>
-				<input type="text" name="jurusan-<?=$i?>" class="form-control" required>
+				<input type="text" name="jurusan[]" class="form-control" required>
 			</td>
 			</tr>
 		<?php

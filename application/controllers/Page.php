@@ -49,8 +49,10 @@ class Page extends CI_Controller{
                 'akses' => $grup
             );
             $this->InputUser_model->save($data,"tb_login");
+			
             redirect('page/tambah_guru/'.$username);
-        }
+       
+	}
 
 	public function edit(){
 		$id = $this->uri->segment(3);
@@ -80,6 +82,75 @@ class Page extends CI_Controller{
 	}
 //================================================ Akhir Proses data Pengguna =====================================================//
 
+//=================================================== AWAL DATA KELAS ===============================================================//
+	function data_kelas()
+	{
+    // function ini hanya boleh diakses oleh admin dan dosen
+    if($this->session->userdata('akses')=='1'){
+		$data['list'] = $this->InputUser_model->getAll_kelas();
+      $this->template->utama('Admin/v_data/v_data_kelas', $data);
+    }else{
+      echo '<script type="text/javascript">alert("Maaf Akses Tidak Boleh");
+	  window.location="index";
+	  </script>';
+    }
+ 
+	}	
+  
+  public function tambah_jumlah_kelas(){
+	 $data['list'] = $this->InputUser_model->getAll_jurusan();
+	  $this->template->utama('Admin/v_tambah/v_tambah_jumlah_kelas',$data);
+  }
+  
+  public function tambah_kelas(){
+	 
+	  $this->template->utama('Admin/v_tambah/v_tambah_kelas');
+  }
+ 
+  public function tambah_proses_kelas()
+	{
+		$post = $this->input->post();
+		$result = array();
+		$total_post = count($post['kelas']);
+		foreach($post['kelas'] AS $key => $val)
+		{
+			$result[] = array(
+			"kelas" => $post['kelas'][$key],
+			"nama_kelas" => $post['nama_kelas'][$key],
+			"id_jurusan" => $post['jurusan'][$key]
+			
+		);
+	}
+	$this->InputUser_model->save_kelas($result);
+	$this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
+	redirect('data_kelas');
+	}
+
+	public function edit_kelas(){
+		$id = $this->uri->segment(3);
+		$data['list'] = $this->InputUser_model->edit_jurusan($id);
+		 $this->template->utama('Admin/v_edit/v_edit_kelas', $data);
+	}
+	
+	public function save_edit_kelas(){
+			$id     = $this->input->post('id');
+			$jurusan = $this->input->post('Jurusan');
+            
+
+            $data = array(
+                'nama_jurusan' => $jurusan,
+            );
+       
+        $this->InputUser_model->save_edit_data_kelas($id,$data);
+    }
+	
+	function hapus_kelas()
+	{
+		$id = $this->uri->segment(3);
+		$this->InputUser_model->delete_data_kelas($id);
+	}
+//==================================================== AKHIR DATA KELAS =============================================================//
+
 //==================================================== AWAL PROSES JURUSAN =========================================================//
 	
 	function data_jurusan(){
@@ -107,31 +178,38 @@ class Page extends CI_Controller{
  
   public function tambah_proses_jurusan()
 	{
-			$jurusan = $this->input->post('jurusan',TRUE);
-            $data = array();
-            $this->InputUser_model->save_jurusan($data,"tb_jurusan");
-            redirect('Page/data_jurusan',$data);
-        }
+		$post = $this->input->post();
+		$result = array();
+		$total_post = count($post['jurusan']);
+ 
+		foreach($post['jurusan'] AS $key => $val)
+		{
+			$result[] = array(
+			"nama_jurusan" => $post['jurusan'][$key],
+			
+		);
+	}
+	$this->InputUser_model->save_jurusan($result);
+	$this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
+	redirect('data_jurusan');
+	}
 
 	public function edit_jurusan(){
 		$id = $this->uri->segment(3);
-		$data['list'] = $this->InputUser_model->edit($id);
-		 $this->template->utama('Admin/v_edit/v_edit_user', $data);
+		$data['list'] = $this->InputUser_model->edit_jurusan($id);
+		 $this->template->utama('Admin/v_edit/v_edit_jurusan', $data);
 	}
 	
 	public function save_edit_jurusan(){
 			$id     = $this->input->post('id');
-			$username = $this->input->post('Username');
-            $password = $this->input->post('Password');
-            $grup = $this->input->post('Akses');
+			$jurusan = $this->input->post('Jurusan');
+            
 
             $data = array(
-                'username' => $username,
-                'password' => $password,
-                'akses' => $grup
+                'nama_jurusan' => $jurusan,
             );
        
-        $this->InputUser_model->save_edit_data($id,$data);
+        $this->InputUser_model->save_edit_data_jurusan($id,$data);
     }
 	
 	function hapus_jurusan()
@@ -231,7 +309,7 @@ class Page extends CI_Controller{
 	function hapus_guru()
 	{
 		$id = $this->uri->segment(3);
-		$this->InputUser_model->delete_data($id);
+		$this->InputUser_model->delete_data_guru($id);
 	}
 	// ================================================== Akhir proses Guru =============================================================//
 	
