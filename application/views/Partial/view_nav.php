@@ -17,12 +17,15 @@
 		<a class="nav-link dropdown-list" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	<?php if($this->session->userdata('akses')=='1'):?>
 		<span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin </span>
-		<img class="img-circle" height="40px" width="40px"  src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+		<img class="img-circle" height="40px" width="40px"  src="<?php echo base_url('assets/images/logo.png')?>">
+	<?php elseif($this->session->userdata('akses')=='2'):?>
+		<span class="mr-2 d-none d-lg-inline text-gray-600 small">Guru</span>
+		<img class="img-circle" height="40px" width="40px" src="<?php echo base_url('assets/images/logo.png')?>">
 	<?php endif;?>
-		</a>&nbsp;
+		</a>
 		<!-- Dropdown - User Information -->
 		<div class="dropdown-menu  " aria-labelledby="userDropdown">
-		<a class="dropdown-item" href="<?php echo base_url() ?>index.php/dashboard/logout" data-toggle="modal" data-target="#logoutModal">
+		<a class="dropdown-item" href="<?php echo base_url('Dashboard/logout');?>" data-toggle="modal" data-target="#logoutModal">
         <i class="fa fa-sign-out fa-sm fa-fw mr-2 text-gray-400"></i>
         Logout
 		</a>

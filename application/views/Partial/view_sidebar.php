@@ -27,7 +27,7 @@
   <a href="#" class="list-group-item active" style="text-align: center;background-color: black;border-color: black">
                 MENU GURU
               </a>
-              <a href=href="<?php echo base_url().'index'?> class="list-group-item"><i class="fa fa-dashboard"></i> Dashboard</a>
+              <a href="<?php echo base_url().'index.php/page'?>" class="list-group-item"><i class="fa fa-dashboard"></i> Dashboard</a>
               <a href="#" class="list-group-item"><i class="fa fa-folder"></i> Unggah Tugas</a>
               <a href="#" class="list-group-item"><i class="fa fa-folder"></i> Daftar Nilai</a>
 			  

@@ -4,4 +4,8 @@
             <?php $this->load->view('Partial/v_index');?> <!--Include menu-->
             </div>
         </div>
+		
+
+
+   
     

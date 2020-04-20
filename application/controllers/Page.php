@@ -15,6 +15,7 @@ class Page extends CI_Controller{
   
  
   function index(){
+  	$data['list'] = $this->InputUser_model->getAll();
     $this->template->utama('dashboard');
   }
   
@@ -218,7 +219,151 @@ class Page extends CI_Controller{
 		$this->InputUser_model->delete_data_jurusan($id);
 	}
 	
-	// ========================================== Akhir Proses data Jurusan ===========================================
+	// ========================================== Akhir Proses data Jurusan =========================================== //
+
+	// ========================================= Awal Proses Mengajar =================================//
+
+	function data_mengajar()
+	{
+    // function ini hanya boleh diakses oleh admin dan dosen
+    if($this->session->userdata('akses')=='1'){
+		$data['list'] = $this->InputUser_model->getAll_kelas();
+      $this->template->utama('Admin/v_data/v_data_kelas', $data);
+    }else{
+      echo '<script type="text/javascript">alert("Maaf Akses Tidak Boleh");
+	  window.location="index";
+	  </script>';
+    }
+ 
+	}	
+  
+  public function tambah_jumlah_mengajar(){
+	 $data['jrs'] = $this->InputUser_model->getAll_jurusan();
+	 $data['guru'] = $this->InputUser_model->getAll_guru();
+	  $this->template->utama('Admin/v_tambah/v_tambah_jumlah_pengajar',$data);
+  }
+  
+  public function tambah_mengajar(){
+	 
+	  $this->template->utama('Admin/v_tambah/v_tambah_pengajar');
+  }
+ 
+  public function tambah_proses_mengajar()
+	{
+		$post = $this->input->post();
+		$result = array();
+		$total_post = count($post['kelas']);
+		foreach($post['kelas'] AS $key => $val)
+		{
+			$result[] = array(
+			"id_kelas" => $post['kelas'][$key],
+			"id_mapel" => $post['nama_kelas'][$key],
+			"nip" => $post['jurusan'][$key]
+			
+		);
+	}
+	$this->InputUser_model->save_kelas($result);
+	$this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
+	redirect('data_kelas');
+	}
+
+	public function edit_mengajar(){
+		$id = $this->uri->segment(3);
+		$data['list'] = $this->InputUser_model->edit_jurusan($id);
+		 $this->template->utama('Admin/v_edit/v_edit_kelas', $data);
+	}
+	
+	public function save_edit_mengajar(){
+			$id     = $this->input->post('id');
+			$jurusan = $this->input->post('Jurusan');
+            
+
+            $data = array(
+                'nama_jurusan' => $jurusan,
+            );
+       
+        $this->InputUser_model->save_edit_data_kelas($id,$data);
+    }
+	
+	function hapus_mengajar()
+	{
+		$id = $this->uri->segment(3);
+		$this->InputUser_model->delete_data_kelas($id);
+	}
+
+	// ========================================= Akhir Proses Mengajar ===============================//
+
+	// ========================================= Awal Proses Mapel ===================================================//
+
+	function data_mapel()
+	{
+    // function ini hanya boleh diakses oleh admin dan dosen
+    if($this->session->userdata('akses')=='1'){
+		$data['list'] = $this->InputUser_model->getAll_kelas();
+      $this->template->utama('Admin/v_data/v_data_kelas', $data);
+    }else{
+      echo '<script type="text/javascript">alert("Maaf Akses Tidak Boleh");
+	  window.location="index";
+	  </script>';
+    }
+ 
+	}	
+  
+  public function tambah_jumlah_mapel(){
+	 $data['jrs'] = $this->InputUser_model->getAll_jurusan();
+	 $data['guru'] = $this->InputUser_model->getAll_guru();
+	  $this->template->utama('Admin/v_tambah/v_tambah_jumlah_pengajar',$data);
+  }
+  
+  public function tambah_mapel(){
+	 
+	  $this->template->utama('Admin/v_tambah/v_tambah_pengajar');
+  }
+ 
+  public function tambah_proses_mapel()
+	{
+		$post = $this->input->post();
+		$result = array();
+		$total_post = count($post['kelas']);
+		foreach($post['kelas'] AS $key => $val)
+		{
+			$result[] = array(
+			"id_kelas" => $post['kelas'][$key],
+			"id_mapel" => $post['nama_kelas'][$key],
+			"nip" => $post['jurusan'][$key]
+			
+		);
+	}
+	$this->InputUser_model->save_kelas($result);
+	$this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
+	redirect('data_kelas');
+	}
+
+	public function edit_mapel(){
+		$id = $this->uri->segment(3);
+		$data['list'] = $this->InputUser_model->edit_jurusan($id);
+		 $this->template->utama('Admin/v_edit/v_edit_kelas', $data);
+	}
+	
+	public function save_edit_mapel(){
+			$id     = $this->input->post('id');
+			$jurusan = $this->input->post('Jurusan');
+            
+
+            $data = array(
+                'nama_jurusan' => $jurusan,
+            );
+       
+        $this->InputUser_model->save_edit_data_kelas($id,$data);
+    }
+	
+	function hapus_mapel()
+	{
+		$id = $this->uri->segment(3);
+		$this->InputUser_model->delete_data_kelas($id);
+	}
+
+	// ========================================= Akhir Proses Mapel =================================================//
 
 	// ========================================== Awal controller Input Guru ===========================================
 	function data_guru(){
