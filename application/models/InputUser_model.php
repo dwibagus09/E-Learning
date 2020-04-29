@@ -2,32 +2,7 @@
 class InputUser_model extends CI_Model
 {
 	
-	private $_table = "tb_login";
-	private $_guru ="tb_guru";
-	public $id;
-	public $username;
-	public $password;
-	public $akses;
-	
-	public function rules()
-{
-    return [
-	
-		
-        ['field' => 'username',
-        'label' => 'Username',
-        'rules' => 'required'],
 
-        ['field' => 'password',
-        'label' => 'Password',
-        'rules' => 'required'],
-			
-		['field' => 'akses',
-        'label' => 'Akses',
-        'rules' => 'required'] 
-        
-    ];
-}
 // =========================== Awal Model Tb_Login untuk Pengguna ===================================
 	public function getAll()
 	{
