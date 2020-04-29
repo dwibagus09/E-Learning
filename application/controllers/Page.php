@@ -83,6 +83,7 @@ class Page extends CI_Controller{
 	}
 //================================================ Akhir Proses data Pengguna =====================================================//
 
+
 //=================================================== AWAL DATA KELAS ===============================================================//
 	function data_kelas()
 	{
@@ -99,7 +100,7 @@ class Page extends CI_Controller{
 	}	
   
   public function tambah_jumlah_kelas(){
-	 $data['list'] = $this->InputUser_model->getAll_jurusan();
+	 $data['list'] = $this->InputUser_model->getAll_jurusan_distinct();
 	  $this->template->utama('Admin/v_tambah/v_tambah_jumlah_kelas',$data);
   }
   
@@ -151,6 +152,7 @@ class Page extends CI_Controller{
 		$this->InputUser_model->delete_data_kelas($id);
 	}
 //==================================================== AKHIR DATA KELAS =============================================================//
+
 
 //==================================================== AWAL PROSES JURUSAN =========================================================//
 	
@@ -227,8 +229,8 @@ class Page extends CI_Controller{
 	{
     // function ini hanya boleh diakses oleh admin dan dosen
     if($this->session->userdata('akses')=='1'){
-		$data['list'] = $this->InputUser_model->getAll_kelas();
-      $this->template->utama('Admin/v_data/v_data_kelas', $data);
+		$data['list'] = $this->InputUser_model->getAll_mengajar();
+      $this->template->utama('Admin/v_data/v_data_mengajar', $data);
     }else{
       echo '<script type="text/javascript">alert("Maaf Akses Tidak Boleh");
 	  window.location="index";
@@ -238,14 +240,14 @@ class Page extends CI_Controller{
 	}	
   
   public function tambah_jumlah_mengajar(){
-	 $data['jrs'] = $this->InputUser_model->getAll_jurusan();
-	 $data['guru'] = $this->InputUser_model->getAll_guru();
-	  $this->template->utama('Admin/v_tambah/v_tambah_jumlah_pengajar',$data);
+	  $this->template->utama('Admin/v_tambah/v_tambah_jumlah_mengajar');
   }
   
   public function tambah_mengajar(){
-	 
-	  $this->template->utama('Admin/v_tambah/v_tambah_pengajar');
+	  $data['list'] = $this->InputUser_model->getAll_guru();
+	  $data['kelas'] = $this->InputUser_model->getAll_kelas_dist();
+	  $data['list3'] = $this->InputUser_model->getAll_mapel();
+	  $this->template->utama('Admin/v_tambah/v_tambah_mengajar',$data);
   }
  
   public function tambah_proses_mengajar()

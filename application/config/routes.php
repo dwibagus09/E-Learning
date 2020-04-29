@@ -56,6 +56,7 @@ $route['data_jurusan'] = 'page/data_jurusan';
 $route['data_guru'] = 'page/data_guru';
 $route['data_siswa'] = 'page/data_siswa';
 $route['data_kelas'] = 'page/data_kelas';
+$route['data_mengajar'] = 'page/data_mengajar';
 //Route untuk Proses Admin User
 $route['data_login'] = 'page/data_login';
 $route['edit'] = 'page/edit';

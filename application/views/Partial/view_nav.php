@@ -25,7 +25,7 @@
 		</a>
 		<!-- Dropdown - User Information -->
 		<div class="dropdown-menu  " aria-labelledby="userDropdown">
-		<a class="dropdown-item" href="<?php echo base_url('Dashboard/logout');?>" data-toggle="modal" data-target="#logoutModal">
+		<a class="dropdown-item" href="<?php echo base_url().'index.php/page'?>" data-toggle="modal" data-target="#logoutModal">
         <i class="fa fa-sign-out fa-sm fa-fw mr-2 text-gray-400"></i>
         Logout
 		</a>

@@ -92,6 +92,12 @@ class InputUser_model extends CI_Model
 
 //================================= Awal Model Tb_Kelas ================================================
 
+	public function getAll_kelas_dist()
+	{
+		$this->db->select('*');
+		$this->db->from('tb_kelas');
+		return $this->db->get()->result();
+	}
 	public function getAll_kelas()
 	{
 		$this->db->select('*');
@@ -151,10 +157,19 @@ class InputUser_model extends CI_Model
 //================================= Akhir Model Tb_Kelas ===============================================
 
 // ============================= Awal Model Untuk Tb_Jurusan ===========================================
+	public function getAll_jurusan_distinct()
+	{
+		$this->db->distinct();
+		$this->db->select('*');
+		$this->db->from('tb_jurusan');
+		return $this->db->get()->result();
+	}
+
 	public function getAll_jurusan()
 	{
 		$this->db->select('*');
-		$this->db->from('tb_jurusan');
+		$this->db->from('tb_kelas');
+		$this->db->join('tb_jurusan','tb_kelas.id_jurusan = tb_jurusan.id_jurusan');
 		return $this->db->get()->result();
 	}
 	
@@ -208,6 +223,67 @@ class InputUser_model extends CI_Model
 
 //================================= Akhir Model Untuk Tb_Jurusan ==========================================//
 
+// ============================= Awal Model Untuk Tb_Mengajar ===========================================
+	public function getAll_mengajar()
+	{
+		$this->db->select('*');
+		$this->db->from('tb_mengajar');
+		$this->db->join('tb_kelas','tb_mengajar.id_kelas = tb_kelas.id_kelas');
+		$this->db->join('tb_guru','tb_mengajar.nip = tb_guru.nip');
+		$this->db->join('tb_mapel','tb_mengajar.id_mapel = tb_mapel.id_mapel');
+		return $this->db->get()->result();
+	}
+	
+	
+	public function save_mengajar($result)
+	{
+		$total_array = count($result);
+ 
+		if($total_array != 0)
+		{
+			$this->db->insert_batch('tb_mengajar', $result);
+		}
+	}
+	
+	
+	function edit_mengajar($id)
+	{
+		$this->db->select('*');
+		$this->db->from('tb_mengajar');
+		$this->db->where('id_mengajar', $id);
+		return $this->db->get()->row_array();
+	}
+
+	function save_edit_data_mengajar($id, $data)
+	{
+		$this->db->where('id_mengajar', $id);
+		$berhasil = $this->db->update('tb_mengajar', $data);
+		if($berhasil)
+		{
+			redirect('Page/edit_mengajar/'.$id.'?update=1','refresh');
+		}
+		else
+		{
+			redirect('Page/edit_mengajar/'.$id.'?update=2','refresh');
+		}
+	}
+	
+	function delete_data_mengajar($id)
+	{
+		$this->db->where('id_mengajar', $id);
+		$berhasil = $this->db->delete('tb_mengajar');
+		if($berhasil)
+       {
+            redirect('Page/data_mengajar/'.$id.'?delete=1','refresh');
+       }
+		else
+       {
+            redirect('Page/data_mengajar/'.$id.'?delete=2','refresh');
+       }
+	}
+
+//================================= Akhir Model Untuk Tb_Mengajar ==========================================//
+
 // ================================ Awal Model Untuk Tb_Guru ===============================================
 	public function getAll_guru()
 	{
@@ -256,7 +332,14 @@ class InputUser_model extends CI_Model
 		}
 	}
 
-// ======================= Akhir Tb_Guru ========================================	
+// ======================= Akhir Tb_Guru ========================================
+
+public function getAll_mapel()
+	{
+		$this->db->select('*');
+		$this->db->from('tb_mapel');
+		return $this->db->get()->result();
+	}	
 	
 }
 ?>

@@ -8,7 +8,7 @@
 		<label for="count_add">Masukkan Jurusan</label>
 		<select class="form-control" name="count_jurusan" id="category" required>
             <option value="">No Selected</option>
-                <?php foreach($list as $row):?>
+                <?php foreach($list as $row ):?>
                 <option value="<?php echo $row->id_jurusan;?>"><?php echo $row->nama_jurusan;?></option>
                 <?php endforeach;?>
         </select>
