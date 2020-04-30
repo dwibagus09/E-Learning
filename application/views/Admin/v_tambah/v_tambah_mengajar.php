@@ -3,7 +3,7 @@
 <div class="p-5"> <div class="text-center"> 
 <h1 class="h4 text-gray-900 mb-4">Tambah Pengajar</h1>
 </div> 
-<form class="user" action="<?php echo base_url().'index.php/Page/tambah_proses_kelas';?>" method="post"> 
+<form class="user" action="<?php echo base_url().'index.php/Page/tambah_proses_mengajar';?>" method="post"> 
 <input type="hidden" name="total[]" value="<?=@$_POST['count_data']?> ">
 		<table class="table">
 		<tr>
@@ -26,7 +26,7 @@
 			</td>
 
 			<td>
-			<select class="form-control" name="guru[]" id="category" required>
+			<select class="form-control" name="mapel[]" id="category" required>
             <option value="">No Selected</option>
                 <?php foreach($list3 as $row2 ):?>
                 <option value="<?php echo $row2->id_mapel;?>"><?php echo $row2->nama;?></option>
@@ -35,13 +35,13 @@
 			</td>
 
 			<td>
-				<select class="form-control" name="guru[]" id="category" required>
+				<select class="form-control" name="kelas[]" id="category" required>
            		<option value="">No Selected</option>
                 <?php foreach($kelas as $row2 ):?>
                 <option value="<?php echo $row2->id_kelas;?>"><?php echo $row2->nama_kelas;?></option>
                 <?php endforeach;?>
 			</select>
-				<input type="hidden" name="jurusan[]" value="<?=@$_POST['count_jurusan']?> ">
+				<input type="hidden" name="mengajar[]" value="<?=@$_POST['count_jurusan']?> ">
 			</td>
 			</tr>
 		<?php

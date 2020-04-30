@@ -14,6 +14,7 @@
 					<a href="data_jurusan" class="list-group-item"><i class="fa fa-folder"></i> Data Jurusan</a>
 					<a href="data_kelas" class="list-group-item"><i class="fa fa-folder"></i> Data Kelas</a>
           <a href="data_mengajar" class="list-group-item"><i class="fa fa-folder"></i> Data Mengajar</a>
+          <a href="data_mapel" class="list-group-item"><i class="fa fa-folder"></i> Data Mapel</a>
 			 </div>
       </li>  
 	  

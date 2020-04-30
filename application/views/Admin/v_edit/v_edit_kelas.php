@@ -2,16 +2,16 @@
 <div class="panel-heading">
    <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit Jurusan</h3>
 </div>
-			  
+              
    <div class="panel-body">
               
-			
+            
 <div> 
 
-<form class="user" action="<?php echo base_url().'Page/save_edit_jurusan'; ?>" method="post"> 
+<form class="user" action="<?php echo base_url().'Page/save_edit_kelas'; ?>" method="post"> 
 <div class="form-group">                      
- <input type="hidden" name="id" value="<?php echo $list['id_jurusan']; ?>">
-<input type="text" class="form-control " id="jurusan" name="Jurusan" value="<?php echo $list['nama_jurusan']; ?>" > 
+ <input type="hidden" name="id" value="<?php echo $list['id_kelas']; ?>">
+<input type="text" class="form-control " id="kelas" name="Kelas" value="<?php echo $list['nama_kelas']; ?>" > 
 </div>
  <br>
 <input type="submit" class="btn btn-success btn-icon-split" style="float:right;" name="submit" value="Simpan">

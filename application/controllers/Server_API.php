@@ -10,7 +10,7 @@
 		
 		public function Api ()
 		{
-			$data = $this->Mahasiswa_model->getAll();
+			$data = $this->Guru_model->getAll();
 			echo json_encode($data->result_array());
 		}
 		

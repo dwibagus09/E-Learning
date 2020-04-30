@@ -130,17 +130,17 @@ class Page extends CI_Controller{
 
 	public function edit_kelas(){
 		$id = $this->uri->segment(3);
-		$data['list'] = $this->InputUser_model->edit_jurusan($id);
+		$data['list'] = $this->InputUser_model->edit_kelas($id);
 		 $this->template->utama('Admin/v_edit/v_edit_kelas', $data);
 	}
 	
 	public function save_edit_kelas(){
 			$id     = $this->input->post('id');
-			$jurusan = $this->input->post('Jurusan');
+			$kelas = $this->input->post('Kelas');
             
 
             $data = array(
-                'nama_jurusan' => $jurusan,
+                'nama_kelas' => $kelas,
             );
        
         $this->InputUser_model->save_edit_data_kelas($id,$data);
@@ -159,7 +159,7 @@ class Page extends CI_Controller{
 	function data_jurusan(){
     // function ini hanya boleh diakses oleh admin dan dosen
     if($this->session->userdata('akses')=='1'){
-		$data['list'] = $this->InputUser_model->getAll_jurusan();
+		$data['list'] = $this->InputUser_model->getAll_jurusan_distinct();
       $this->template->utama('Admin/v_data/v_data_jurusan', $data);
     }else{
       echo '<script type="text/javascript">alert("Maaf Akses Tidak Boleh");
@@ -259,20 +259,20 @@ class Page extends CI_Controller{
 		{
 			$result[] = array(
 			"id_kelas" => $post['kelas'][$key],
-			"id_mapel" => $post['nama_kelas'][$key],
-			"nip" => $post['jurusan'][$key]
+			"id_mapel" => $post['mapel'][$key],
+			"nip" => $post['guru'][$key]
 			
 		);
 	}
-	$this->InputUser_model->save_kelas($result);
+	$this->InputUser_model->save_mengajar($result);
 	$this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
-	redirect('data_kelas');
+	redirect('data_mengajar');
 	}
 
 	public function edit_mengajar(){
 		$id = $this->uri->segment(3);
-		$data['list'] = $this->InputUser_model->edit_jurusan($id);
-		 $this->template->utama('Admin/v_edit/v_edit_kelas', $data);
+		$data['list'] = $this->InputUser_model->edit_mengajar($id);
+		 $this->template->utama('Admin/v_edit/v_edit_mengajar', $data);
 	}
 	
 	public function save_edit_mengajar(){

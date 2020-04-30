@@ -4,12 +4,12 @@ class InputUser_model extends CI_Model
 	
 
 // =========================== Awal Model Tb_Login untuk Pengguna ===================================
-	public function getAll()
-	{
-		$this->db->select('*');
-		$this->db->from('tb_materi');
-		return $this->db->get()->result();
-	}
+	function getAll(){
+            $this->db->select('*');
+            $this->db->from('tb_materi');
+            $query = $this->db->get();
+            return $query;
+        }
 	
 	public function getById($id)
 	{

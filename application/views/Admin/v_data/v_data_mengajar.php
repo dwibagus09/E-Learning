@@ -35,8 +35,8 @@
 				<?php echo $row->nama_kelas ?>
 				</td>
 				<td width="100">
-				<a href="<?php echo base_url().'page/edit_kelas/'.$row->id_kelas; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
-				<a href="<?php echo base_url().'page/hapus_kelas/'.$row->id_kelas; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
+				<a href="<?php echo base_url().'page/edit_mengajar/'.$row->id_mengajar; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
+				<a href="<?php echo base_url().'page/hapus_mengajar/'.$row->id_mengajar; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
 				</td>
  			<?php endforeach; ?>
 			

@@ -2,7 +2,12 @@
 class InputUser_model extends CI_Model
 {
 	
-
+private $_table = "tb_login";
+	private $_guru ="tb_guru";
+	public $id;
+	public $username;
+	public $password;
+	public $akses;
 // =========================== Awal Model Tb_Login untuk Pengguna ===================================
 	public function getAll()
 	{
@@ -107,11 +112,11 @@ class InputUser_model extends CI_Model
 		$berhasil = $this->db->update('tb_kelas', $data);
 		if($berhasil)
 		{
-			redirect('Page/edit_kelas/'.$id.'?update=1','refresh');
+			redirect('Page/data_kelas/'.$id.'?update=1','refresh');
 		}
 		else
 		{
-			redirect('Page/edit_kelas/'.$id.'?update=2','refresh');
+			redirect('Page/data_kelas/'.$id.'?update=2','refresh');
 		}
 	}
 	
@@ -143,8 +148,8 @@ class InputUser_model extends CI_Model
 	public function getAll_jurusan()
 	{
 		$this->db->select('*');
-		$this->db->from('tb_kelas');
-		$this->db->join('tb_jurusan','tb_kelas.id_jurusan = tb_jurusan.id_jurusan');
+		$this->db->from('tb_jurusan');
+		$this->db->join('tb_kelas','tb_kelas.id_jurusan = tb_jurusan.id_jurusan');
 		return $this->db->get()->result();
 	}
 	
