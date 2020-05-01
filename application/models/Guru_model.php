@@ -1,23 +1,20 @@
 <?php 
-class InputUser_model extends CI_Model
+class Guru_model extends CI_Model
 {
 	
 
 // =========================== Awal Model Tb_Login untuk Pengguna ===================================
-	function getAll(){
-            $this->db->select('*');
-            $this->db->from('tb_materi');
-            $query = $this->db->get();
-            return $query;
-        }
-	
-	public function getById($id)
-	{
+	function getById($id){
 		$this->db->select('*');
 		$this->db->from('tb_login');
-		$this->db->where('username', $id);
+		$this->db->where('id', $id);
 		return $this->db->get()->row_array();
-	}
+	}	
+function getMateri(){
+            $this->db->select('*');
+            $this->db->from('tb_materi');
+			return $this->db->get()->result();
+        }
 	
 	
 	public function save($data,$table)

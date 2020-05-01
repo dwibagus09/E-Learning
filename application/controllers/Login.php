@@ -24,11 +24,11 @@ class Login extends CI_Controller{
                     $this->session->set_userdata('ses_nama',$data['username']);
                     redirect('Page');
  
-                 }elseif($data['akses']=='2'){ //akses siswa
+                 }elseif($data['akses']=='2'){ //akses Guru
                     $this->session->set_userdata('akses','2');
                     $this->session->set_userdata('ses_id',$data['id']);
                     $this->session->set_userdata('ses_nama',$data['username']);
-                    redirect('Page');
+                    redirect('Page_guru');
 					
                  }
 		}else{  // jika username dan password tidak ditemukan atau salah

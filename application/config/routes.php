@@ -60,3 +60,5 @@ $route['data_mengajar'] = 'page/data_mengajar';
 //Route untuk Proses Admin User
 $route['data_login'] = 'page/data_login';
 $route['edit'] = 'page/edit';
+//Route untuk Proses Guru
+$route['data_materi'] = 'Page_guru/data_materi';
