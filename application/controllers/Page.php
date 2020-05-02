@@ -38,6 +38,11 @@ class Page extends CI_Controller{
 	 
 	  $this->template->utama('Admin/v_tambah/v_tambah_user');
   }
+
+   public function tambah2(){
+	 
+	  $this->template->utama('Admin/v_tambah/v_tambah_user2');
+  }
  
   public function tambah_proses()
 	{
@@ -52,6 +57,22 @@ class Page extends CI_Controller{
             $this->InputUser_model->save($data,"tb_login");
 			
             redirect('page/tambah_guru/'.$username);
+       
+	}
+
+	public function tambah_proses2()
+	{
+			$username = $this->input->post('Username',TRUE);
+            $password = $this->input->post('Password',TRUE);
+            $grup = $this->input->post('Akses');
+            $data = array(
+                'username' => $username,
+                'password' => $password,
+                'akses' => $grup
+            );
+            $this->InputUser_model->save($data,"tb_login");
+			
+            redirect('page/tambah_siswa/'.$username);
        
 	}
 
@@ -272,25 +293,32 @@ class Page extends CI_Controller{
 	public function edit_mengajar(){
 		$id = $this->uri->segment(3);
 		$data['list'] = $this->InputUser_model->edit_mengajar($id);
+		$data['list1'] = $this->InputUser_model->getAll_guru();
+	  	$data['kelas'] = $this->InputUser_model->getAll_kelas_dist();
+	 	$data['list3'] = $this->InputUser_model->getAll_mapel();
 		 $this->template->utama('Admin/v_edit/v_edit_mengajar', $data);
 	}
 	
 	public function save_edit_mengajar(){
-			$id     = $this->input->post('id');
-			$jurusan = $this->input->post('Jurusan');
+			$id = $this->input->post('id');
+			$guru     = $this->input->post('guru');
+			$kelas = $this->input->post('kelas');
+			$mapel = $this->input->post('mapel');
             
 
             $data = array(
-                'nama_jurusan' => $jurusan,
+                'nip' => $guru,
+                'id_kelas' => $kelas,
+                'id_mapel' => $mapel
             );
        
-        $this->InputUser_model->save_edit_data_kelas($id,$data);
+        $this->InputUser_model->save_edit_data_mengajar($id,$data);
     }
 	
 	function hapus_mengajar()
 	{
 		$id = $this->uri->segment(3);
-		$this->InputUser_model->delete_data_kelas($id);
+		$this->InputUser_model->delete_data_mengajar($id);
 	}
 
 	// ========================================= Akhir Proses Mengajar ===============================//
@@ -301,8 +329,8 @@ class Page extends CI_Controller{
 	{
     // function ini hanya boleh diakses oleh admin dan dosen
     if($this->session->userdata('akses')=='1'){
-		$data['list'] = $this->InputUser_model->getAll_kelas();
-      $this->template->utama('Admin/v_data/v_data_kelas', $data);
+		$data['list'] = $this->InputUser_model->getAll_mapel();
+      $this->template->utama('Admin/v_data/v_data_mapel', $data);
     }else{
       echo '<script type="text/javascript">alert("Maaf Akses Tidak Boleh");
 	  window.location="index";
@@ -312,57 +340,53 @@ class Page extends CI_Controller{
 	}	
   
   public function tambah_jumlah_mapel(){
-	 $data['jrs'] = $this->InputUser_model->getAll_jurusan();
-	 $data['guru'] = $this->InputUser_model->getAll_guru();
-	  $this->template->utama('Admin/v_tambah/v_tambah_jumlah_pengajar',$data);
+	  $this->template->utama('Admin/v_tambah/v_tambah_jumlah_mapel');
   }
   
   public function tambah_mapel(){
 	 
-	  $this->template->utama('Admin/v_tambah/v_tambah_pengajar');
+	  $this->template->utama('Admin/v_tambah/v_tambah_mapel');
   }
  
   public function tambah_proses_mapel()
 	{
 		$post = $this->input->post();
 		$result = array();
-		$total_post = count($post['kelas']);
-		foreach($post['kelas'] AS $key => $val)
+		$total_post = count($post['nama_mapel']);
+		foreach($post['nama_mapel'] AS $key => $val)
 		{
 			$result[] = array(
-			"id_kelas" => $post['kelas'][$key],
-			"id_mapel" => $post['nama_kelas'][$key],
-			"nip" => $post['jurusan'][$key]
+			"nama" => $post['nama_mapel'][$key],
 			
 		);
 	}
-	$this->InputUser_model->save_kelas($result);
+	$this->InputUser_model->save_mapel($result);
 	$this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
-	redirect('data_kelas');
+	redirect('data_mapel');
 	}
 
 	public function edit_mapel(){
 		$id = $this->uri->segment(3);
-		$data['list'] = $this->InputUser_model->edit_jurusan($id);
-		 $this->template->utama('Admin/v_edit/v_edit_kelas', $data);
+		$data['list'] = $this->InputUser_model->edit_mapel($id);
+		$this->template->utama('Admin/v_edit/v_edit_mapel', $data);
 	}
 	
 	public function save_edit_mapel(){
 			$id     = $this->input->post('id');
-			$jurusan = $this->input->post('Jurusan');
+			$mapel = $this->input->post('Mapel');
             
 
             $data = array(
-                'nama_jurusan' => $jurusan,
+                'nama' => $mapel,
             );
        
-        $this->InputUser_model->save_edit_data_kelas($id,$data);
+        $this->InputUser_model->save_edit_data_mapel($id,$data);
     }
 	
 	function hapus_mapel()
 	{
 		$id = $this->uri->segment(3);
-		$this->InputUser_model->delete_data_kelas($id);
+		$this->InputUser_model->delete_data_mapel($id);
 	}
 
 	// ========================================= Akhir Proses Mapel =================================================//
@@ -464,7 +488,8 @@ class Page extends CI_Controller{
 	function data_siswa(){
     // function ini hanya boleh diakses oleh admin dan dosen
     if($this->session->userdata('akses')=='1'){
-		$data['list'] = $this->InputUser_model->getAll_siswa();
+    	$data['list1'] = $this->InputUser_model->getkelas();
+		
       $this->template->utama('Admin/v_data/v_data_siswa', $data);
     }else{
       echo '<script type="text/javascript">alert("Maaf Akses Tidak Boleh");
@@ -476,38 +501,43 @@ class Page extends CI_Controller{
   
   public function tambah_siswa(){
 	  $id = $this->uri->segment(3);
-	  $data['list'] = $this->InputUser_model->getById_siswa($id);
+	  $data['list'] = $this->InputUser_model->getById($id);
+	  $data['list1'] = $this->InputUser_model->getAll_kelas_dist($id);
 	  $this->template->utama('Admin/v_tambah/v_tambah_siswa', $data);
   }
  
   public function tambah_proses_siswa()
 	{
-			$niy = $this->input->post('Nis');
+			$nis = $this->input->post('Nis');
             $nama = $this->input->post('Nama');
             $alamat = $this->input->post('Alamat');
 			$jenkel = $this->input->post('Jenkel');
+			$kelas = $this->input->post('kelas');
+			$no = $this->input->post('no');
 			$id = $this->input->post('Id');
 			//upload foto
 		
             $data = array(
-                'nip' => $niy,
-                'nama_guru' => $nama,
+                'nis' => $nis,
+                'nama_siswa' => $nama,
                 'alamat' => $alamat,
 				'jenis_kelamin' => $jenkel,
-				'id' =>$id,
+				'No_Telepon' => $no,
+				'id_kelas' => $kelas,
+				'id' =>$id
             );
 			if (!empty($_FILES['photo']['name'])) {
 			$upload = $this->_do1_upload();
 			$data['foto'] = $upload;
 		}
-            $this->InputUser_model->save_guru($data,"tb_guru");
+            $this->InputUser_model->save_guru($data,"tb_siswa");
             
             redirect('Page/data_siswa',$data);
         }
 		
 			private function _do1_upload()
 	{
-		$config['upload_path'] 		= 'upload/guru/';
+		$config['upload_path'] 		= 'upload/siswa/';
 		$config['allowed_types'] 	= 'gif|jpg|png|jpeg';
 		$config['max_size'] 			= 2048;
 		$config['max_widht'] 			= 1000;
@@ -524,23 +554,31 @@ class Page extends CI_Controller{
 
 	public function edit_siswa(){
 		$id = $this->uri->segment(3);
+		$data['list1'] = $this->InputUser_model->getAll_kelas_dist();
 		$data['list'] = $this->InputUser_model->edit_siswa($id);
 		 $this->template->utama('Admin/v_edit/v_edit_siswa', $data);
 	}
 	
 	public function save_edit_siswa(){
-			$id     = $this->input->post('id');
-			$username = $this->input->post('Username');
-            $password = $this->input->post('Password');
-            $grup = $this->input->post('Akses');
-
+			$nis = $this->input->post('Nis');
+            $nama = $this->input->post('Nama');
+            $alamat = $this->input->post('Alamat');
+			$jenkel = $this->input->post('Jenkel');
+			$kelas = $this->input->post('kelas');
+			$no = $this->input->post('no');
+			$id = $this->input->post('Id');
+			//upload foto
+		
             $data = array(
-                'username' => $username,
-                'password' => $password,
-                'akses' => $grup
+                'nis' => $nis,
+                'nama_siswa' => $nama,
+                'alamat' => $alamat,
+				'jenis_kelamin' => $jenkel,
+				'No_Telepon' => $no,
+				'id_kelas' => $kelas,
+				'id' =>$id
             );
-       
-        $this->InputUser_model->save_edit_data_guru($id,$data);
+        $this->InputUser_model->save_edit_data_siswa($id,$data);
     }
 	
 	function hapus_siswa()

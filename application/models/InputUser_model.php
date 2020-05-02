@@ -2,8 +2,9 @@
 class InputUser_model extends CI_Model
 {
 	
-private $_table = "tb_login";
+	private $_table = "tb_login";
 	private $_guru ="tb_guru";
+	private $_siswa = "tb_siswa";
 	public $id;
 	public $username;
 	public $password;
@@ -13,7 +14,6 @@ private $_table = "tb_login";
 	{
 		$this->db->select('*');
 		$this->db->from('tb_login');
-		$this->db->where('akses', 2);
 		return $this->db->get()->result();
 	}
 	
@@ -240,11 +240,11 @@ private $_table = "tb_login";
 		$berhasil = $this->db->update('tb_mengajar', $data);
 		if($berhasil)
 		{
-			redirect('Page/edit_mengajar/'.$id.'?update=1','refresh');
+			redirect('Page/data_mengajar/'.$id.'?update=1','refresh');
 		}
 		else
 		{
-			redirect('Page/edit_mengajar/'.$id.'?update=2','refresh');
+			redirect('Page/data_mengajar/'.$id.'?update=2','refresh');
 		}
 	}
 	
@@ -297,6 +297,7 @@ private $_table = "tb_login";
 			redirect('Page/edit_guru/'.$id.'?update=2','refresh');
 		}
 	}
+
 	
 	function delete_data_guru($id)
 	{
@@ -314,12 +315,121 @@ private $_table = "tb_login";
 
 // ======================= Akhir Tb_Guru ========================================
 
+// ======================== Tb_Mapel =============================================
 public function getAll_mapel()
 	{
 		$this->db->select('*');
 		$this->db->from('tb_mapel');
 		return $this->db->get()->result();
-	}	
+	}
+
+public function save_mapel($result)
+	{
+		$total_array = count($result);
+ 
+		if($total_array != 0)
+		{
+			$this->db->insert_batch('tb_mapel', $result);
+		}
+	}
+
+function edit_mapel($id)
+	{
+		$this->db->select('*');
+		$this->db->from('tb_mapel');
+		$this->db->where('id_mapel', $id);
+		return $this->db->get()->row_array();
+	}
+
+	function save_edit_data_mapel($id, $data)
+	{
+		$this->db->where('id_mapel', $id);
+		$berhasil = $this->db->update('tb_mapel', $data);
+		if($berhasil)
+		{
+			redirect('Page/data_mapel/'.$id.'?update=1','refresh');
+		}
+		else
+		{
+			redirect('Page/data_mapel/'.$id.'?update=2','refresh');
+		}
+	}
+	
+
+public function delete_data_mapel($id)
+	{
+		$this->db->where('id_mapel', $id);
+		$berhasil = $this->db->delete('tb_mapel');
+		if($berhasil)
+       {
+            redirect('Page/data_mapel/'.$id.'?delete=1','refresh');
+       }
+		else
+       {
+            redirect('Page/data_mapel/'.$id.'?delete=2','refresh');
+       }
+	}
+
+// ================================ Awal Model Untuk Tb_Siswa ===============================================
+	public function getAll_siswa()
+	{
+		return $this->db->get($this->_siswa)->result();
+	}
+	
+	
+	public function save_siswa($data,$table)
+	{
+		$this->db->insert($table,$data);
+	}
+	
+	public function edit_siswa($id)
+	{
+		$this->db->select('*');
+		$this->db->from('tb_siswa');
+		$this->db->where('id', $id);
+		return $this->db->get()->row_array();
+	}
+
+	public function save_edit_data_siswa($id, $data)
+	{
+		$this->db->where('id', $id);
+		$berhasil = $this->db->update('tb_siswa', $data);
+		if($berhasil)
+		{
+			redirect('Page/edit_siswa/'.$id.'?update=1','refresh');
+		}
+		else
+		{
+			redirect('Page/edit_siswa/'.$id.'?update=2','refresh');
+		}
+	}
+
+	
+	public function delete_data_siswa($id)
+	{
+		$this->db->where('id', $id);
+		$berhasil = $this->db->delete('tb_siswa');
+		if($berhasil)
+		{
+            redirect('Page/data_siswa/'.$id.'?delete=1','refresh');
+		}
+		else
+		{
+            redirect('Page/data_siswa/'.$id.'?delete=2','refresh');
+		}
+	}
+
+	public function getkelas()
+	{
+		$this->db->select('*');
+		$this->db->from('tb_siswa');
+		$this->db->join('tb_kelas','tb_siswa.id_kelas = tb_kelas.id_kelas');
+		return $this->db->get()->result();
+	}
+
+
+
+// ======================= Akhir Tb_Siswa ========================================	
 	
 }
 ?>
