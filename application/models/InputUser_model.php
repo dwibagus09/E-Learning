@@ -396,11 +396,11 @@ public function delete_data_mapel($id)
 		$berhasil = $this->db->update('tb_siswa', $data);
 		if($berhasil)
 		{
-			redirect('Page/edit_siswa/'.$id.'?update=1','refresh');
+			redirect('Page/data_siswa/'.$id.'?update=1','refresh');
 		}
 		else
 		{
-			redirect('Page/edit_siswa/'.$id.'?update=2','refresh');
+			redirect('Page/data_siswa/'.$id.'?update=2','refresh');
 		}
 	}
 

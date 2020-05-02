@@ -530,7 +530,7 @@ class Page extends CI_Controller{
 			$upload = $this->_do1_upload();
 			$data['foto'] = $upload;
 		}
-            $this->InputUser_model->save_guru($data,"tb_siswa");
+            $this->InputUser_model->save_siswa($data,"tb_siswa");
             
             redirect('Page/data_siswa',$data);
         }
@@ -578,8 +578,29 @@ class Page extends CI_Controller{
 				'id_kelas' => $kelas,
 				'id' =>$id
             );
+            if (!empty($_FILES['photo']['name'])) {
+			$upload = $this->_do2_upload();
+			$data['foto'] = $upload;
+		}
         $this->InputUser_model->save_edit_data_siswa($id,$data);
     }
+    private function _do2_upload()
+	{
+		$config['upload_path'] 		= 'upload/siswa/';
+		$config['allowed_types'] 	= 'gif|jpg|png|jpeg';
+		$config['max_size'] 			= 2048;
+		$config['max_widht'] 			= 1000;
+		$config['max_height']  		= 1000;
+		$config['file_name'] 			= round(microtime(true)*1000);
+ 
+		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload('photo')) {
+			$this->session->set_flashdata('msg', $this->upload->display_errors('',''));
+			redirect('welcome');
+		}
+		return $this->upload->data('file_name');
+	}
+
 	
 	function hapus_siswa()
 	{
