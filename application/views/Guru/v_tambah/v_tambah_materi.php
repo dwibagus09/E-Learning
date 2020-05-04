@@ -20,7 +20,7 @@
 <input type="file" class="form-control form-controluser" id="materi" name="materi" placeholder="Pilih Materi" require> 
 </div>  
 <div class="form-group"> 
-<input type="hidden" class="form-control form-controluser" id="id" name="Id" value="<?php echo $list['id_mengajar']; ?>" require> 
+<input type="text" class="form-control form-controluser" id="id" name="Id" value="<?php echo $list['id_mengajar']; ?>" require> 
 </div> 
 <input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Tambah"> 
 </form><hr> 

@@ -19,14 +19,14 @@
             $no = 1;
 			foreach ($materi as $row): ?>
 
-			<tr style="text-align:center;">
+			<tr>
 				<td width="50"><?php echo $no++ ?></td>
 				
 				<td width="150">
-				<a href="<?php echo $row->file_materi ?>"><?php echo $row->nama_materi?></a> 
+				<a href="<?php echo base_url().'page_guru/download/'.$row->file_materi ?>"><?php echo $row->nama_materi?></a> 
 				</td>
 
-				<td width="150">
+				<td style="text-align:center;" width="150">
 				<a href="<?php echo base_url().'page_guru/edit_materi/'.$row->id_materi; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>|
 				<a href="<?php echo base_url().'page_guru/hapus_materi/'.$row->id_materi; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
 				</td>
