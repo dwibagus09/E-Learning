@@ -10,16 +10,21 @@ class Page_guru extends CI_Controller{
             $url=base_url();
             redirect($url);
         }
-  }
-  
-  
- 
+  } 
   public function index(){
     $this->template->utama('dashboard');
   }
 
 
   public function data_materi(){
+
+  //Function Guru Utama
+  function index(){
+    $this->template->utama('dashboard');
+  }
+
+  //Function Guru Sidebar
+  function data_materi(){
     $data['materi'] = $this->Guru_model->getMateri();
     $this->template->utama('Guru/v_data/v_materi',$data);
   }
@@ -29,7 +34,19 @@ class Page_guru extends CI_Controller{
 	$data['list'] = $this->Guru_model->getById($id);
   	$this->template->utama('Guru/v_tambah/v_tambah_materi',$data);
   }
+  
+  function data_tugas(){
+	  $data['tugas'] = $this->Guru_model->getTugas();
+	  $this->template->utama('Guru/v_data/v_tugas',$data);
+  }
 
+  function data_nilai(){
+	  $data['nilai'] = $this->Guru_model->getNilai();
+	  $this->template->utama('Guru/v_data/v_nilai',$data);
+  }
+
+
+  //Function Prosses Guru
   public function tambah_materi(){
     
 			$nama_materi = $this->input->post('nama_materi');
