@@ -1,6 +1,6 @@
 <?php 
     defined('BASEPATH') OR exit('No direct script access allowed');
-    class Mahasiswa extends CI_Controller{
+    class Server_API extends CI_Controller{
         function __construct(){
             parent::__construct();
             // $this->load->library('table');
@@ -10,7 +10,7 @@
 		
 		public function Api ()
 		{
-			$data = $this->Guru_model->getAll();
+			$data = $this->Guru_model->getMateri();
 			echo json_encode($data->result_array());
 		}
 		

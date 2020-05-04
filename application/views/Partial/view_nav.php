@@ -24,7 +24,7 @@
 	<?php endif;?>
 		</a>
 		<!-- Dropdown - User Information -->
-		
+	
 	</li>
 		</div>		 
 		</div>  

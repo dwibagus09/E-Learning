@@ -14,14 +14,20 @@ class Page_guru extends CI_Controller{
   
   
  
-  function index(){
+  public function index(){
     $this->template->utama('dashboard');
   }
 
 
-  function data_materi(){
+  public function data_materi(){
     $data['materi'] = $this->Guru_model->getMateri();
     $this->template->utama('Guru/v_data/v_materi',$data);
+  }
+
+  public function tambah(){
+  	$id = $this->uri->segment(3);
+	$data['list'] = $this->Guru_model->getById($id);
+  	$this->template->utama('Guru/v_tambah/v_tambah_materi',$data);
   }
 
   public function tambah_materi(){
@@ -31,19 +37,16 @@ class Page_guru extends CI_Controller{
 			//upload foto
 		
             $data = array(
-                'nip' => $niy,
-                'nama_guru' => $nama,
-                'alamat' => $alamat,
-				'jenis_kelamin' => $jenkel,
+                'nip' => $nama_materi,
 				'id' =>$id,
             );
 			if (!empty($_FILES['photo']['name'])) {
 			$upload = $this->_do_upload();
 			$data['foto'] = $upload;
 		}
-            $this->InputUser_model->save_guru($data,"tb_guru");
+            $this->Guru_model->save($data,"tb_materi");
             
-            redirect('Page/data_guru',$data);
+            redirect('Page_guru/data_materi',$data);
         }
 		
 			private function _do_upload()

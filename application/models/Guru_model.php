@@ -7,9 +7,18 @@ class Guru_model extends CI_Model
 	function getById($id){
 		$this->db->select('*');
 		$this->db->from('tb_login');
-		$this->db->where('id', $id);
+		$this->db->where('username', $id);
+		$a = $this->db->get()->row('id');
+		$this->db->select('*');
+		$this->db->from('tb_guru');
+		$this->db->where('id', $a);
+		$b = $this->db->get()->row('nip');
+		$this->db->select('*');
+		$this->db->from('tb_mengajar');
+		$this->db->where('nip', $b);
 		return $this->db->get()->row_array();
-	}	
+	}
+
 function getMateri(){
             $this->db->select('*');
             $this->db->from('tb_materi');

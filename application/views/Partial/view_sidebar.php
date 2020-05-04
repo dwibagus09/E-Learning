@@ -21,7 +21,7 @@
 	  
 	  
               <a href="data_guru" class="list-group-item"><i class="fa fa-folder"></i> Manajemen Guru</a>
-			  <a href="data_siswa" class="list-group-item"><i class="fa fa-folder"></i> Manajemen Siswa</a>
+			       <a href="data_siswa" class="list-group-item"><i class="fa fa-folder"></i> Manajemen Siswa</a>
               <a href="data_login" class="list-group-item"><i class="fa fa-folder"></i> Manajemen User</a>
            
 			
@@ -29,7 +29,7 @@
   <a href="#" class="list-group-item active" style="text-align: center;background-color: black;border-color: black">
                 MENU GURU
               </a>
-              <a href="<?php echo base_url().'index.php/Page_guru'?>" class="list-group-item"><i class="fa fa-dashboard"></i> Dashboard</a>
+              <a href="<?php echo base_url().'index.php/page_guru'?>" class="list-group-item"><i class="fa fa-dashboard"></i> Dashboard</a>
               <a href="data_materi" class="list-group-item"><i class="fa fa-folder"></i> Unggah Materi</a>
               <a href="#" class="list-group-item"><i class="fa fa-folder"></i> Unggah Tugas</a>
               <a href="#" class="list-group-item"><i class="fa fa-folder"></i> Daftar Nilai</a>
