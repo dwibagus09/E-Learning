@@ -16,25 +16,21 @@ class Page_guru extends CI_Controller{
   }
 
 
-  public function data_materi(){
-
-  //Function Guru Utama
-  function index(){
-    $this->template->utama('dashboard');
-  }
-
   //Function Guru Sidebar
   function data_materi(){
     $data['materi'] = $this->Guru_model->getMateri();
     $this->template->utama('Guru/v_data/v_materi',$data);
   }
 
-  public function tambah(){
+  function tambah(){
   	$id = $this->uri->segment(3);
+  	$data['list1'] = $this->Guru_model->getAll_kelas_dist($id);
 	$data['list'] = $this->Guru_model->getById($id);
   	$this->template->utama('Guru/v_tambah/v_tambah_materi',$data);
   }
+
   
+
   function data_tugas(){
 	  $data['tugas'] = $this->Guru_model->getTugas();
 	  $this->template->utama('Guru/v_data/v_tugas',$data);
@@ -47,19 +43,20 @@ class Page_guru extends CI_Controller{
 
 
   //Function Prosses Guru
-  public function tambah_materi(){
-    
-			$nama_materi = $this->input->post('nama_materi');
+  function tambah_materi(){
+    		$kelas = $this->input->post('kelas');
+			$nam_materi = $this->input->post('nam_materi');
 			$id = $this->input->post('Id');
 			//upload foto
 		
             $data = array(
-                'nip' => $nama_materi,
-				'id' =>$id,
+                'nama_materi' => $nam_materi,
+                'id_kelas' => $kelas,
+				'id_mengajar' =>$id,
             );
-			if (!empty($_FILES['photo']['name'])) {
+			if (!empty($_FILES['materi']['name'])) {
 			$upload = $this->_do_upload();
-			$data['foto'] = $upload;
+			$data['file_materi'] = $upload;
 		}
             $this->Guru_model->save($data,"tb_materi");
             
@@ -68,17 +65,15 @@ class Page_guru extends CI_Controller{
 		
 			private function _do_upload()
 	{
-		$config['upload_path'] 		= 'upload/guru/';
-		$config['allowed_types'] 	= 'gif|jpg|png|jpeg';
+		$config['upload_path'] 		= 'upload/Materi/';
+		$config['allowed_types'] 	= 'pdf|xls|doc|ppt';
 		$config['max_size'] 			= 2048;
-		$config['max_widht'] 			= 1000;
-		$config['max_height']  		= 1000;
 		$config['file_name'] 			= round(microtime(true)*1000);
  
 		$this->load->library('upload', $config);
-		if (!$this->upload->do_upload('photo')) {
+		if (!$this->upload->do_upload('materi')) {
 			$this->session->set_flashdata('msg', $this->upload->display_errors('',''));
-			redirect('data_guru');
+			redirect('data_materi');
 		}
 		return $this->upload->data('file_name');
 	}

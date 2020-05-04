@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 <div class="panel-heading">
-   <h3 class="panel-title"><i class="fa fa-user"></i> Daftar Guru</h3>
+   <h3 class="panel-title"><i class="fa fa-user"></i> Daftar Nilai</h3>
 </div>
 			  
    <div class="panel-body">
@@ -45,7 +45,6 @@
 			</tr>
 			</tbody>
             </table>
-			  <a href="<?php echo base_url().'page_guru/tambah/'.$this->session->userdata("ses_nama") ?>"><button class="btn btn-success btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Tambah</button></a>
 			</div>
 				<?php
             if($this->input->get('delete')==1)

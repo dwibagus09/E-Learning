@@ -19,14 +19,19 @@ class Guru_model extends CI_Model
 		return $this->db->get()->row_array();
 	}
 
-function getMateri(){
-	}	
 
 	function getMateri(){
             $this->db->select('*');
             $this->db->from('tb_materi');
 			return $this->db->get()->result();
 		}
+
+	public function getAll_kelas_dist()
+	{
+		$this->db->select('*');
+		$this->db->from('tb_kelas');
+		return $this->db->get()->result();
+	}
 		
 	function getTugas(){
 		$this->db->select('*');
