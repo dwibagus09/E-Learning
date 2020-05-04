@@ -8,7 +8,7 @@
             
 <div> 
 
-<form class="user" action="<?php echo base_url().'Page/save_edit_kelas'; ?>" method="post"> 
+<form class="user" action="<?php echo base_url().'index.php/Page/save_edit_kelas'; ?>" method="post"> 
 <div class="form-group">                      
  <input type="hidden" name="id" value="<?php echo $list['id_kelas']; ?>">
 <input type="text" class="form-control " id="kelas" name="Kelas" value="<?php echo $list['nama_kelas']; ?>" > 

@@ -35,15 +35,15 @@
 				<?php echo $row->nama_kelas ?>
 				</td>
 				<td width="100">
-				<a href="<?php echo base_url().'page/edit_mengajar/'.$row->id_mengajar; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
-				<a href="<?php echo base_url().'page/hapus_mengajar/'.$row->id_mengajar; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
+				<a href="<?php echo base_url().'index.php/page/edit_mengajar/'.$row->id_mengajar; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>
+				<a href="<?php echo base_url().'index.php/page/hapus_mengajar/'.$row->id_mengajar; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
 				</td>
  			<?php endforeach; ?>
 			
 			</tr>
 			</tbody>
             </table>
-			  <a href="<?php echo base_url().'page/tambah_jumlah_mengajar'?>"><button class="btn btn-success btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Tambah</button></a>
+			  <a href="<?php echo base_url().'index.php/page/tambah_jumlah_mengajar'?>"><button class="btn btn-success btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Tambah</button></a>
 			</div>
 				<?php
             if($this->input->get('delete')==1)
