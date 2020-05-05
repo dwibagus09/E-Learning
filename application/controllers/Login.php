@@ -38,7 +38,7 @@ class Login extends CI_Controller{
                      $this->session->set_userdata('akses','3');
                      $this->session->set_userdata('ses_id',$data['id']);
                      $this->session->set_userdata('ses_nama',$data['username']);
-                     redirect_('Page_Siswa');
+                     redirect('Page_Siswa');
                  }
 		}else{  // jika username dan password tidak ditemukan atau salah
                             $url=base_url();

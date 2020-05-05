@@ -10,7 +10,7 @@ class Page_siswa extends CI_Controller{
   }
  
   function index(){
-    $this->load->view('Siswa/dashboard_siswa');
+    $this->template->utama('dashboard');
   }
  
   function data_siswa(){
