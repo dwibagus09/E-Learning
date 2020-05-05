@@ -1,7 +1,7 @@
 <?php
 class Page_guru extends CI_Controller{
   function __construct(){
-    parent::__construct();
+    parent:: __construct();
 	$this->load->model('Guru_model');
 	$this->load->library('template');
 	$this->load->library('form_validation');
@@ -25,7 +25,7 @@ class Page_guru extends CI_Controller{
   function tambah(){
   	$id = $this->uri->segment(3);
   	$data['list1'] = $this->Guru_model->getAll_kelas_dist($id);
-	$data['list'] = $this->Guru_model->getById($id);
+	  $data['list'] = $this->Guru_model->getById($id);
   	$this->template->utama('Guru/v_tambah/v_tambah_materi',$data);
   }
 
@@ -45,7 +45,7 @@ class Page_guru extends CI_Controller{
   //Function Prosses Guru
   function tambah_materi(){
     		$kelas = $this->input->post('kelas');
-			$nam_materi = $this->input->post('nam_materi');
+			$nam_materi = $this->input->post('nama_materi');
 			$id = $this->input->post('Id');
 			//upload foto
 		

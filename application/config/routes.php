@@ -65,3 +65,6 @@ $route['data_mapel'] = 'page/data_mapel';
 
 //Route Untuk Guru
 $route['data_materi'] = 'page_guru/data_materi';
+$route['data_tugas'] = 'page_guru/data_tugas';
+
+//Route Untuk Siswa
