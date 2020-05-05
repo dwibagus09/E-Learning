@@ -10,11 +10,24 @@ class Guru_model extends CI_Model
 		$this->db->where('id', $id);
 		return $this->db->get()->row_array();
 	}	
-function getMateri(){
+
+	function getMateri(){
             $this->db->select('*');
             $this->db->from('tb_materi');
 			return $this->db->get()->result();
-        }
+		}
+		
+	function getTugas(){
+		$this->db->select('*');
+		$this->db->from('tb_tugas');
+		return $this->db->get()->result();
+	}
+
+	function getNilai(){
+		$this->db->select('*');
+		$this->db->from('tb_result');
+		return $this->db->get()->result();
+	}
 	
 	
 	public function save($data,$table)
