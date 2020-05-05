@@ -45,7 +45,7 @@ class Page_guru extends CI_Controller{
   //Function Prosses Guru
   function tambah_materi(){
     		$kelas = $this->input->post('kelas');
-			$nam_materi = $this->input->post('nama_materi');
+			$nam_materi = $this->input->post('nam_materi');
 			$id = $this->input->post('Id');
 			//upload foto
 		
