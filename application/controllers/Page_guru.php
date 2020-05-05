@@ -4,7 +4,8 @@ class Page_guru extends CI_Controller{
     parent:: __construct();
 	$this->load->model('Guru_model');
 	$this->load->library('template');
-	$this->load->library('form_validation');
+  $this->load->library('form_validation');
+  $this->load->helper('download');
     //validasi jika user belum login
     if($this->session->userdata('masuk') != TRUE){
             $url=base_url();
