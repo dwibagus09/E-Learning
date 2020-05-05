@@ -1,7 +1,7 @@
 <div class="row"> 
 <div class="col-lg-7"> 
 <div class="p-5"> <div class="text-center"> 
-<h1 class="h4 text-gray-900 mb-4">Tambah User</h1>
+<h1 class="h4 text-gray-900 mb-4">Tambah User Guru</h1>
 </div> 
 <form class="user" action="<?php echo base_url().'index.php/Page/tambah_proses';?>" method="post"> 
 <div class="form-group">                       
@@ -13,9 +13,8 @@
 <div class="form-group"> 
 <select id="akses" class="form-control" name="Akses" require> 
 <option value="0">
-Pilih Grup User</option> 
-<option value="2">Guru</option> 
-<option value="3">Siswa</option> 
+Grup User</option> 
+<option value="2">Guru</option>  
 </select> 
 </div> 
 <input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Tambah"> 

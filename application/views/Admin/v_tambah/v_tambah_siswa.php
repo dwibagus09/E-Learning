@@ -8,10 +8,10 @@
 <input type="text" class="form-control form-control-user" id="nis" name="Nis" placeholder="Nomor induk Siswa" require> 
 </div>
 <div class="form-group">                      
-<input type="text" class="form-control form-control-user" id="nama" name="Nama" placeholder="Nama Lengkap Guru" require> 
+<input type="text" class="form-control form-control-user" id="nama" name="Nama" placeholder="Nama Lengkap Siswa" require> 
 </div>
 <div class="form-group">                      
-<textarea class="form-control form-control-user" id="alamat" name="Alamat" placeholder="Alamat Lengkap Guru" require></textarea>  
+<textarea class="form-control form-control-user" id="alamat" name="Alamat" placeholder="Alamat Lengkap Siswa" require></textarea>  
 </div>
 <div class="form-group">
 <input type="text" class="form-control form-control-user" id="no" name="no" placeholder="Nomor Telepon Siswa" require> 

@@ -10,29 +10,29 @@ class InputUser_model extends CI_Model
 	public $password;
 	public $akses;
 // =========================== Awal Model Tb_Login untuk Pengguna ===================================
-	public function getAll()
+	public function getAll() // ini untuk query ke dalam tb_login yang nanti datanya dipanggil di controller
 	{
 		$this->db->select('*');
 		$this->db->from('tb_login');
 		return $this->db->get()->result();
 	}
 	
-	public function getById($id)
-	{
+	public function getById($id) {							
 		$this->db->select('*');
 		$this->db->from('tb_login');
 		$this->db->where('username', $id);
-		return $this->db->get()->row_array();
+		return $this->db->get()->row_array(); // rralat iki gak dipake
 	}
 	
 	
-	public function save($data,$table)
+	public function save($data,$table) // ini fungsi untuk menyimpan inputan user baru dari form yang diteruskan oleh controller untuk disimpan
 	{
-		$this->db->insert($table,$data);
+		$this->db->insert($table,$data); // $table berisi tabel yang dituju , dan $data itu berisi inputa yang dimasukkan dari form view v_tambah_user.
 	}
 	
 	
-	function edit($id)
+	function edit($id)// ini model buat edit data user di tb_login yang dimana diambil dari parsingan  segment dari controller
+	// nilai yang dipakai itu id nya dari tb_login, jadi $id itu berisi id dari pengguna
 	{
 		$this->db->select('*');
 		$this->db->from('tb_login');
@@ -40,7 +40,7 @@ class InputUser_model extends CI_Model
 		return $this->db->get()->row_array();
 	}
 
-	function save_edit_data($id, $data)
+	function save_edit_data($id, $data) // dari namanya udah keliatan hehehe
 	{
 		$this->db->where('id', $id);
 		$berhasil = $this->db->update('tb_login', $data);
@@ -54,7 +54,7 @@ class InputUser_model extends CI_Model
 		}
 	}
 	
-	function delete_data($id)
+	function delete_data($id) // ini buat delete datanya berdasarkan id
 	{
 		$this->db->where('id', $id);
 		$berhasil = $this->db->delete('tb_login');
