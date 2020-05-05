@@ -27,7 +27,6 @@
 				</td>
 
 				<td style="text-align:center;" width="150">
-				<a href="<?php echo base_url().'index.php/Page_guru/edit_materi/'.$row->id_materi; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>|
 				<a href="<?php echo base_url().'index.php/Page_guru/hapus_materi/'.$row->id_materi; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
 				</td>
  			<?php endforeach; ?>

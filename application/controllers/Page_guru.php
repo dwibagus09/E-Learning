@@ -82,7 +82,7 @@ class Page_guru extends CI_Controller{
 
   function download(){
   	$name = $this->uri->segment(3);
-	  $data = file_get_contents("upload/Materi".$name);
+	  $data = file_get_contents(base_url().'upload/Materi/'.$name);
 	  force_download($name, $data);
   }
 }
