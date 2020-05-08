@@ -3,8 +3,8 @@ class Guru_model extends CI_Model
 {
 	
 
-// =========================== Awal Model Tb_Login untuk Pengguna ===================================
-	function getById($id){
+// =========================== Awal Model untuk Guru ===================================
+	public function getById($id){
 		$this->db->select('*');
 		$this->db->from('tb_login');
 		$this->db->where('username', $id);
@@ -20,16 +20,39 @@ class Guru_model extends CI_Model
 	}
 
 
-	function getMateri(){
-            $this->db->select('*');
-            $this->db->from('tb_materi');
-			return $this->db->get()->result();
+	public function getMateri($id){
+		$this->db->select('*');
+		$this->db->from('tb_login');
+		$this->db->where('username', $id);
+		$a = $this->db->get()->row('id');
+		$this->db->select('*');
+		$this->db->from('tb_guru');
+		$this->db->where('id', $a);
+		$b = $this->db->get()->row('nip');
+		$this->db->select('*');
+		$this->db->from('tb_mengajar');
+		$this->db->where('nip', $b);
+		$c = $this->db->get()->row('id_mengajar');
+        $this->db->select('*');
+        $this->db->from('tb_materi');
+        $this->db->where('id_mengajar',$c);
+		return $this->db->get()->result();
 		}
 
-	public function getAll_kelas_dist()
+	public function getAll_kelas_dist($id)
 	{
 		$this->db->select('*');
-		$this->db->from('tb_kelas');
+		$this->db->from('tb_login');
+		$this->db->where('username', $id);
+		$a = $this->db->get()->row('id');
+		$this->db->select('*');
+		$this->db->from('tb_guru');
+		$this->db->where('id', $a);
+		$b = $this->db->get()->row('nip');
+		$this->db->select('*');
+		$this->db->from('tb_mengajar');
+		$this->db->where('nip', $b);
+		$this->db->join('tb_kelas','tb_kelas.id_kelas = tb_mengajar.id_kelas');
 		return $this->db->get()->result();
 	}
 		

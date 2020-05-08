@@ -2,6 +2,9 @@
 class Page_siswa extends CI_Controller{
   function __construct(){
     parent::__construct();
+    $this->load->model('');
+    $this->load->library('template2');
+    $this->load->library('form_validation');
     //validasi jika user belum login
     if($this->session->userdata('masuk') != TRUE){
             $url=base_url();
@@ -10,7 +13,7 @@ class Page_siswa extends CI_Controller{
   }
  
   function index(){
-    $this->template->utama('dashboard');
+    $this->template2->utama('Siswa/home_banner');
   }
  
   function data_siswa(){

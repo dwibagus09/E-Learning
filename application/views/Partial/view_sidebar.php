@@ -30,8 +30,9 @@
                 MENU GURU
               </a>
               <a href="<?php echo base_url().'index.php/Page_guru'?>" class="list-group-item"><i class="fa fa-dashboard"></i> Dashboard</a>
-              <a href="<?php echo base_url().'index.php/Page_guru/data_materi'?>" class="list-group-item"><i class="fa fa-folder"></i> Unggah Materi</a>
+              <a href="<?php echo base_url().'index.php/Page_guru/data_materi/'.$this->session->userdata("ses_nama") ?>" class="list-group-item"><i class="fa fa-folder"></i> Unggah Materi</a>
               <a href="<?php echo base_url().'index.php/Page_guru/data_tugas'?>" class="list-group-item"><i class="fa fa-folder"></i> Unggah Tugas</a>
+              <a href="<?php echo base_url().'index.php/Page_guru/data_ujian'?>" class="list-group-item"><i class="fa fa-folder"></i> Unggah Ujian</a>
               <a href="<?php echo base_url().'index.php/Page_guru/data_nilai'?>" class="list-group-item"><i class="fa fa-folder"></i> Daftar Nilai</a>
 			  
   <?php else:?>

@@ -16,14 +16,15 @@ class Page_guru extends CI_Controller{
     $this->template->utama('dashboard');
   }
 
-
-  //Function Guru Sidebar
-  function data_materi(){
-    $data['materi'] = $this->Guru_model->getMateri();
+//==================================== Untuk Proses Upload Materi =======================================//
+  
+  public function data_materi(){
+    $id = $this->uri->segment(3);
+    $data['materi'] = $this->Guru_model->getMateri($id);
     $this->template->utama('Guru/v_data/v_materi',$data);
   }
 
-  function tambah(){
+  public function tambah(){
   	$id = $this->uri->segment(3);
   	$data['list1'] = $this->Guru_model->getAll_kelas_dist($id);
 	  $data['list'] = $this->Guru_model->getById($id);
@@ -31,20 +32,8 @@ class Page_guru extends CI_Controller{
   }
 
   
-
-  function data_tugas(){
-	  $data['tugas'] = $this->Guru_model->getTugas();
-	  $this->template->utama('Guru/v_data/v_tugas',$data);
-  }
-
-  function data_nilai(){
-	  $data['nilai'] = $this->Guru_model->getNilai();
-	  $this->template->utama('Guru/v_data/v_nilai',$data);
-  }
-
-
-  //Function Prosses Guru
-  function tambah_materi(){
+ 
+  public function tambah_materi(){
     		$kelas = $this->input->post('kelas');
 			$nam_materi = $this->input->post('nam_materi');
 			$id = $this->input->post('Id');
@@ -80,10 +69,34 @@ class Page_guru extends CI_Controller{
 	}
   
 
-  function download(){
+  public function download(){
   	$name = $this->uri->segment(3);
 	  $data = file_get_contents(base_url().'upload/Materi/'.$name);
 	  force_download($name, $data);
   }
+  // ======================= Akhir Proses Upload Materi ==============================//
+
+  // ======================= Awal Proses Upload Tugas ===============================//
+  public function data_tugas(){
+    $data['tugas'] = $this->Guru_model->getTugas();
+    $this->template->utama('Guru/v_tambah/');
+  }
+  
+  // =============================AKhir Proses Upload Tugas=====================//
+
+  // ======================= Awal Proses Upload Tugas ===========================//
+  public function data_ujian(){
+    $data['tugas'] = $this->Guru_model->getTugas();
+    $this->template->utama('Guru/v_tambah/v_tambah_data_ujian');
+  }
+  
+  // ==================AKhir Proses Upload Tugas ================================//
+
+  public function data_nilai(){
+    $data['nilai'] = $this->Guru_model->getNilai();
+    $this->template->utama('Guru/v_data/v_nilai',$data);
+  }
+
+
 }
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2020 at 05:00 AM
+-- Generation Time: May 08, 2020 at 08:49 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -42,7 +42,8 @@ CREATE TABLE `tb_guru` (
 --
 
 INSERT INTO `tb_guru` (`nip`, `nama_guru`, `alamat`, `foto`, `jenis_kelamin`, `id`) VALUES
-(126782, 'Dwi Bagus Krisdianto Wicaksono', 'Kp.Krajan RT01/RW03 Selomukti Kec.Mlandingan - Situbondo', '1586731749666.png', 'Pria', 42);
+(126782, 'Dwi Bagus Krisdianto Wicaksono', 'Kp.Krajan RT01/RW03 Selomukti Kec.Mlandingan - Situbondo', '1586731749666.png', 'Pria', 42),
+(232434, 'sahdi', 'gfhfgfh', '', 'Pria', 51);
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,8 @@ CREATE TABLE `tb_jurusan` (
 
 INSERT INTO `tb_jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
 (25, 'IPA'),
-(32, 'IPS');
+(32, 'IPS'),
+(33, 'Bahasa Inggris');
 
 -- --------------------------------------------------------
 
@@ -97,7 +99,8 @@ CREATE TABLE `tb_kelas` (
 INSERT INTO `tb_kelas` (`id_kelas`, `kelas`, `nama_kelas`, `id_jurusan`) VALUES
 (12, '10', 'IPA 1', 25),
 (13, '10', 'IPA 2', 25),
-(14, '10', 'IPA 3', 25);
+(15, '10', 'IPS 1', 32),
+(17, '10', 'IPA 1', 25);
 
 -- --------------------------------------------------------
 
@@ -119,7 +122,9 @@ CREATE TABLE `tb_login` (
 INSERT INTO `tb_login` (`id`, `username`, `password`, `akses`) VALUES
 (1, 'admin', 'admin', '1'),
 (37, '0001', '0001', '3'),
-(42, 'dwibagus', 'dwibagus', '2');
+(42, 'dwibagus', 'dwibagus', '2'),
+(49, 'dasa', 'fdfd', '3'),
+(51, 'sahdi', 'sahdi', '2');
 
 -- --------------------------------------------------------
 
@@ -137,7 +142,8 @@ CREATE TABLE `tb_mapel` (
 --
 
 INSERT INTO `tb_mapel` (`id_mapel`, `nama`) VALUES
-(1, 'Bahasa Indonesia');
+(1, 'Bahasa Indonesia'),
+(2, 'Matematika');
 
 -- --------------------------------------------------------
 
@@ -149,15 +155,17 @@ CREATE TABLE `tb_materi` (
   `id_materi` int(11) NOT NULL,
   `nama_materi` varchar(12) NOT NULL,
   `file_materi` varchar(100) NOT NULL,
-  `id_mengajar` int(11) NOT NULL
+  `id_mengajar` int(11) NOT NULL,
+  `id_kelas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_materi`
 --
 
-INSERT INTO `tb_materi` (`id_materi`, `nama_materi`, `file_materi`, `id_mengajar`) VALUES
-(1, 'Bahasa Indo', 'ashjsjdhjsd.pdf', 1);
+INSERT INTO `tb_materi` (`id_materi`, `nama_materi`, `file_materi`, `id_mengajar`, `id_kelas`) VALUES
+(1, 'Bahasa Indo', 'ashjsjdhjsd.pdf', 1, 0),
+(2, 'BIN', '1588630708312.pdf', 1, 13);
 
 -- --------------------------------------------------------
 
@@ -177,7 +185,10 @@ CREATE TABLE `tb_mengajar` (
 --
 
 INSERT INTO `tb_mengajar` (`id_mengajar`, `id_kelas`, `id_mapel`, `nip`) VALUES
-(1, 12, 1, 126782);
+(1, 12, 1, 126782),
+(2, 12, NULL, NULL),
+(4, 13, 1, 126782),
+(6, 12, 2, 232434);
 
 -- --------------------------------------------------------
 
@@ -192,8 +203,9 @@ CREATE TABLE `tb_pertanyaan` (
   `b` varchar(100) NOT NULL,
   `c` varchar(100) NOT NULL,
   `d` varchar(100) NOT NULL,
-  `id_tugas` int(11) NOT NULL,
-  `jawaban_benar` int(1) NOT NULL
+  `id_ujian` int(11) NOT NULL,
+  `jawaban_benar` int(1) NOT NULL,
+  `keterangan` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -226,6 +238,13 @@ CREATE TABLE `tb_siswa` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tb_siswa`
+--
+
+INSERT INTO `tb_siswa` (`nis`, `nama_siswa`, `alamat`, `jenis_kelamin`, `No_Telepon`, `foto`, `id_kelas`, `id`) VALUES
+(23324, 'fdfdf', 'dfdfdg', 'Wanita', '435435', '1588403954385.png', 12, 49);
+
 -- --------------------------------------------------------
 
 --
@@ -234,12 +253,28 @@ CREATE TABLE `tb_siswa` (
 
 CREATE TABLE `tb_tugas` (
   `id_tugas` int(11) NOT NULL,
-  `kd_tugas` varchar(20) NOT NULL,
-  `deskripsi` varchar(30) NOT NULL,
-  `date_and_time` date NOT NULL,
-  `status_tugas` int(11) NOT NULL,
+  `kd_tugas` varchar(10) NOT NULL,
+  `deskripsi` varchar(100) NOT NULL,
+  `waktu_mulai` date NOT NULL,
+  `waktu_selesai` date NOT NULL,
+  `file_tugas` varchar(100) NOT NULL,
   `id_mengajar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_ujian`
+--
+
+CREATE TABLE `tb_ujian` (
+  `id_ujian` int(11) NOT NULL,
+  `tgl_ujian` date NOT NULL,
+  `keterangan` varchar(200) NOT NULL,
+  `id_mapel` int(11) NOT NULL,
+  `id_kelas` int(11) NOT NULL,
+  `id_mengajar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -290,6 +325,7 @@ ALTER TABLE `tb_mapel`
 --
 ALTER TABLE `tb_materi`
   ADD PRIMARY KEY (`id_materi`),
+  ADD UNIQUE KEY `id_kelas` (`id_kelas`),
   ADD KEY `id_mengajar` (`id_mengajar`);
 
 --
@@ -306,7 +342,7 @@ ALTER TABLE `tb_mengajar`
 --
 ALTER TABLE `tb_pertanyaan`
   ADD PRIMARY KEY (`id_pertanyaan`),
-  ADD KEY `id_tugas` (`id_tugas`);
+  ADD KEY `id_tugas` (`id_ujian`);
 
 --
 -- Indexes for table `tb_result`
@@ -332,6 +368,12 @@ ALTER TABLE `tb_tugas`
   ADD KEY `id_mengajar` (`id_mengajar`);
 
 --
+-- Indexes for table `tb_ujian`
+--
+ALTER TABLE `tb_ujian`
+  ADD PRIMARY KEY (`id_ujian`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -345,37 +387,37 @@ ALTER TABLE `tb_jawaban`
 -- AUTO_INCREMENT for table `tb_jurusan`
 --
 ALTER TABLE `tb_jurusan`
-  MODIFY `id_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_jurusan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tb_login`
 --
 ALTER TABLE `tb_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `tb_mapel`
 --
 ALTER TABLE `tb_mapel`
-  MODIFY `id_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_mapel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_materi`
 --
 ALTER TABLE `tb_materi`
-  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_mengajar`
 --
 ALTER TABLE `tb_mengajar`
-  MODIFY `id_mengajar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_mengajar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_pertanyaan`
@@ -388,6 +430,12 @@ ALTER TABLE `tb_pertanyaan`
 --
 ALTER TABLE `tb_result`
   MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_ujian`
+--
+ALTER TABLE `tb_ujian`
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -430,13 +478,12 @@ ALTER TABLE `tb_mengajar`
 -- Constraints for table `tb_pertanyaan`
 --
 ALTER TABLE `tb_pertanyaan`
-  ADD CONSTRAINT `tb_pertanyaan_ibfk_1` FOREIGN KEY (`id_tugas`) REFERENCES `tb_tugas` (`id_tugas`);
+  ADD CONSTRAINT `tb_pertanyaan_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `tb_ujian` (`id_ujian`);
 
 --
 -- Constraints for table `tb_result`
 --
 ALTER TABLE `tb_result`
-  ADD CONSTRAINT `tb_result_ibfk_1` FOREIGN KEY (`id_tugas`) REFERENCES `tb_tugas` (`id_tugas`),
   ADD CONSTRAINT `tb_result_ibfk_2` FOREIGN KEY (`nis`) REFERENCES `tb_siswa` (`nis`);
 
 --
