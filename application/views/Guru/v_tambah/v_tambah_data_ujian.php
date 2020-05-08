@@ -10,18 +10,22 @@
 </div>
 <div class="form-group">
 <label>Mata Pelajaran</label> 
-<select id="akses" class="form-control" name="Akses" require> 
-<option value="0">
-Grup User</option> 
-<option value="2">Guru</option>  
+<select id="akses" class="form-control" name="mapel" require> 
+<option>-- Pilih Salah Satu --</option>
+<?php 
+foreach ($mapel as $row):?>  
+<option value="<?php echo $row->id_mapel;?>"><?php echo $row->nama;?></option>
+<?php endforeach; ?>  
 </select> 
 </div> 
 <div class="form-group">
 <label>Kelas</label> 
-<select id="akses" class="form-control" name="Akses" require> 
-<option value="0">
-Grup User</option> 
-<option value="2">Guru</option>  
+<select id="akses" class="form-control" name="kelas" require> 
+<option>-- Pilih Salah Satu --</option>
+<?php 
+foreach ($kelas as $row):?>  
+<option value="<?php echo $row->id_kelas;?>"><?php echo $row->nama_kelas;?></option>
+<?php endforeach; ?>  
 </select> 
 </div> 
 <div class="form-group"> 

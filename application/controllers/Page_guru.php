@@ -84,11 +84,36 @@ class Page_guru extends CI_Controller{
   
   // =============================AKhir Proses Upload Tugas=====================//
 
-  // ======================= Awal Proses Upload Tugas ===========================//
+  // ======================= Awal Proses Upload Ujian ===========================//
   public function data_ujian(){
-    $data['tugas'] = $this->Guru_model->getTugas();
-    $this->template->utama('Guru/v_tambah/v_tambah_data_ujian');
+    $data['ujian'] = $this->Guru_model->getUjian();
+    $this->template->utama('Guru/v_data/v_data_ujian',$data);
   }
+
+  public function tambah_ujian()
+  {
+    $id = $this->uri->segment(3);
+    $data['kelas'] = $this->Guru_model->getAll_kelas_dist($id);
+    $data['mapel'] = $this->Guru_model->getAll_mapel_dist($id);
+    $this->template->utama('Guru/v_tambah/v_tambah_data_ujian',$data);
+  }
+
+  public function tambah_proses_ujian(){
+      $kelas = $this->input->post('kelas');
+      $nam_materi = $this->input->post('nam_materi');
+      $id = $this->input->post('Id');
+      //upload foto
+    
+            $data = array(
+                'nama_materi' => $nam_materi,
+                'id_kelas' => $kelas,
+                'id_mengajar' =>$id,
+            );
+    
+            $this->Guru_model->save($data,"tb_ujian");
+            
+            redirect('Page_guru/data_materi',$data);
+        }
   
   // ==================AKhir Proses Upload Tugas ================================//
 

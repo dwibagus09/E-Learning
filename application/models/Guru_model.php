@@ -55,30 +55,53 @@ class Guru_model extends CI_Model
 		$this->db->join('tb_kelas','tb_kelas.id_kelas = tb_mengajar.id_kelas');
 		return $this->db->get()->result();
 	}
+
+	public function getAll_mapel_dist($id)
+	{
+		$this->db->select('*');
+		$this->db->from('tb_login');
+		$this->db->where('username', $id);
+		$a = $this->db->get()->row('id');
+		$this->db->select('*');
+		$this->db->from('tb_guru');
+		$this->db->where('id', $a);
+		$b = $this->db->get()->row('nip');
+		$this->db->select('*');
+		$this->db->from('tb_mengajar');
+		$this->db->where('nip', $b);
+		$this->db->join('tb_mapel','tb_mapel.id_mapel = tb_mengajar.id_mapel');
+		return $this->db->get()->result();
+	}
+	
+	public function save($data,$table)
+	{
+		$this->db->insert($table,$data);
+	}
 		
+	function delete_data($id)
+	{
+		$this->db->where('id', $id);
+		$berhasil = $this->db->delete('tb_login');
+		if($berhasil)
+		{
+            redirect('Page/data_login/'.$id.'?delete=1','refresh');
+		}
+		else
+		{
+            redirect('Page/data_login/'.$id.'?delete=2','refresh');
+		}
+	}
+// ============================= Tb_Tugas ===================================
 	function getTugas(){
 		$this->db->select('*');
 		$this->db->from('tb_tugas');
 		return $this->db->get()->result();
 	}
 
-	function getNilai(){
-		$this->db->select('*');
-		$this->db->from('tb_result');
-		return $this->db->get()->result();
-	}
-	
-	
-	public function save($data,$table)
-	{
-		$this->db->insert($table,$data);
-	}
-	
-	
 	function edit($id)
 	{
 		$this->db->select('*');
-		$this->db->from('tb_login');
+		$this->db->from('tb_materi');
 		$this->db->where('id', $id);
 		return $this->db->get()->row_array();
 	}
@@ -96,19 +119,22 @@ class Guru_model extends CI_Model
 			redirect('edit'.$id.'?update=2','refresh');
 		}
 	}
-	
-	function delete_data($id)
-	{
-		$this->db->where('id', $id);
-		$berhasil = $this->db->delete('tb_login');
-		if($berhasil)
-		{
-            redirect('Page/data_login/'.$id.'?delete=1','refresh');
-		}
-		else
-		{
-            redirect('Page/data_login/'.$id.'?delete=2','refresh');
-		}
+// ================================ Akhir Tb_tugas ===============================
+
+// ================================= Tb_Result ===================================
+	function getUjian(){
+		$this->db->select('*');
+		$this->db->from('tb_ujian');
+		return $this->db->get()->result();
 	}
+// ================================ Akhir Result =================================
+
+// ============================== Tb_Ujian ======================================	
+	function getNilai(){
+		$this->db->select('*');
+		$this->db->from('tb_result');
+		return $this->db->get()->result();
+	}
+// ================================================================================
 }
 ?>
