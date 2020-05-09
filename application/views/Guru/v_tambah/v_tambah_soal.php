@@ -5,6 +5,7 @@
 	for ($i=1; $i<=$this->uri->segment('3'); $i++){?>
 	
 <tr> 
+	
 	<td style="margin-top: 30px; margin-right:20px; float:left;"><?=$i?></td>
     <td style="margin-top: 10px; float:right; ">Pertanyaan<textarea rows="10" cols="100" name="pertanyaan[]">A long time ago in a galaxy far, far away...</textarea></td>
 </tr>
@@ -31,10 +32,11 @@
 <tr>
 <td style="float: left; margin-left:20px; margin-top:15px;">Jawaban &nbsp; :</td>
 <td style="float: left; margin-left: 10px; margin-top:15px;" >
-<input type="radio" value="a" name="jawaban">A
-<input type="radio" value="b" name="jawaban">B
-<input type="radio" value="c" name="jawaban">C
-<input type="radio" value="d" name="jawaban">D
+<input type="radio" value="a" name="jawaban[]">A
+<input type="radio" value="b" name="jawaban[]">B
+<input type="radio" value="c" name="jawaban[]">C
+<input type="radio" value="d" name="jawaban[]">D
+<input class="form-control" type="text" name="id_ujian[]" value="<?php echo $id_ujian['id_ujian'];?>">
 </td>
 </tr>
 <?php
