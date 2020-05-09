@@ -80,17 +80,69 @@ class Page_guru extends CI_Controller{
   }
   // ======================= Akhir Proses Upload Materi ==============================//
 
+
+
+
+
   // ======================= Awal Proses Upload Tugas ===============================//
+  
   public function data_tugas(){
-    $data['tugas'] = $this->Guru_model->getTugas();
-    $this->template->utama('Guru/v_tambah/');
+    $id = $this->uri->segment(3);
+    $data['tugas'] = $this->Guru_model->getTugas($id);
+    $this->template->utama('Guru/v_data/v_tugas',$data);
   }
+
+  public function tambah_tugas(){
+  	$id = $this->uri->segment(3);
+  	$data['get_kelas'] = $this->Guru_model->getAll_kelas_dist($id);
+	  $data['get_id'] = $this->Guru_model->getById($id);
+  	$this->template->utama('Guru/v_tambah/v_tambah_tugas',$data);
+  }
+
+  public function proses_tambah_tugas(){
+    $id = $this->input->post('Id');
+    //upload foto
+  
+          $data = array(
+              'nama_materi' => $nam_materi,
+              'id_kelas' => $kelas,
+      'id_mengajar' =>$id,
+          );
+    if (!empty($_FILES['materi']['name'])) {
+    $upload = $this-> do_upload();
+    $data['file_materi'] = $upload;
+  }
+          $this->Guru_model->save($data,"tb_materi");
+          
+          redirect('Page_guru/data_materi',$data);
+      }
+  
+    private function do_upload()
+{
+  $config['upload_path'] 		= 'upload/Materi/';
+  $config['allowed_types'] 	= 'pdf|xls|doc|ppt';
+  $config['max_size'] 			= 2048;
+  $config['file_name'] 			= round(microtime(true)*1000);
+
+  $this->load->library('upload', $config);
+  if (!$this->upload->do_upload('materi')) {
+    $this->session->set_flashdata('msg', $this->upload->display_errors('',''));
+    redirect('data_materi');
+  }
+  return $this->upload->data('file_name');
+}
   
   // =============================AKhir Proses Upload Tugas=====================//
 
+
+
+
+
   // ======================= Awal Proses Upload Ujian ===========================//
   public function data_ujian(){
+    $id = $this->uri->segment(3);
     $data['ujian'] = $this->Guru_model->getUjian();
+    $data['get_kelas'] = $this->Guru_model->getAll_kelas_dist($id);
     $this->template->utama('Guru/v_data/v_data_ujian',$data);
   }
 
@@ -126,7 +178,7 @@ class Page_guru extends CI_Controller{
             redirect('Page_guru/tambah_soal/'.$count_data.'/'.$ket); // ini ngedirect ke function di bawahnya
         }
   
-        public function tambah_soal()
+    public function tambah_soal()
         {
           // count data ini dilemapr ke v_tambah_soal , count_data itu digunakan untuk membuat jumlah banyak soal
           $ket = $this->uri->segment('4');

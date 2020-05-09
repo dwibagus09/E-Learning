@@ -9,7 +9,10 @@
             <thead>
 			<tr style="text-align:center;">
 				<th style="text-align:center;">No</th>
-				<th style="text-align:center;">Nama Tugas</th>
+				<th style="text-align:center;">Kode Tugas</th>
+				<th style="text-align:center;">Deskripsi</th>
+				<th style="text-align:center;">Waktu Mulai</th>
+				<th style="text-align:center;">Waktu Selesai</th>
 				<th style="text-align:center;">Option</th>
 			</tr>
 			</thead>
@@ -23,7 +26,19 @@
 				<td width="50"><?php echo $no++ ?></td>
 				
 				<td width="150">
-				<a href="<?php echo $row->file_tugas ?>"><?php echo $row->nama_tugas?></a> 
+				<?php echo $row->kd_tugas?> 
+				</td>
+
+				<td width="150">
+				<?php echo $row->deskripsi?> 
+				</td>
+
+				<td width="150">
+				<?php echo $row->waktu_mulai?> 
+				</td>
+
+				<td width="150">
+				<?php echo $row->waktu_selesai?> 
 				</td>
 
 				<td width="150">

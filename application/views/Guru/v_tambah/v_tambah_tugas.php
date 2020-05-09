@@ -20,17 +20,9 @@
 <div class="form-group">                      
 <input type="date" class="form-control form-control-user" id="end" name="end" placeholder="Waktu Akhir" require> 
 </div>   
-<!-- <div class="form-group">
-<select class="form-control" name="kelas" id="category" required>
-            <option value="">No Selected</option>
-                <?php foreach($kelas_dist as $row ):?>
-                <option value="<?php echo $row->id_kelas;?>"><?php echo $row->kelas."&nbsp;".$row->nama_kelas;?></option>
-                <?php endforeach;?>
-			</select>
-</div> -->
-<div class="form-group"> 
+<!-- <div class="form-group"> 
 <input type="file" class="form-control form-controluser" id="tugas" name="tugas" placeholder="Pilih Tugas" require> 
-</div>  
+</div>   -->
 <div class="form-group"> 
 <input type="text" class="form-control form-controluser" id="id" name="Id" value="<?php echo $get_id['id_mengajar']; ?>" require> 
 </div> 

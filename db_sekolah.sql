@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2020 at 08:49 AM
+-- Generation Time: May 09, 2020 at 09:38 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -21,6 +21,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_sekolah`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_filetugas`
+--
+
+CREATE TABLE `tb_filetugas` (
+  `id_file` int(11) NOT NULL,
+  `id_tugas` int(11) NOT NULL,
+  `file_tugas` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -208,6 +220,14 @@ CREATE TABLE `tb_pertanyaan` (
   `keterangan` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tb_pertanyaan`
+--
+
+INSERT INTO `tb_pertanyaan` (`id_pertanyaan`, `soal`, `a`, `b`, `c`, `d`, `id_ujian`, `jawaban_benar`, `keterangan`) VALUES
+(1, 'A long time ago in a galaxy far, far away...', 'sdfsdf', 'sdfdsf', 'sdfsdf', 'dsfsdf', 2, 0, ''),
+(2, 'A long time ago in a galaxy far, far away...', 'dsfds', 'dsfdsf', 'dsfsdf', 'dsfsdf', 2, 0, '');
+
 -- --------------------------------------------------------
 
 --
@@ -257,7 +277,6 @@ CREATE TABLE `tb_tugas` (
   `deskripsi` varchar(100) NOT NULL,
   `waktu_mulai` date NOT NULL,
   `waktu_selesai` date NOT NULL,
-  `file_tugas` varchar(100) NOT NULL,
   `id_mengajar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -277,8 +296,23 @@ CREATE TABLE `tb_ujian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `tb_ujian`
+--
+
+INSERT INTO `tb_ujian` (`id_ujian`, `tgl_ujian`, `keterangan`, `id_mapel`, `id_kelas`, `id_mengajar`) VALUES
+(1, '2020-05-07', 'dwdd', 1, 13, 1),
+(2, '2020-05-09', 'asdsds', 1, 12, 1);
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tb_filetugas`
+--
+ALTER TABLE `tb_filetugas`
+  ADD PRIMARY KEY (`id_file`),
+  ADD UNIQUE KEY `id_tugas` (`id_tugas`);
 
 --
 -- Indexes for table `tb_guru`
@@ -378,6 +412,12 @@ ALTER TABLE `tb_ujian`
 --
 
 --
+-- AUTO_INCREMENT for table `tb_filetugas`
+--
+ALTER TABLE `tb_filetugas`
+  MODIFY `id_file` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
@@ -423,7 +463,7 @@ ALTER TABLE `tb_mengajar`
 -- AUTO_INCREMENT for table `tb_pertanyaan`
 --
 ALTER TABLE `tb_pertanyaan`
-  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_result`
@@ -435,11 +475,17 @@ ALTER TABLE `tb_result`
 -- AUTO_INCREMENT for table `tb_ujian`
 --
 ALTER TABLE `tb_ujian`
-  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ujian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tb_filetugas`
+--
+ALTER TABLE `tb_filetugas`
+  ADD CONSTRAINT `tb_filetugas_ibfk_1` FOREIGN KEY (`id_tugas`) REFERENCES `tb_ujian` (`id_ujian`);
 
 --
 -- Constraints for table `tb_guru`

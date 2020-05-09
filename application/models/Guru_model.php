@@ -138,7 +138,26 @@ class Guru_model extends CI_Model
 	function getUjian(){
 		$this->db->select('*');
 		$this->db->from('tb_ujian');
+		$this->db->join('tb_kelas','tb_kelas.id_kelas=tb_ujian.id_kelas');
+		$this->db->join('tb_mapel','tb_mapel.id_mapel=tb_ujian.id_mapel');
 		return $this->db->get()->result();
+	}
+
+	function getIdUjian($ket){
+		$this->db->select('*');
+		$this->db->from('tb_ujian');
+		$this->db->where('keterangan',$ket);
+		return $this->db->get()->row_array();
+	}
+
+	public function save_ujian($result)
+	{
+		$total_array = count($result);
+ 
+		if($total_array != 0)
+		{
+			$this->db->insert_batch('tb_pertanyaan', $result);
+		}
 	}
 // ================================ Akhir Result =================================
 
