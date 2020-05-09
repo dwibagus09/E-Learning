@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 <div class="panel-heading">
-   <h3 class="panel-title"><i class="fa fa-user"></i> Daftar Tugas</h3>
+   <h3 class="panel-title"><i class="fa fa-user"></i> Daftar Ujian</h3>
 </div>
 			  
    <div class="panel-body">
@@ -10,6 +10,9 @@
 			<tr style="text-align:center;">
 				<th style="text-align:center;">No</th>
 				<th style="text-align:center;">Nama Ujian</th>
+				<th style="text-align:center;">Kelas</th>
+				<th style="text-align:center;">Tanggal</th>
+				<th style="text-align:center;">Keterangan</th>
 				<th style="text-align:center;">Option</th>
 			</tr>
 			</thead>

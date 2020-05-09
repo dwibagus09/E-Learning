@@ -92,9 +92,22 @@ class Guru_model extends CI_Model
 		}
 	}
 // ============================= Tb_Tugas ===================================
-	function getTugas(){
+	function getTugas($id){
 		$this->db->select('*');
-		$this->db->from('tb_tugas');
+		$this->db->from('tb_login');
+		$this->db->where('username', $id);
+		$a = $this->db->get()->row('id');
+		$this->db->select('*');
+		$this->db->from('tb_guru');
+		$this->db->where('id', $a);
+		$b = $this->db->get()->row('nip');
+		$this->db->select('*');
+		$this->db->from('tb_mengajar');
+		$this->db->where('nip', $b);
+		$c = $this->db->get()->row('id_mengajar');
+        $this->db->select('*');
+        $this->db->from('tb_tugas');
+        $this->db->where('id_mengajar',$c);
 		return $this->db->get()->result();
 	}
 
