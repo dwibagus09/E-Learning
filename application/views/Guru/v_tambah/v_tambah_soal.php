@@ -1,5 +1,5 @@
 
-<form action="" enctype="multipart/form-data" method="POST">
+<form action="<?php echo base_url().'index.php/Page_guru/proses_tambah_soal';?>" enctype="multipart/form-data" method="POST">
 <table class="form">
 <?php
 	for ($i=1; $i<=$this->uri->segment('3'); $i++){?>
