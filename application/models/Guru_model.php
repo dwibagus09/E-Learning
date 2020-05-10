@@ -107,6 +107,9 @@ class Guru_model extends CI_Model
             redirect('Page/data_login/'.$id.'?delete=2','refresh');
 		}
 	}
+
+
+	
 // ============================= Tb_Tugas ===================================
 	function getTugas($id){
 		$this->db->select('*');
