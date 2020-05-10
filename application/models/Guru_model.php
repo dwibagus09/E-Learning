@@ -41,7 +41,7 @@ class Guru_model extends CI_Model
         $this->db->where('id_mengajar',$c);
 		return $this->db->get()->result();
 		}
-// ================================ Akhir Tb_tugas ===============================
+// ================================ Akhir Tb_materi ===============================
 
 
 
