@@ -42,6 +42,11 @@ class Guru_model extends CI_Model
 		return $this->db->get()->result();
 		}
 
+		public function save($data,$table)
+	{
+		$this->db->insert($table,$data);
+	}
+
 	function delete_materi($id){
             $_id = $this->db->get_where('tb_materi',['id_materi' => $id])->row();
             $query = $this->db->delete('tb_materi',['id_materi'=>$id]);
@@ -87,11 +92,6 @@ class Guru_model extends CI_Model
 		$this->db->where('nip', $b);
 		$this->db->join('tb_mapel','tb_mapel.id_mapel = tb_mengajar.id_mapel');
 		return $this->db->get()->result();
-	}
-	
-	public function save($data,$table)
-	{
-		$this->db->insert($table,$data);
 	}
 		
 	function delete_data($id)
