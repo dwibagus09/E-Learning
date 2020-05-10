@@ -62,7 +62,7 @@ class Page_guru extends CI_Controller{
 		$config['file_name'] 			= round(microtime(true)*1000);
  
 		$this->load->library('upload', $config);
-		if (!$this->upload->do_upload('materi')) {
+		if (!$this->upload->_do_upload('materi')) {
 			$this->session->set_flashdata('msg', $this->upload->display_errors('',''));
 			redirect('data_materi');
 		}
