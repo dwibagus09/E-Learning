@@ -20,6 +20,9 @@ class Guru_model extends CI_Model
 	}
 
 
+
+// ============================= Tb_Materi ===================================
+
 	public function getMateri($id){
 		$this->db->select('*');
 		$this->db->from('tb_login');
@@ -38,6 +41,10 @@ class Guru_model extends CI_Model
         $this->db->where('id_mengajar',$c);
 		return $this->db->get()->result();
 		}
+// ================================ Akhir Tb_tugas ===============================
+
+
+
 
 	public function getAll_kelas_dist($id)
 	{
@@ -114,7 +121,7 @@ class Guru_model extends CI_Model
 	function edit($id)
 	{
 		$this->db->select('*');
-		$this->db->from('tb_materi');
+		$this->db->from('tb_tugas');
 		$this->db->where('id', $id);
 		return $this->db->get()->row_array();
 	}
@@ -132,7 +139,28 @@ class Guru_model extends CI_Model
 			redirect('edit'.$id.'?update=2','refresh');
 		}
 	}
+
+	public function save_tugas($data,$table)
+	{
+		$this->db->insert($table,$data);
+	}
+
+	function delete_tugas($id){
+		$this->db->where('id_ujian', $id);
+		$berhasil = $this->db->delete('tb_ujian');
+		if($berhasil)
+		{
+            redirect('Page_guru/data_ujian/'.$id.'/?delete=1','refresh');
+		}
+		else
+		{
+            redirect('Page_guru/data_ujian/'.$id.'/?delete=2','refresh');
+		}
+	}
 // ================================ Akhir Tb_tugas ===============================
+
+
+
 
 // ================================= Tb_Result ===================================
 	function getUjian(){

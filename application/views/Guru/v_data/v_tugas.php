@@ -26,7 +26,7 @@
 				<td width="50"><?php echo $no++ ?></td>
 				
 				<td width="150">
-				<?php echo $row->kd_tugas?> 
+				<?php echo $row->kd_tugas?>
 				</td>
 
 				<td width="150">

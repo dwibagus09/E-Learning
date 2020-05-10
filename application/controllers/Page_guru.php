@@ -100,37 +100,41 @@ class Page_guru extends CI_Controller{
   }
 
   public function proses_tambah_tugas(){
-    $id = $this->input->post('Id');
+    $kd_tgs = $this->input->post('kode_tugas');
+    $desc = $this->input->post('deskripsi');
+    $start = $this->input->post('start');
+    $end = $this->input->post('end');
+    $id = $this->input->post('mengajar');
     //upload foto
   
           $data = array(
-              'nama_materi' => $nam_materi,
-              'id_kelas' => $kelas,
-      'id_mengajar' =>$id,
+              'kd_tugas'=>$kd_tgs,
+              'deskripsi'=>$desc,
+              'waktu_mulai'=>$start,
+              'waktu_selesai'=>$end,
+              'id_mengajar'=>$id
           );
-    if (!empty($_FILES['materi']['name'])) {
-    $upload = $this-> do_upload();
-    $data['file_materi'] = $upload;
+    // if (!empty($_FILES['materi']['name'])) {
+    // $upload = $this-> do_upload();
+    // $data['file_materi'] = $upload;
+    $this->Guru_model->save_tugas($data,"tb_tugas");
+    $this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
+    redirect('Page_guru/data_tugas',$data);
   }
-          $this->Guru_model->save($data,"tb_materi");
-          
-          redirect('Page_guru/data_materi',$data);
-      }
-  
-    private function do_upload()
-{
-  $config['upload_path'] 		= 'upload/Materi/';
-  $config['allowed_types'] 	= 'pdf|xls|doc|ppt';
-  $config['max_size'] 			= 2048;
-  $config['file_name'] 			= round(microtime(true)*1000);
+// private function do_upload()
+// {
+//   $config['upload_path'] 		= 'upload/Materi/';
+//   $config['allowed_types'] 	= 'pdf|xls|doc|ppt';
+//   $config['max_size'] 			= 2048;
+//   $config['file_name'] 			= round(microtime(true)*1000);
 
-  $this->load->library('upload', $config);
-  if (!$this->upload->do_upload('materi')) {
-    $this->session->set_flashdata('msg', $this->upload->display_errors('',''));
-    redirect('data_materi');
-  }
-  return $this->upload->data('file_name');
-}
+//   $this->load->library('upload', $config);
+//   if (!$this->upload->do_upload('materi')) {
+//     $this->session->set_flashdata('msg', $this->upload->display_errors('',''));
+//     redirect('data_materi');
+//   }
+//   return $this->upload->data('file_name');
+// }
   
   // =============================AKhir Proses Upload Tugas=====================//
 
@@ -178,7 +182,7 @@ class Page_guru extends CI_Controller{
             redirect('Page_guru/tambah_soal/'.$count_data.'/'.$ket); // ini ngedirect ke function di bawahnya
         }
   
-    public function tambah_soal()
+  public function tambah_soal()
         {
           // count data ini dilemapr ke v_tambah_soal , count_data itu digunakan untuk membuat jumlah banyak soal
           $ket = $this->uri->segment('4');
@@ -187,7 +191,7 @@ class Page_guru extends CI_Controller{
         }
         //
 
-    public function proses_tambah_soal() {
+  public function proses_tambah_soal() {
     $post = $this->input->post();
     $result = array();
     $total_post = count($post['id_ujian']);
@@ -202,12 +206,16 @@ class Page_guru extends CI_Controller{
         "jawaban_benar"=>$post['jawaban'][$key],
         "id_ujian" =>$post['id_ujian'][$key]
       
-    );
-  }
+      );
+    }
       $this->Guru_model->save_ujian($result);
       redirect('Page_guru/data_ujian');
     }
-   
+  function hapus_tugas()
+    {
+      $id = $this->uri->segment(3);
+      $this->Guru_model->delete_tugas($id);
+    }
   
   // ================== berarti fungsi daata ujian sampe sini , kalo mau nambah function baru taruh didalam note ini ================================//
 

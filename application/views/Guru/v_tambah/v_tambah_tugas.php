@@ -5,14 +5,14 @@
 <h1 class="h4 text-gray-900 mb-4">Tambah Data Tugas</h1>
 </div> 
 <form class="user" action="<?php echo base_url().'index.php/Page_guru/proses_tambah_tugas'; ?>" method="post" enctype="multipart/form-data"> 
-<div class="form-group">                      
+<!-- <div class="form-group">                      
 <input type="text" class="form-control form-control-user" id="id_tgs" name="id_tugas" placeholder="Id Tugas" require> 
-</div>
+</div> -->
 <div class="form-group">                      
 <input type="text" class="form-control form-control-user" id="kode" name="kode_tugas" placeholder="Kode" require> 
 </div> 
 <div class="form-group">                      
-<input type="text" class="form-control form-control-user" id="kode" name="deskripsi" placeholder="Deskripsi" require> 
+<textarea name="deskripsi" id="desc" cols="70" rows="10" placeholder="Deskripsi" require></textarea> 
 </div>
 <div class="form-group">                      
 <input type="date" class="form-control form-control-user" id="start" name="start" placeholder="Waktu Mulai" require> 
@@ -24,7 +24,7 @@
 <input type="file" class="form-control form-controluser" id="tugas" name="tugas" placeholder="Pilih Tugas" require> 
 </div>   -->
 <div class="form-group"> 
-<input type="text" class="form-control form-controluser" id="id" name="Id" value="<?php echo $get_id['id_mengajar']; ?>" require> 
+<input type="hidden" class="form-control form-controluser" id="id" name="mengajar" value="<?php echo $get_id['id_mengajar']; ?>" require> 
 </div> 
 <input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Tambah"> 
 </form><hr> 
