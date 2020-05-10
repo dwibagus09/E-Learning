@@ -148,7 +148,7 @@ class Page_guru extends CI_Controller{
   // ======================= Awal Proses Upload Ujian ===========================//
   public function data_ujian(){
     $id = $this->uri->segment(3);
-    $data['ujian'] = $this->Guru_model->getUjian();
+    $data['ujian'] = $this->Guru_model->getUjian($id);
     $data['get_kelas'] = $this->Guru_model->getAll_kelas_dist($id);
     $this->template->utama('Guru/v_data/v_data_ujian',$data);
   }

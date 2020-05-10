@@ -22,7 +22,7 @@
             $no = 1;
 			foreach ($tugas as $row): ?>
 
-			<tr style="text-align:center;">
+			<tr style="text-align:center">
 				<td width="50"><?php echo $no++ ?></td>
 				
 				<td width="150">
