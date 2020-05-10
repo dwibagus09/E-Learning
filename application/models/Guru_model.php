@@ -41,6 +41,15 @@ class Guru_model extends CI_Model
         $this->db->where('id_mengajar',$c);
 		return $this->db->get()->result();
 		}
+
+	function delete_materi($id){
+            $_id = $this->db->get_where('tb_materi',['id_materi' => $id])->row();
+            $query = $this->db->delete('tb_materi',['id_materi'=>$id]);
+            if($query){
+                unlink("upload/Materi/".$_id->file_materi);
+            }
+            redirect('Page_guru/data_materi/'.$this->session->userdata("ses_nama") );
+	}
 // ================================ Akhir Tb_materi ===============================
 
 
@@ -162,7 +171,7 @@ class Guru_model extends CI_Model
 
 
 
-// ================================= Tb_Result ===================================
+// ================================= Tb_Ujian ===================================
 	function getUjian(){
 		$this->db->select('*');
 		$this->db->from('tb_ujian');
@@ -187,9 +196,9 @@ class Guru_model extends CI_Model
 			$this->db->insert_batch('tb_pertanyaan', $result);
 		}
 	}
-// ================================ Akhir Result =================================
+// ================================ Akhir Ujian =================================
 
-// ============================== Tb_Ujian ======================================	
+// ============================== Tb_Result ======================================	
 	function getNilai(){
 		$this->db->select('*');
 		$this->db->from('tb_result');

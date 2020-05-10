@@ -11,7 +11,7 @@
 <input type="text" class="form-control form-control-user" id="nama" name="Nama" placeholder="Nama Lengkap Guru" require> 
 </div>
 <div class="form-group">                      
-<textarea class="form-control form-control-user" id="alamat" name="Alamat" placeholder="Alamat Lengkap Guru" require></textarea>  
+<input type="textarea" class="form-control form-control-user" id="alamat" name="Alamat" placeholder="Alamat Lengkap Guru" require>
 </div>
 <div class="form-group"> 
 <select id="jenkel" class="form-control" name="Jenkel" require> 

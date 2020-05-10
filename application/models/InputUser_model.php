@@ -290,20 +290,24 @@ class InputUser_model extends CI_Model
 		$berhasil = $this->db->update('tb_guru', $data);
 		if($berhasil)
 		{
-			redirect('Page/edit_guru/'.$id.'?update=1','refresh');
+			redirect('Page/data_guru/'.$id.'?update=1','refresh');
 		}
 		else
 		{
-			redirect('Page/edit_guru/'.$id.'?update=2','refresh');
+			redirect('Page/data_guru/'.$id.'?update=2','refresh');
 		}
 	}
 
 	
 	function delete_data_guru($id)
 	{
-		$this->db->where('id', $id);
-		$berhasil = $this->db->delete('tb_guru');
-		if($berhasil)
+		
+		$_id = $this->db->get_where('tb_guru',['id' => $id])->row();
+        $query = $this->db->delete('tb_guru',['id'=>$id]);
+        if($query){
+                unlink("upload/guru/".$_id->foto);
+            }
+		if($query)
 		{
             redirect('Page/data_guru/'.$id.'?delete=1','refresh');
 		}
@@ -407,9 +411,12 @@ public function delete_data_mapel($id)
 	
 	public function delete_data_siswa($id)
 	{
-		$this->db->where('id', $id);
-		$berhasil = $this->db->delete('tb_siswa');
-		if($berhasil)
+		$_id = $this->db->get_where('tb_siswa',['id' => $id])->row();
+        $query = $this->db->delete('tb_siswa',['id'=>$id]);
+        if($query){
+                unlink("upload/siswa/".$_id->foto);
+            }
+		if($query)
 		{
             redirect('Page/data_siswa/'.$id.'?delete=1','refresh');
 		}

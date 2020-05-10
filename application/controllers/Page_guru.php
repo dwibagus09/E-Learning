@@ -34,6 +34,7 @@ class Page_guru extends CI_Controller{
   
  
   public function tambah_materi(){
+      $user = $this->input->post('username');
     	$kelas = $this->input->post('kelas');
 			$nam_materi = $this->input->post('nam_materi');
 			$id = $this->input->post('Id');
@@ -50,7 +51,7 @@ class Page_guru extends CI_Controller{
 		}
             $this->Guru_model->save($data,"tb_materi");
             
-            redirect('Page_guru/data_materi',$data);
+            redirect('Page_guru/data_materi/'.$user,$data);
         }
 		
 			private function _do_upload()
@@ -75,7 +76,9 @@ class Page_guru extends CI_Controller{
 	  force_download($name, $data);
   }
 
-  public function delete(){
+  public function delete_materi(){
+    $id = $this->uri->segment(3);
+    $this->Guru_model->delete_materi($id);
     
   }
   // ======================= Akhir Proses Upload Materi ==============================//

@@ -481,6 +481,7 @@ class Page extends CI_Controller{
 	{
 		$id = $this->uri->segment(3);
 		$this->InputUser_model->delete_data_guru($id);
+
 	}
 	// ================================================== Akhir proses Guru =============================================================//
 	
