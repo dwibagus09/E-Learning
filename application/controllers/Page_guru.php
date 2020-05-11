@@ -124,6 +124,10 @@ class Page_guru extends CI_Controller{
     $this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
     redirect('Page_guru/data_tugas',$data);
   }
+  function hapus_tugas(){
+      $id = $this->uri->segment(3);
+      $this->Guru_model->delete_tugas($id);
+    }
 // private function do_upload()
 // {
 //   $config['upload_path'] 		= 'upload/Materi/';
@@ -214,13 +218,7 @@ class Page_guru extends CI_Controller{
       $this->Guru_model->save_ujian($result);
       redirect('Page_guru/data_ujian');
     }
-  function hapus_tugas()
-    {
-      $id = $this->uri->segment(3);
-      $this->Guru_model->delete_tugas($id);
-    }
-  
-  // ================== berarti fungsi daata ujian sampe sini , kalo mau nambah function baru taruh didalam note ini ================================//
+  // ================== berarti fungsi data ujian sampe sini , kalo mau nambah function baru taruh didalam note ini ================================//
 
   // =========================================== proses Data nilai ========================= 
   public function data_nilai(){

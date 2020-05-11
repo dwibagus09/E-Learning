@@ -112,9 +112,6 @@ class Guru_model extends CI_Model
 	
 // ============================= Tb_Tugas ===================================
 	function getTugas($id){
-		// $this->db->select('*');
-		// $this->db->from('tb_tugas');
-		// return $this->db->get()->result();
 		$this->db->select('*');
 		$this->db->from('tb_login');
 		$this->db->where('username', $id);
@@ -178,22 +175,9 @@ class Guru_model extends CI_Model
 
 
 // ================================= Tb_Ujian ===================================
-	function getUjian($id){
-		$this->db->select('*');
-		$this->db->from('tb_login');
-		$this->db->where('username', $id);
-		$a = $this->db->get()->row('id');
-		$this->db->select('*');
-		$this->db->from('tb_guru');
-		$this->db->where('id', $a);
-		$b = $this->db->get()->row('nip');
-		$this->db->select('*');
-		$this->db->from('tb_mengajar');
-		$this->db->where('nip', $b);
-		$c = $this->db->get()->row('id_mengajar');
+	function getUjian(){
 		$this->db->select('*');
 		$this->db->from('tb_ujian');
-		$this->db->where('id_mengajar',$c);
 		$this->db->join('tb_kelas','tb_kelas.id_kelas=tb_ujian.id_kelas');
 		$this->db->join('tb_mapel','tb_mapel.id_mapel=tb_ujian.id_mapel');
 		return $this->db->get()->result();
