@@ -55,7 +55,8 @@
 				<?php
             if($this->input->get('delete')==1)
             {
-                echo "Data Anda Berhasil Dihapus !";
+				echo "<script>alert('Data Berhasil Dihapus');
+				</script>";
             }
             else if($this->input->get('delete')==2)
             {
