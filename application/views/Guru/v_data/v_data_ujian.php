@@ -44,7 +44,7 @@
 
 				<td width="150">
 				<a href="<?php echo base_url().'index.php/page_guru/edit_materi/'.$row->id_ujian; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;</button></a>|
-				<a href="<?php echo base_url().'index.php/page_guru/hapus_tugas/'.$row->id_ujian; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;</button></a>
+				<a href="<?php echo base_url().'index.php/page_guru/hapus_ujian/'.$row->id_ujian; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;</button></a>
 				</td>
  			<?php endforeach; ?>
 			

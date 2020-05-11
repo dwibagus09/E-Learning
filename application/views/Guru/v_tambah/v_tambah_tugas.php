@@ -4,7 +4,7 @@
 <div class="p-5"> <div class="text-center"> 
 <h1 class="h4 text-gray-900 mb-4">Tambah Data Tugas</h1>
 </div> 
-<form class="user" action="<?php echo base_url().'index.php/Page_guru/proses_tambah_tugas'; ?>" method="post" enctype="multipart/form-data"> 
+<form class="user" action="<?php echo base_url().'index.php/Page_guru/proses_tambah_tugas/'.$this->session->userdata("ses_nama"); ?>" method="post" enctype="multipart/form-data"> 
 <!-- <div class="form-group">                      
 <input type="text" class="form-control form-control-user" id="id_tgs" name="id_tugas" placeholder="Id Tugas" require> 
 </div> -->

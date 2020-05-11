@@ -158,15 +158,15 @@ class Guru_model extends CI_Model
 	}
 
 	function delete_tugas($id){
-		$this->db->where('id_ujian', $id);
-		$berhasil = $this->db->delete('tb_ujian');
+		$this->db->where('id_tugas', $id);
+		$berhasil = $this->db->delete('tb_tugas');
 		if($berhasil)
 		{
-            redirect('Page_guru/data_ujian/'.$id.'/?delete=1','refresh');
+            redirect('Page_guru/data_tugas/'.$this->session->userdata("ses_nama").'/'.$id.'/?delete=1','refresh');
 		}
 		else
 		{
-            redirect('Page_guru/data_ujian/'.$id.'/?delete=2','refresh');
+            redirect('Page_guru/data_tugas/'.$this->session->userdata("ses_nama").'/'.$id.'/?delete=2','refresh');
 		}
 	}
 // ================================ Akhir Tb_tugas ===============================
@@ -197,6 +197,18 @@ class Guru_model extends CI_Model
 		if($total_array != 0)
 		{
 			$this->db->insert_batch('tb_pertanyaan', $result);
+		}
+	}
+	function delete_ujian($id){
+		$this->db->where('id_ujian', $id);
+		$berhasil = $this->db->delete('tb_ujian');
+		if($berhasil)
+		{
+            redirect('Page_guru/data_ujian/'.$id.'/?delete=1','refresh');
+		}
+		else
+		{
+            redirect('Page_guru/data_ujian/'.$id.'/?delete=2','refresh');
 		}
 	}
 // ================================ Akhir Ujian =================================
