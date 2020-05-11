@@ -46,17 +46,19 @@ class Page_guru extends CI_Controller{
 				        'id_mengajar' =>$id,
             );
 			if (!empty($_FILES['materi']['name'])) {
-			$upload = $this-> _do_upload();
+			$upload = $this-> do_upload();
 			$data['file_materi'] = $upload;
 		}
             $this->Guru_model->save($data,"tb_materi");
             
-            redirect('Page_guru/data_materi/'.$user,$data);
+
+            redirect('Page_guru/data_materi/'.$user,$data);         
+
         }
 		
-			private function _do_upload()
+			private function do_upload()
 	{
-		$config['upload_path'] 		= 'upload/Materi/';
+		$config['upload_path'] 		= 'upload/materi';
 		$config['allowed_types'] 	= 'pdf|xls|doc|ppt';
 		$config['max_size'] 			= 2048;
 		$config['file_name'] 			= round(microtime(true)*1000);
