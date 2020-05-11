@@ -55,12 +55,13 @@
 				<?php
             if($this->input->get('delete')==1)
             {
-				echo "<script>alert('Data Berhasil Dihapus');
+				echo "<script>alert('Data Berhasil Dihapus!');
 				</script>";
             }
             else if($this->input->get('delete')==2)
             {
-                echo "Data Anda Gagal Dihapus !";
+                echo "<script>alert('Data Anda Gagal Dihapus !');
+				</script>";
             }
 			?>
 				
