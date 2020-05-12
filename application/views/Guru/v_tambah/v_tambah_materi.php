@@ -11,7 +11,7 @@
 </div>  
 <div class="form-group">
 <select class="form-control" name="kelas" id="category" required>
-            <option value="">No Selected</option>
+            <option value="">Kelas</option>
                 <?php foreach($list1 as $row ):?>
                 <option value="<?php echo $row->id_kelas;?>"><?php echo $row->kelas."&nbsp;".$row->nama_kelas;?></option>
                 <?php endforeach;?>
@@ -21,8 +21,7 @@
 <input type="file" class="form-control form-controluser" id="materi" name="materi" placeholder="Pilih Materi" require> 
 </div>  
 <div class="form-group"> 
-<input type="text" class="form-control form-controluser" id="id" name="Id" value="<?php echo $list['id_mengajar']; ?>" require> 
-<input type="text" class="form-control form-controluser" id="id" name="Id" value="<?php echo $list['id_kelas']; ?>" require>
+<input type="hidden" class="form-control form-controluser" id="id" name="Id" value="<?php echo $list['id_mengajar']; ?>" require> 
 </div> 
 <input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Tambah"> 
 </form><hr> 

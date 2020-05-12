@@ -21,7 +21,6 @@
 
 			<tr>
 				<td width="50"><?php echo $no++ ?></td>
-				
 				<td width="150">
 				<a href="<?php echo base_url().'index.php/Page_guru/download/'.$row->file_materi ?>"><?php echo $row->nama_materi?></a> 
 				</td>

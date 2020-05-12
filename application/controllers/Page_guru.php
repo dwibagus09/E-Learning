@@ -43,7 +43,7 @@ class Page_guru extends CI_Controller{
             $data = array(
                 'nama_materi' => $nam_materi,
                 'id_kelas' => $kelas,
-				'id_mengajar' =>$id,
+				        'id_mengajar' =>$id,
             );
 			if (!empty($_FILES['materi']['name'])) {
 			$upload = $this-> _do_upload();
