@@ -51,9 +51,7 @@ class Page_guru extends CI_Controller{
 		}
             $this->Guru_model->save($data,"tb_materi");
             
-
-            redirect('Page_guru/data_materi/'.$user,$data);         
-
+            redirect('Page_guru/data_materi/'.$this->session->userdata("ses_nama"),$data);
         }
 		
 			private function do_upload()
