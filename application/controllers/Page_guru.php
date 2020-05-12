@@ -46,12 +46,12 @@ class Page_guru extends CI_Controller{
 				'id_mengajar' =>$id,
             );
 			if (!empty($_FILES['materi']['name'])) {
-			$upload = $this->_do_upload();
+			$upload = $this-> _do_upload();
 			$data['file_materi'] = $upload;
 		}
             $this->Guru_model->save($data,"tb_materi");
             
-            redirect('Page_guru/data_materi/'.$user,$data);
+            redirect('Page_guru/data_materi/',$data);
         }
 		
 			private function _do_upload()
@@ -62,9 +62,9 @@ class Page_guru extends CI_Controller{
 		$config['file_name'] 			= round(microtime(true)*1000);
  
 		$this->load->library('upload', $config);
-		if (!$this->upload->_do_upload('materi')) {
+		if (!$this->upload-> do_upload('materi')) {
 			$this->session->set_flashdata('msg', $this->upload->display_errors('',''));
-			redirect('data_materi');
+			redirect('Page_guru/data_materi/'.$this->session->userdata("ses_nama"));
 		}
 		return $this->upload->data('file_name');
 	}
