@@ -231,7 +231,10 @@ class Page_guru extends CI_Controller{
     $this->template->utama('Guru/v_data/v_nilai',$data);
   }
 
-
-
+  public function Api()
+		{
+			$data = $this->Guru_model->get_materi();
+			echo json_encode($data->result_array());
+		}
 }
 ?>

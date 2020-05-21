@@ -42,6 +42,17 @@ class Guru_model extends CI_Model
 		return $this->db->get()->result();
 		}
 
+		//====================Coba=========================//
+		function get_materi(){
+			$this->db->select('*');
+			$this->db->from('tb_materi');
+			$query = $this->db->get();
+			return $query;
+		}
+
+
+		//===================Akhir Coba====================//
+
 		public function save($data,$table)
 	{
 		$this->db->insert($table,$data);
