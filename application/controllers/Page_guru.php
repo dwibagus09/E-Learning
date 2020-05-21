@@ -7,10 +7,11 @@ class Page_guru extends CI_Controller{
   $this->load->library('form_validation');
   $this->load->helper('download');
     //validasi jika user belum login
-    if($this->session->userdata('masuk') != TRUE){
-            $url=base_url();
-            redirect($url);
-        }
+    
+    // if($this->session->userdata('masuk') != TRUE){
+    //         $url=base_url();
+    //         redirect($url);
+    //     }
   } 
   public function index(){
     $this->template->utama('dashboard');
@@ -57,7 +58,7 @@ class Page_guru extends CI_Controller{
 			private function do_upload()
 	{
 		$config['upload_path'] 		= 'upload/materi';
-		$config['allowed_types'] 	= 'pdf|xls|doc|ppt';
+		$config['allowed_types'] 	= 'pdf|xls|docx|ppt';
 		$config['max_size'] 			= 2048;
 		$config['file_name'] 			= round(microtime(true)*1000);
  
@@ -128,6 +129,28 @@ class Page_guru extends CI_Controller{
       $id = $this->uri->segment(3);
       $this->Guru_model->delete_tugas($id);
     }
+  function edit_tugas(){
+    $id = $this->uri->segment(3);
+    $data['tugas'] = $this->Guru_model->edit_tugas($id);
+    $this->template->utama('Guru/v_edit/v_edit_tugas',$data);
+  }
+  public function save_edit_tugas(){
+    $kd_tgs = $this->input->post('kode_tugas');
+    $desc = $this->input->post('deskripsi');
+    $start = $this->input->post('start');
+    $end = $this->input->post('end');
+    $id = $this->input->post('mengajar');
+
+          $data = array(
+            'kd_tugas'=>$kd_tgs,
+            'deskripsi'=>$desc,
+            'waktu_mulai'=>$start,
+            'waktu_selesai'=>$end,
+            'id_mengajar'=>$id
+          );
+     
+      $this->Guru_model->save_edit_data_tugas($id,$data);
+  }
 // private function do_upload()
 // {
 //   $config['upload_path'] 		= 'upload/Materi/';
@@ -230,11 +253,7 @@ class Page_guru extends CI_Controller{
     $data['nilai'] = $this->Guru_model->getNilai();
     $this->template->utama('Guru/v_data/v_nilai',$data);
   }
-
-  public function Api()
-		{
-			$data = $this->Guru_model->get_materi();
-			echo json_encode($data->result_array());
-		}
+  
+  
 }
 ?>

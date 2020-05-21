@@ -48,6 +48,7 @@
 
 </table>
 </form>
+<div class="text-center"> <a class="small" href="<?php echo base_url().'Page_guru/data_ujian/'.$this->session->userdata("ses_nama")?>">Kembali</a>
 <?
 print_r($_REQUEST); 
 ?>

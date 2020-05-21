@@ -3,7 +3,7 @@
 <div class="p-5"> <div class="text-center"> 
 <h1 class="h4 text-gray-900 mb-4">Tambah User Siswa</h1>
 </div> 
-<form class="user" action="<?php echo base_url().'index.php/Page/tambah_proses2';?>" method="post"> 
+<form class="user" action="<?php echo base_url().'Page/tambah_proses2';?>" method="post"> 
 <div class="form-group">                       
 <input type="text" class="form-control form-control-user" id="username" name="Username" placeholder="Username Maximal 10 Character" require> 
 </div>

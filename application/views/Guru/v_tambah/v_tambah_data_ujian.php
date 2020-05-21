@@ -3,7 +3,7 @@
 <div class="p-5"> <div class="text-center"> 
 <h1 class="h4 text-gray-900 mb-4">Tambah Data Ujian</h1>
 </div> 
-<form class="user" action="<?php echo base_url().'index.php/Page_guru/tambah_proses_ujian';?>" method="post"> 
+<form class="user" action="<?php echo base_url().'Page_guru/tambah_proses_ujian';?>" method="post"> 
 <div class="form-group">
 <label>Tanggal Ujian</label>                        
 <input type="date" class="form-control form-control-user" name="tgl" placeholder="Tanggal Ujian" require> 
@@ -37,6 +37,7 @@ foreach ($kelas as $row):?>
 <input type="text" name="mengajar" value="<?php echo $mengajar['id_mengajar'] ?>">
 <input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Tambah"> 
 </form><hr> 
+<div class="text-center"> <a class="small" href="<?php echo base_url().'Page_guru/data_ujian/'.$this->session->userdata("ses_nama")?>">Kembali</a>
 </div>
 </div>
 </div> 

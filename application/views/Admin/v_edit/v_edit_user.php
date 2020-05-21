@@ -10,7 +10,7 @@
 			
 <div> 
 
-<form class="user" action="<?php echo base_url().'index.php/Page/save_edit'; ?>" method="post"> 
+<form class="user" action="<?php echo base_url().'Page/save_edit'; ?>" method="post"> 
 <div class="form-group">                      
  <input type="hidden" name="id" value="<?php echo $list['id']; ?>">
 <input type="text" class="form-control " id="username" name="Username" value="<?php echo $list['username']; ?>" > 
@@ -25,7 +25,7 @@
 <br>
 <input type="submit" class="btn btn-success btn-icon-split" style="float:right;" name="submit" value="Simpan">
 </form>
-<a href="<?php echo base_url().'index.php/page/data_login'?>"><button class="btn btn-warning btn-icon-split" >&xlarr;&nbsp;Kembali</button></a><hr>
+<a href="<?php echo base_url().'Page/data_login'?>"><button class="btn btn-warning btn-icon-split" >&xlarr;&nbsp;Kembali</button></a><hr>
 <?php
             if($this->input->get('update')==1)
             {

@@ -42,8 +42,8 @@
 				</td>
 
 				<td width="150">
-				<a href="<?php echo base_url().'index.php/page_guru/edit_tugas/'.$row->id_tugas; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>|
-				<a href="<?php echo base_url().'index.php/page_guru/hapus_tugas/'.$row->id_tugas; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
+				<a href="<?php echo base_url().'Page_guru/edit_tugas/'.$row->id_tugas; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>|
+				<a href="<?php echo base_url().'Page_guru/hapus_tugas/'.$row->id_tugas; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
 				</td>
  			<?php endforeach; ?>
 			

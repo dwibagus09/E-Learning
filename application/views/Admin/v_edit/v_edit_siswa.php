@@ -3,7 +3,7 @@
 <div class="p-5"> <div class="text-center"> 
 <h1 class="h4 text-gray-900 mb-4">Edit Data Siswa</h1>
 </div> 
-<form class="user" action="<?php echo base_url().'index.php/Page/save_edit_siswa'; ?>" method="post" enctype="multipart/form-data"> 
+<form class="user" action="<?php echo base_url().'Page/save_edit_siswa'; ?>" method="post" enctype="multipart/form-data"> 
 <div class="form-group">                      
 <input type="text" class="form-control form-control-user" id="nis" name="Nis" value="<?php echo $list['nis'] ?>" require> 
 </div>

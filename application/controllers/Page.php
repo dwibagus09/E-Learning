@@ -287,7 +287,7 @@ class Page extends CI_Controller{
 	}
 	$this->InputUser_model->save_mengajar($result);
 	$this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
-	redirect('data_mengajar');
+	redirect('Page/data_mengajar');
 	}
 
 	public function edit_mengajar(){
@@ -456,7 +456,7 @@ class Page extends CI_Controller{
 	public function edit_guru(){
 		$id = $this->uri->segment(3);
 		$data['list'] = $this->InputUser_model->edit_guru($id);
-		 $this->template->utama('Admin/v_edit/v_edit_guru', $data);
+		$this->template->utama('Admin/v_edit/v_edit_guru', $data);
 	}
 	
 	public function save_edit_guru(){

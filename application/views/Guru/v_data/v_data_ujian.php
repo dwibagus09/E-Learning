@@ -43,15 +43,15 @@
 				
 
 				<td width="150">
-				<a href="<?php echo base_url().'index.php/page_guru/edit_materi/'.$row->id_ujian; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;</button></a>|
-				<a href="<?php echo base_url().'index.php/page_guru/hapus_ujian/'.$row->id_ujian; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;</button></a>
+				<a href="<?php echo base_url().'Page_guru/edit_materi/'.$row->id_ujian; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;</button></a>|
+				<a href="<?php echo base_url().'Page_guru/hapus_ujian/'.$row->id_ujian; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;</button></a>
 				</td>
  			<?php endforeach; ?>
 			
 			</tr>
 			</tbody>
             </table>
-			  <a href="<?php echo base_url().'index.php/page_guru/tambah_ujian/'.$this->session->userdata("ses_nama") ?>"><button class="btn btn-success btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Tambah</button></a>
+			  <a href="<?php echo base_url().'Page_guru/tambah_ujian/'.$this->session->userdata("ses_nama") ?>"><button class="btn btn-success btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Tambah</button></a>
 			</div>
 				<?php
             if($this->input->get('delete')==1)

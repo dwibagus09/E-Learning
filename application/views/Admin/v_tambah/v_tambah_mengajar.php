@@ -3,7 +3,7 @@
 <div class="p-5"> <div class="text-center"> 
 <h1 class="h4 text-gray-900 mb-4">Tambah Pengajar</h1>
 </div> 
-<form class="user" action="<?php echo base_url().'index.php/Page/tambah_proses_mengajar';?>" method="post"> 
+<form class="user" action="<?php echo base_url().'tambah_proses_mengajar';?>" method="post"> 
 <input type="hidden" name="total[]" value="<?=@$_POST['count_data']?> ">
 		<table class="table">
 		<tr>

@@ -43,9 +43,11 @@ class Guru_model extends CI_Model
 		}
 
 		//====================Coba=========================//
-		function get_materi(){
+		function getAllMateri(){
 			$this->db->select('*');
 			$this->db->from('tb_materi');
+			// $this->db->join('tb_kelas','tb_materi.id_kelas = tb_kelas.id_kelas');
+			// $this->db->join('tb_mengajar','tb_materi.id_mengajar = tb_mengajar.id_mengajar');
 			$query = $this->db->get();
 			return $query;
 		}
@@ -53,10 +55,11 @@ class Guru_model extends CI_Model
 
 		//===================Akhir Coba====================//
 
-		public function save($data,$table)
-	{
-		$this->db->insert($table,$data);
-	}
+		public function save($data,$table){
+		
+			$this->db->insert($table,$data);
+
+		}
 
 	function delete_materi($id){
             $_id = $this->db->get_where('tb_materi',['id_materi' => $id])->row();
@@ -141,18 +144,18 @@ class Guru_model extends CI_Model
 		return $this->db->get()->result();
 	}
 
-	function edit($id)
+	function edit_tugas($id)
 	{
 		$this->db->select('*');
 		$this->db->from('tb_tugas');
-		$this->db->where('id', $id);
+		$this->db->where('id_tugas', $id);
 		return $this->db->get()->row_array();
 	}
 
-	function save_edit_data($id, $data)
+	function save_edit_data_tugas($id, $data)
 	{
-		$this->db->where('id', $id);
-		$berhasil = $this->db->update('tb_login', $data);
+		$this->db->where('id_tugas', $id);
+		$berhasil = $this->db->update('tb_tugas', $data);
 		if($berhasil)
 		{
 			redirect('edit'.$id.'?update=1','refresh');

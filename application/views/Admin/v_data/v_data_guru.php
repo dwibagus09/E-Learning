@@ -34,15 +34,15 @@
 				<img src="<?=base_url('upload/guru/'.$row->foto)?>" style="width:100px; height:100px position:center;">
 				</td>
 				<td width="150">
-				<a href="<?php echo base_url().'index.php/page/edit_guru/'.$row->id; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>|
-				<a href="<?php echo base_url().'index.php/page/hapus_guru/'.$row->id; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
+				<a href="<?php echo base_url().'Page/edit_guru/'.$row->id; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>|
+				<a href="<?php echo base_url().'Page/hapus_guru/'.$row->id; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
 				</td>
  			<?php endforeach; ?>
 			
 			</tr>
 			</tbody>
             </table>
-			  <a href="<?php echo base_url().'index.php/page/tambah'?>"><button class="btn btn-success btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Tambah</button></a>
+			  <a href="<?php echo base_url().'Page/tambah'?>"><button class="btn btn-success btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Tambah</button></a>
 			</div>
 				<?php
             if($this->input->get('delete')==1)

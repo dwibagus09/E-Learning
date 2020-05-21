@@ -3,7 +3,7 @@
 <div class="p-5"> <div class="text-center"> 
 <h1 class="h4 text-gray-900 mb-4">Tambah Kelas</h1>
 </div> 
- <form action ="<?php echo base_url().'index.php/Page/tambah_kelas';?>" method="POST">
+ <form action ="<?php echo base_url().'Page/tambah_kelas';?>" method="POST">
 		<div class="form-group">
 		<label for="count_add">Masukkan Jurusan</label>
 		<select class="form-control" name="count_jurusan" id="category" required>

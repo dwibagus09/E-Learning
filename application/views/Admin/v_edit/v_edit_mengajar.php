@@ -8,7 +8,7 @@
             
 <div> 
 
-<form class="user" action="<?php echo base_url().'index.php/Page/save_edit_mengajar'; ?>" method="post">
+<form class="user" action="<?php echo base_url().'Page/save_edit_mengajar'; ?>" method="post">
  <input type="hidden" name="id" value="<?php echo $list['id_mengajar']; ?>"> 
 <td>
             <select class="form-control" name="guru" id="category" required>

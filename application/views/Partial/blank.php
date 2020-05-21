@@ -19,7 +19,7 @@
 
     </div>
 </div>
-<a href="<?php echo base_url().'index.php/dashboard/logout'?>"><button style="float:right;" class="btn btn-danger btn-icon-split" ><i class="fa fa-sign-out fa-sm fa-fw mr-2 text-gray-400"></i>Logout</button></a>
+<a href="<?php echo base_url().'dashboard/logout'?>"><button style="float:right;" class="btn btn-danger btn-icon-split" ><i class="fa fa-sign-out fa-sm fa-fw mr-2 text-gray-400"></i>Logout</button></a>
 <?php echo @$footer; ?>
 </body>
 </html>

@@ -25,7 +25,7 @@
 </div> 
 <input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Tambah"> 
 </form><hr> 
-<div class="text-center"> <a class="small" href="Index">Kembali</a> 
+<div class="text-center"> <a class="small" href="<?php echo base_url().'Page_guru/data_materi/'.$this->session->userdata("ses_nama")?>">Kembali</a> 
 </div>
 </div>
 </div>

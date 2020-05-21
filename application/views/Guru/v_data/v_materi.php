@@ -22,18 +22,18 @@
 			<tr>
 				<td width="50"><?php echo $no++ ?></td>
 				<td width="150">
-				<a href="<?php echo base_url().'index.php/Page_guru/download/'.$row->file_materi ?>"><?php echo $row->nama_materi?></a> 
+				<a href="<?php echo base_url().'Page_guru/download/'.$row->file_materi ?>"><?php echo $row->nama_materi?></a> 
 				</td>
 
 				<td style="text-align:center;" width="150">
-				<a href="<?php echo base_url().'index.php/Page_guru/delete_materi/'.$row->id_materi; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
+				<a href="<?php echo base_url().'Page_guru/delete_materi/'.$row->id_materi; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
 				</td>
  			<?php endforeach; ?>
 			
 			</tr>
 			</tbody>
             </table>
-			  <a href="<?php echo base_url().'index.php/Page_guru/tambah/'.$this->session->userdata("ses_nama") ?>"><button class="btn btn-success btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Tambah</button></a>
+			  <a href="<?php echo base_url().'Page_guru/tambah/'.$this->session->userdata("ses_nama") ?>"><button class="btn btn-success btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Tambah</button></a>
 			</div>
 				<?php
             if($this->input->get('delete')==1)
