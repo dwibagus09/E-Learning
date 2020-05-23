@@ -1,29 +1,28 @@
 
-<form action="<?php echo base_url().'index.php/Page_guru/proses_tambah_soal';?>" enctype="multipart/form-data" method="POST">
+<form action="<?php echo base_url().'Page_guru/proses_tambah_soal';?>" enctype="multipart/form-data" method="POST">
 <table class="form">
 <?php
 	for ($i=1; $i<=$this->uri->segment('3'); $i++){?>
-	
+	<input type="hidden" class="form-control form-control-user" id="id_pertanyaan" name="id_pertanyaam" value="<?php echo $ujian['id_pertanyaan'];?>" require>
 <tr> 
-	
 	<td style="margin-top: 30px; margin-right:20px; float:left;"><?=$i?></td>
     <td style="margin-top: 10px; float:right; ">Pertanyaan<textarea rows="10" cols="100" name="pertanyaan[]"></textarea></td>
 </tr>
 <tr>
 <td style="float: left; margin-left:20px; margin-top:15px;">Pilihan a &nbsp; :</td>
-<td  style="float: left; margin-left: 10px; margin-top:10px;"><input class="form-control" type="text" name="pil1[]"></td>
+<td  style="float: left; margin-left: 10px; margin-top:10px;"><input class="form-control" type="text" name="pil1[]" value="<?php echo $ujian['a'];?>"></td>
 </tr>
 <tr>
 <td style="float: left; margin-left:20px; margin-top:15px;">Pilihan b &nbsp; :</td>
-<td  style="float: left; margin-left: 10px; margin-top:10px;"><input class="form-control" type="text" name="pil2[]"></td>
+<td  style="float: left; margin-left: 10px; margin-top:10px;"><input class="form-control" type="text" name="pil2[]" value="<?php echo $ujian['b'];?>"></td>
 </tr>
 <tr>
 <td style="float: left; margin-left:20px; margin-top:15px;">Pilihan c &nbsp; :</td>
-<td  style="float: left; margin-left: 10px; margin-top:10px;"><input class="form-control" type="text" name="pil3[]"></td>
+<td  style="float: left; margin-left: 10px; margin-top:10px;"><input class="form-control" type="text" name="pil3[]"value="<?php echo $ujian['c'];?>"></td>
 </tr>
 <tr>
 <td style="float: left; margin-left:20px; margin-top:15px;">Pilihan d &nbsp; :</td>
-<td  style="float: left; margin-left: 10px; margin-top:10px;"><input class="form-control" type="text" name="pil4[]"></td>
+<td  style="float: left; margin-left: 10px; margin-top:10px;"><input class="form-control" type="text" name="pil4[]" value="<?php echo $ujian['d'];?>"></td>
 </tr>
 <tr>
 <!-- <td style="float: left; margin-left:20px; margin-top:15px;">Pilihan e &nbsp; :</td>
@@ -36,7 +35,8 @@
 <input type="radio" value="b" name="jawaban[]">B
 <input type="radio" value="c" name="jawaban[]">C
 <input type="radio" value="d" name="jawaban[]">D
-<input class="form-control" type="text" name="id_ujian[]" value="<?php echo $id_ujian['id_ujian'];?>">
+
+<input class="form-control" type="hidden" name="id_ujian[]" value="<?php echo $ujian['id_ujian'];?>">
 </td>
 </tr>
 <?php

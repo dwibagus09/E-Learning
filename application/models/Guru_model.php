@@ -158,11 +158,11 @@ class Guru_model extends CI_Model
 		$berhasil = $this->db->update('tb_tugas', $data);
 		if($berhasil)
 		{
-			redirect('edit'.$id.'?update=1','refresh');
+			redirect('Page_guru/data_tugas/'.$this->session->userdata("ses_nama").'/'.$id.'/?update=1','refresh');
 		}
 		else
 		{
-			redirect('edit'.$id.'?update=2','refresh');
+			redirect('Page_guru/data_tugas/'.$this->session->userdata("ses_nama").'/'.$id.'/?update=2','refresh');
 		}
 	}
 
@@ -202,6 +202,28 @@ class Guru_model extends CI_Model
 		$this->db->from('tb_ujian');
 		$this->db->where('keterangan',$ket);
 		return $this->db->get()->row_array();
+	}
+
+	function edit_ujian($id)
+	{
+		$this->db->select('*');
+		$this->db->from('tb_pertanyaan');
+		$this->db->where('id_pertanyaan', $id);
+		return $this->db->get()->row_array();
+	}
+
+	function save_edit_data_ujian($id, $data)
+	{
+		$this->db->where('id_ujian', $id);
+		$berhasil = $this->db->update('tb_ujian', $data);
+		if($berhasil)
+		{
+			redirect('Page_guru/data_tugas/'.$this->session->userdata("ses_nama").'/'.$id.'/?update=1','refresh');
+		}
+		else
+		{
+			redirect('Page_guru/data_tugas/'.$this->session->userdata("ses_nama").'/'.$id.'/?update=2','refresh');
+		}
 	}
 
 	public function save_ujian($result)

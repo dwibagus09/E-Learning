@@ -129,28 +129,29 @@ class Page_guru extends CI_Controller{
       $id = $this->uri->segment(3);
       $this->Guru_model->delete_tugas($id);
     }
-  function edit_tugas(){
-    $id = $this->uri->segment(3);
-    $data['tugas'] = $this->Guru_model->edit_tugas($id);
-    $this->template->utama('Guru/v_edit/v_edit_tugas',$data);
-  }
-  public function save_edit_tugas(){
-    $kd_tgs = $this->input->post('kode_tugas');
-    $desc = $this->input->post('deskripsi');
-    $start = $this->input->post('start');
-    $end = $this->input->post('end');
-    $id = $this->input->post('mengajar');
-
-          $data = array(
-            'kd_tugas'=>$kd_tgs,
-            'deskripsi'=>$desc,
-            'waktu_mulai'=>$start,
-            'waktu_selesai'=>$end,
-            'id_mengajar'=>$id
-          );
-     
-      $this->Guru_model->save_edit_data_tugas($id,$data);
-  }
+    function edit_tugas(){
+      $id = $this->uri->segment(3);
+      $data['tugas'] = $this->Guru_model->edit_tugas($id);
+      $this->template->utama('Guru/v_edit/v_edit_tugas',$data);
+    }
+    public function save_edit_tugas(){
+      $id = $this->input->post('id_tugas');
+      $kd_tgs = $this->input->post('kode_tugas');
+      $desc = $this->input->post('deskripsi');
+      $start = $this->input->post('start');
+      $end = $this->input->post('end');
+      $id_meng = $this->input->post('mengajar');
+  
+            $data = array(
+              'kd_tugas'=>$kd_tgs,
+              'deskripsi'=>$desc,
+              'waktu_mulai'=>$start,
+              'waktu_selesai'=>$end,
+              'id_mengajar'=>$id_meng
+            );
+       
+        $this->Guru_model->save_edit_data_tugas($id,$data);
+    }
 // private function do_upload()
 // {
 //   $config['upload_path'] 		= 'upload/Materi/';
@@ -240,6 +241,32 @@ class Page_guru extends CI_Controller{
     }
       $this->Guru_model->save_ujian($result);
       redirect('Page_guru/data_ujian');
+    }
+    function edit_ujian(){
+      $id = $this->uri->segment(3);
+      $data['ujian'] = $this->Guru_model->edit_ujian($id);
+      $this->template->utama('Guru/v_edit/v_edit_soal',$data);
+    }
+    public function save_edit_ujian(){
+      $id = $this->input->post('id_ujian');
+      $post = $this->input->post();
+      $result = array();
+      $total_post = count($post['id_ujian']);
+      foreach($post['id_ujian'] AS $key => $val)
+      {
+        $result[] = array(
+        "soal"=>$post['pertanyaan'][$key],
+          "a"=>$post['pil1'][$key],
+          "b"=>$post['pil2'][$key],
+          "c"=>$post['pil3'][$key],
+          "d"=>$post['pil4'][$key],
+          "jawaban_benar"=>$post['jawaban'][$key],
+          "id_ujian" =>$post['id_ujian'][$key]
+        
+        );
+      }
+        $this->Guru_model->save_ujian($result);
+        redirect('Page_guru/data_ujian');
     }
 
     function hapus_ujian(){

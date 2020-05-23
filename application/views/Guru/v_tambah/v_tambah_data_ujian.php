@@ -34,7 +34,7 @@ foreach ($kelas as $row):?>
 <div class="form-group"> 
 <input type="text" class="form-control form-controluser" name="count_data" placeholder="Masukkan Jumlah Soal Ujian" require>
 </div> 
-<input type="text" name="mengajar" value="<?php echo $mengajar['id_mengajar'] ?>">
+<input type="hidden" name="mengajar" value="<?php echo $mengajar['id_mengajar'] ?>">
 <input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Tambah"> 
 </form><hr> 
 <div class="text-center"> <a class="small" href="<?php echo base_url().'Page_guru/data_ujian/'.$this->session->userdata("ses_nama")?>">Kembali</a>
