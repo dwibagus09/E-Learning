@@ -144,6 +144,29 @@ class Guru_model extends CI_Model
 		return $this->db->get()->result();
 	}
 
+	function getFile($id){
+		$this->db->select('*');
+		$this->db->from('tb_login');
+		$this->db->where('username', $id);
+		$a = $this->db->get()->row('id');
+		$this->db->select('*');
+		$this->db->from('tb_guru');
+		$this->db->where('id', $a);
+		$b = $this->db->get()->row('nip');
+		$this->db->select('*');
+		$this->db->from('tb_mengajar');
+		$this->db->where('nip', $b);
+		$c = $this->db->get()->row('id_mengajar');
+        $this->db->select('*');
+        $this->db->from('tb_tugas');
+		$this->db->where('id_mengajar',$c);
+		$d = $this->db->get()->row('id_tugas');
+		$this->db->select('*');
+        $this->db->from('tb_filetugas');
+		$this->db->where('id_tugas',$d);
+		return $this->db->get()->result();
+	}
+
 	function edit_tugas($id)
 	{
 		$this->db->select('*');
@@ -200,8 +223,8 @@ class Guru_model extends CI_Model
 	function getIdUjian($ket){
 		$this->db->select('*');
 		$this->db->from('tb_ujian');
-		$this->db->where('keterangan',$ket);
-		return $this->db->get()->row_array();
+		$this->db->where('id_ujian',$ket);
+		return $this->db->get()->result();
 	}
 
 	function edit_ujian($id)

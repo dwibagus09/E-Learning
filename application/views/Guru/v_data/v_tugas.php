@@ -50,7 +50,8 @@
 			</tr>
 			</tbody>
             </table>
-			  <a href="<?php echo base_url().'index.php/page_guru/tambah_tugas/'.$this->session->userdata("ses_nama") ?>"><button class="btn btn-success btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Tambah</button></a>
+			  <a href="<?php echo base_url().'Page_guru/tambah_tugas/'.$this->session->userdata("ses_nama") ?>"><button class="btn btn-success btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Tambah</button></a>
+			  <a href="<?php echo base_url().'Page_guru/lihat_file_tugas/'.$this->session->userdata("ses_nama") ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-eye"></i>&nbsp;Pengumpulan</button></a>
 			</div>
 				<?php
             if($this->input->get('delete')==1)

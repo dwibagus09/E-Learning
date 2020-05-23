@@ -12,7 +12,7 @@
             <input type="text" class="form-control form-control-user" id="kode" name="kode_tugas" value="<?php echo $tugas['kd_tugas'];?>" require> 
         </div> 
         <div class="form-group">                      
-            <textarea name="deskripsi" id="desc" cols="70" rows="10" require></textarea> 
+            <textarea name="deskripsi" id="desc" cols="70" rows="10" require><?php echo $tugas['deskripsi'];?></textarea> 
         </div>
         <div class="form-group">                      
             <input type="date" class="form-control form-control-user" id="start" name="start" value="<?php echo $tugas['waktu_mulai'];?>" require> 

@@ -25,20 +25,20 @@
 				<td width="50"><?php echo $no++ ?></td>
 				
 				<td width="150">
-				<a href="<?php echo $row->nilai?>"></a> 
+				<a href="<?php echo $row->nilai?>"><?php echo $row->nilai?></a> 
 				</td>
 
                 <td width="150">
-				<a href="<?php echo $row->id_tugas?>"></a> 
+				<a href="<?php echo $row->id_tugas?>"><?php echo $row->id_tugas?></a> 
 				</td>
 
                 <td width="150">
-				<a href="<?php echo $row->nis?>"></a> 
+				<a href="<?php echo $row->nis?>"><?php echo $row->nis?></a> 
 				</td>
 
 				<td width="150">
-				<a href="<?php echo base_url().'index.php/page_guru/edit_materi/'.$row->id_hasil; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Edit</button></a>|
-				<a href="<?php echo base_url().'index.php/page_guru/hapus_materi/'.$row->id_hasil; ?>"><button class="btn btn-danger btn-icon-split" ><i class="fa fa-trash"></i>&nbsp;Hapus</button></a>
+				<a href="<?php echo base_url().'Page_guru/cetak_nilai/'.$row->id_hasil; ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-pencil"></i>&nbsp;Cetak</button></a>|
+				<a href="<?php echo base_url().'Page_guru/download/'.$row->id_hasil; ?>"><button class="btn btn-default btn-icon-split" ><i class="fa fa-download"></i>&nbsp;Download</button></a>
 				</td>
  			<?php endforeach; ?>
 			

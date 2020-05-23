@@ -152,6 +152,11 @@ class Page_guru extends CI_Controller{
        
         $this->Guru_model->save_edit_data_tugas($id,$data);
     }
+    public function lihat_file_tugas(){
+      $id = $this->uri->segment(3);
+      $data['file'] = $this->Guru_model->getFile($id);
+      $this->template->utama('Guru/v_data/v_file_tugas',$data);
+    }
 // private function do_upload()
 // {
 //   $config['upload_path'] 		= 'upload/Materi/';
@@ -188,6 +193,8 @@ class Page_guru extends CI_Controller{
     $data['kelas'] = $this->Guru_model->getAll_kelas_dist($id);
     $data['mapel'] = $this->Guru_model->getAll_mapel_dist($id);
     $this->template->utama('Guru/v_tambah/v_tambah_data_ujian',$data);
+    // $this->template->utama('Partial/blank',var_dump($data['ujian']));
+    
   }
 
   //
@@ -212,9 +219,8 @@ class Page_guru extends CI_Controller{
             
             redirect('Page_guru/tambah_soal/'.$count_data.'/'.$ket); // ini ngedirect ke function di bawahnya
         }
-  
-  public function tambah_soal()
-        {
+  //===================================================== Soal-Soal =====================================================//
+  public function tambah_soal(){
           // count data ini dilemapr ke v_tambah_soal , count_data itu digunakan untuk membuat jumlah banyak soal
           $ket = $this->uri->segment('4');
           $data['id_ujian'] = $this->Guru_model->getIdUjian($ket);
@@ -242,6 +248,7 @@ class Page_guru extends CI_Controller{
       $this->Guru_model->save_ujian($result);
       redirect('Page_guru/data_ujian');
     }
+    //===================================================== End Of Soal-Soal =====================================================//
     function edit_ujian(){
       $id = $this->uri->segment(3);
       $data['ujian'] = $this->Guru_model->edit_ujian($id);
