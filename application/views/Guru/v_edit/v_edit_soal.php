@@ -1,12 +1,11 @@
 
 <form action="<?php echo base_url().'Page_guru/proses_tambah_soal';?>" enctype="multipart/form-data" method="POST">
 <table class="form">
-<?php
-	for ($i=1; $i<=$this->uri->segment('3'); $i++){?>
+
 	<input type="hidden" class="form-control form-control-user" id="id_pertanyaan" name="id_pertanyaam" value="<?php echo $ujian['id_pertanyaan'];?>" require>
 <tr> 
-	<td style="margin-top: 30px; margin-right:20px; float:left;"><?=$i?></td>
-    <td style="margin-top: 10px; float:right; ">Pertanyaan<textarea rows="10" cols="100" name="pertanyaan[]"></textarea></td>
+	<!-- <td style="margin-top: 30px; margin-right:20px; float:left;"><?=$i?></td> -->
+    <td style="margin-top: 10px; float:right; ">Pertanyaan<textarea rows="10" cols="100" name="pertanyaan[]"><?php echo $ujian['soal'];?></textarea></td>
 </tr>
 <tr>
 <td style="float: left; margin-left:20px; margin-top:15px;">Pilihan a &nbsp; :</td>
@@ -36,12 +35,10 @@
 <input type="radio" value="c" name="jawaban[]">C
 <input type="radio" value="d" name="jawaban[]">D
 
-<input class="form-control" type="text" name="id_ujian[]" value="<?php echo $ujian['id_ujian'];?>">
+<input class="form-control" type="text" name="id_ujian[]" value="<?php echo $id['id_ujian'];?>">
 </td>
 </tr>
-<?php
-		}
-		?>
+
 <tr>
     <td style="padding-bottom: 10px; text-align:center;"><input type="submit" onclick="window.scrollTo(0,0)" name="update" value="Save Changes"></td>
 </tr>

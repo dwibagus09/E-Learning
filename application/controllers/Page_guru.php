@@ -156,6 +156,7 @@ class Page_guru extends CI_Controller{
       $id = $this->uri->segment(3);
       $data['file'] = $this->Guru_model->getFile($id);
       $this->template->utama('Guru/v_data/v_file_tugas',$data);
+      
     }
 // private function do_upload()
 // {
@@ -183,6 +184,7 @@ class Page_guru extends CI_Controller{
     $id = $this->uri->segment(3);
     $data['ujian'] = $this->Guru_model->getUjian($id);
     $data['get_kelas'] = $this->Guru_model->getAll_kelas_dist($id);
+    
     $this->template->utama('Guru/v_data/v_data_ujian',$data);
   }
 
@@ -252,6 +254,7 @@ class Page_guru extends CI_Controller{
     function edit_ujian(){
       $id = $this->uri->segment(3);
       $data['ujian'] = $this->Guru_model->edit_ujian($id);
+      $data['id'] = $this->Guru_model->getId($id);
       $this->template->utama('Guru/v_edit/v_edit_soal',$data);
     }
     public function save_edit_ujian(){

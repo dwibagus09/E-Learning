@@ -162,7 +162,7 @@ class Guru_model extends CI_Model
 		$this->db->where('id_mengajar',$c);
 		$d = $this->db->get()->row('id_tugas');
 		$this->db->select('*');
-        $this->db->from('tb_filetugas');
+		$this->db->from('tb_filetugas');
 		$this->db->where('id_tugas',$d);
 		return $this->db->get()->result();
 	}
@@ -223,15 +223,23 @@ class Guru_model extends CI_Model
 	function getIdUjian($ket){
 		$this->db->select('*');
 		$this->db->from('tb_ujian');
-		$this->db->where('id_ujian',$ket);
-		return $this->db->get()->result();
+		$this->db->where('keterangan',$ket);
+		return $this->db->get()->row_array();
+	}
+
+	function getId($id){
+		$this->db->select('*');
+		$this->db->from('tb_pertanyaan');
+		$this->db->where('id_ujian',$id);
+		return $this->db->get()->row_array();
 	}
 
 	function edit_ujian($id)
 	{
 		$this->db->select('*');
 		$this->db->from('tb_pertanyaan');
-		$this->db->where('id_pertanyaan', $id);
+		$this->db->join('tb_ujian','tb_ujian.id_ujian=tb_pertanyaan.id_ujian');
+		$this->db->where('tb_ujian.id_ujian', $id);
 		return $this->db->get()->row_array();
 	}
 
@@ -241,11 +249,11 @@ class Guru_model extends CI_Model
 		$berhasil = $this->db->update('tb_ujian', $data);
 		if($berhasil)
 		{
-			redirect('Page_guru/data_tugas/'.$this->session->userdata("ses_nama").'/'.$id.'/?update=1','refresh');
+			redirect('Page_guru/data_ujian/'.$this->session->userdata("ses_nama").'/'.$id.'/?update=1','refresh');
 		}
 		else
 		{
-			redirect('Page_guru/data_tugas/'.$this->session->userdata("ses_nama").'/'.$id.'/?update=2','refresh');
+			redirect('Page_guru/data_ujian/'.$this->session->userdata("ses_nama").'/'.$id.'/?update=2','refresh');
 		}
 	}
 
