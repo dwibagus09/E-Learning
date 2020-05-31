@@ -4,66 +4,38 @@
         function __construct(){
             parent::__construct();
             // $this->load->library('table');
-            $this->load->model('Guru_model');
+            $this->load->model('Siswa_model');
             
         }
-		
-		public function Api ()
-		{
-			$data = $this->Guru_model->getMateri();
-			echo json_encode($data->result_array());
-		}
-		
-		public function ApiInsert()
-		{
-			$username = $this->input->post('username');
-			$password = $this->input->post('password');
-			$nama =  $this->input->post('nama');
-			$grup = $this->input->post('grup');
-			 $data = array(
-                'username' => $username,
-                'password' => $password,
-                'nama' => $nama,
-                'id_grup' => $grup
-            );
-			 $this->Mahasiswa_model->input_data($data,'tm_user');
-			echo json_encode($array);
-		}
 
-        public function ApiDelete()
+        public function index()
         {
-            if($this->input->post('username')){
-                $where = array('username' => $this->input->post('username'));
-                if ($this->Mahasiswa_model->delete_data($where,'tm_user')){
-                    $array = array('success' => true);
-                } else {
-                    $array = array('error' => true);
-                }
-                echo json_encode($array);
-            }
+        	 $this->load->view('view_login2');
         }
+
+        public function LoginApi()
+    {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $result = $this->Siswa_model->LoginApi($username, $password);
+        echo json_encode($result);
+    }
 		
-		public function ApiUpdate()
+		public function ApiMateri()
 	{
 		if($this->input->post('username')){
-			$where = array('username' => $this->input->post('username'));
-			$username = $this->input->post('username');
-			$password = $this->input->post('password');
-			$nama =  $this->input->post('nama');
-			$grup = $this->input->post('grup');
-			$data = array(
-                'username' => $username,
-                'password' => $password,
-                'nama' => $nama,
-                'id_grup' => $grup
-            );
-			if ($this->Mahasiswa_model->save_edit_data($where,$data, 'tm_user')){
-				$array = array('success' => true);
-			} else {
-				$array = array('error' => false);
-			}
-			echo json_encode($array);
+			$username = array('username' => $this->input->post('username'));
+			$array = $this->Siswa_model->getMateri($username);
+			echo json_encode($array->result_array());
 		}
+	}
+	public function ApiMateri2()
+	{
+		
+			$username = $this->input->post('username');
+			$array = $this->Siswa_model->getMateri2();
+			echo json_encode($array->result_array());
+		
 	}
 }
 
