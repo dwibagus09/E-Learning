@@ -15,10 +15,12 @@
 
         public function LoginApi()
     {
+        if ($_SERVER['REQUEST_METHOD']=='POST') {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
         $result = $this->Siswa_model->LoginApi($username, $password);
-        echo json_encode($result);
+         echo json_encode($result);
+        }
     }
 		
 		public function ApiMateri()
