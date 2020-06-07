@@ -1,41 +1,54 @@
-<?php 
-class Siswa_model extends CI_Model
-{
-	function LoginApi($username, $password)
-    {
-        $this->db->select("*");
-        $this->db->where('username',$username AND 'password',$password);
-        $check = $this->db->get('tb_login')->result_array();
-        if ($check) {
-            echo "Success";
-        }else{
-            echo "failure";
+<?php
+if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+class Siswa_model extends CI_Model {
+
+    public function __construct() {
+        parent::__construct();
+        
+        // Load the database library
+        $this->load->database();
+        
+        $this->userTbl = 'tb_login';
+    }
+
+    /*
+     * Get rows from the users table
+     */
+    function getRows($params = array()){
+        $this->db->select('*');
+        $this->db->from($this->userTbl);
+        
+        //fetch data by conditions
+        if(array_key_exists("conditions",$params)){
+            foreach($params['conditions'] as $key => $value){
+                $this->db->where($key,$value);
+            }
         }
-    }
+        
+        if(array_key_exists("id",$params)){
+            $this->db->where('id',$params['id']);
+            $query = $this->db->get();
+            $result = $query->row_array();
+        }else{
+            //set start and limit
+            if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
+                $this->db->limit($params['limit'],$params['start']);
+            }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
+                $this->db->limit($params['limit']);
+            }
+            
+            if(array_key_exists("returnType",$params) && $params['returnType'] == 'count'){
+                $result = $this->db->count_all_results();    
+            }elseif(array_key_exists("returnType",$params) && $params['returnType'] == 'single'){
+                $query = $this->db->get();
+                $result = ($query->num_rows() > 0)?$query->row_array():false;
+            }else{
+                $query = $this->db->get();
+                $result = ($query->num_rows() > 0)?$query->result_array():false;
+            }
+        }
 
-    function getMateri($username)
-    {
-    	$this->db->select('*');
-    	$this->db->from('tb_login');
-    	$this->db->where('username',$username);
-    	$a = $this->db->get()->row('id');
-    	$this->db->select('*');
-    	$this->db->from('tb_siswa');
-    	$this->db->where('id',$a);
-    	$b = $this->db->get()->row('id_kelas');
-    	$this->db->select('*');
-    	$this->db->from('tb_materi');
-    	$this->db->where('id_kelas',$b);
-    	$query = $this->db->get();
-    	return $query;
+        //return fetched data
+        return $result;
     }
-
-    function getMateri2()
-    {
-    	$this->db->select('*');
-    	$this->db->from('tb_materi');
-    	$query = $this->db->get();
-    	return $query;
-    }
-
-}
