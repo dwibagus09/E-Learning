@@ -1,44 +1,51 @@
-<?php 
-    defined('BASEPATH') OR exit('No direct script access allowed');
-    class Server_API extends CI_Controller{
-        function __construct(){
-            parent::__construct();
-            // $this->load->library('table');
-            $this->load->model('Siswa_model');
+<?php
+if (!defined('BASEPATH')) exit('No direct script access allowed');
+
+// Load the Rest Controller library
+require APPPATH . '/libraries/REST_Controller.php';
+
+class Server_API extends REST_Controller {
+
+    public function __construct() { 
+        parent::__construct();
+        
+        // Load the user model
+        $this->load->model('Siswa_model');
+    }
+    
+    public function login_post() {
+        // Get the post data
+        $username = $this->post('username');
+        $password = $this->post('password');
+        
+        // Validate the post data
+        if(!empty($email) && !empty($password)){
             
-        }
-
-        public function index()
-        {
-        	 $this->load->view('view_login2');
-        }
-
-        public function LoginApi()
-    {
-        if ($_SERVER['REQUEST_METHOD']=='POST') {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        $result = $this->Siswa_model->LoginApi($username, $password);
-         echo json_encode($result);
+            // Check if any user exists with the given credentials
+            $con['returnType'] = 'single';
+            $con['conditions'] = array(
+                'username' => $username,
+                'password' => $password,
+                'status' => 1
+            );
+            $user = $this->Siswa_model->getRows($con);
+            
+            if($user){
+                // Set the response and exit
+                $this->response([
+                    'status' => TRUE,
+                    'message' => 'User login successful.',
+                    'data' => $user
+                ], REST_Controller::HTTP_OK);
+            }else{
+                // Set the response and exit
+                //BAD_REQUEST (400) being the HTTP response code
+                $this->response("Wrong email or password.", REST_Controller::HTTP_BAD_REQUEST);
+            }
+        }else{
+            // Set the response and exit
+            $this->response("Provide email and password.", REST_Controller::HTTP_BAD_REQUEST);
         }
     }
-		
-		public function ApiMateri()
-	{
-		if($this->input->post('username')){
-			$username = array('username' => $this->input->post('username'));
-			$array = $this->Siswa_model->getMateri($username);
-			echo json_encode($array->result_array());
-		}
-	}
-	public function ApiMateri2()
-	{
-		
-			$username = $this->input->post('username');
-			$array = $this->Siswa_model->getMateri2();
-			echo json_encode($array->result_array());
-		
-	}
 }
-
-?>
+    
