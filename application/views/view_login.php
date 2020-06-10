@@ -30,7 +30,7 @@
 					<img src="<?php echo base_url('assets/images/logo.png')?>" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" method="POST" action="<?php echo base_url().'index.php/Login/auth'?>">
+				<form class="login100-form validate-form" method="POST" action="<?php echo base_url().'Login/auth'?>">
 					<span class="login100-form-title">
 						E-Learning Login
 					</span>
