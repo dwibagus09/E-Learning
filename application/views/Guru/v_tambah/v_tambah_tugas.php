@@ -23,12 +23,6 @@
         <!-- <div class="form-group"> 
             <input type="file" class="form-control form-controluser" id="tugas" name="tugas" placeholder="Pilih Tugas" require> 
         /div>   -->
-        <select class="form-control" name="kelas" id="category" required>
-            <option value="">Kelas</option>
-                <?php foreach($kelas as $row ):?>
-                <option value="<?php echo $row->id_kelas;?>"><?php echo $row->kelas."&nbsp;".$row->nama_kelas;?></option>
-                <?php endforeach;?>
-		</select>  
         <div class="form-group"> 
             <input type="hidden" class="form-control form-controluser" id="id" name="mengajar" value="<?php echo $get_id['id_mengajar']; ?>" require> 
         </div> 

@@ -11,8 +11,7 @@ class Server_API extends CI_Controller {
         $this->load->model('Siswa_model');
     }
     
-
-    public function loginApi() {
+    public function login_post() {
         // Get the post data
         $username = $_POST["username"];
         $password = $_POST["password"];
@@ -24,23 +23,5 @@ class Server_API extends CI_Controller {
         die(json_encode($response));
         }
         $this->Siswa_model->getRows($username,$password);
-    
-    // public function LoginApi(){
-    //     $username = $this->input->post('username');
-    //     $password = $this->input->post('password');
-    //     $this->Siswa_model->getLogin($username,$password);
-    // }
-    public function ApiMateri(){
-            $data = $this->Siswa_model->getAllMateri();
-            echo json_encode($data->result_array());
-    }
-    public function ApiTugas(){
-        $data = $this->Siswa_model->getAllTugas();
-        echo json_encode($data->result_array());
-    }
-    public function ApiUjian(){
-        $data = $this->Siswa_model->getAllUjian();
-        echo json_encode($data->result_array());
-
     }
 }

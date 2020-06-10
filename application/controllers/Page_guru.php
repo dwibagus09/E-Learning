@@ -98,7 +98,7 @@ class Page_guru extends CI_Controller{
 
   public function tambah_tugas(){
   	$id = $this->uri->segment(3);
-  	$data['kelas'] = $this->Guru_model->getAll_kelas_dist($id);
+  	$data['get_kelas'] = $this->Guru_model->getAll_kelas_dist($id);
 	  $data['get_id'] = $this->Guru_model->getById($id);
   	$this->template->utama('Guru/v_tambah/v_tambah_tugas',$data);
   }
@@ -108,7 +108,6 @@ class Page_guru extends CI_Controller{
     $desc = $this->input->post('deskripsi');
     $start = $this->input->post('start');
     $end = $this->input->post('end');
-    $kelas = $this->input->post('kelas');
     $id = $this->input->post('mengajar');
     //upload foto
   
@@ -117,7 +116,6 @@ class Page_guru extends CI_Controller{
               'deskripsi'=>$desc,
               'waktu_mulai'=>$start,
               'waktu_selesai'=>$end,
-              'id_kelas' => $kelas,
               'id_mengajar'=>$id
           );
     // if (!empty($_FILES['materi']['name'])) {
@@ -134,7 +132,6 @@ class Page_guru extends CI_Controller{
     function edit_tugas(){
       $id = $this->uri->segment(3);
       $data['tugas'] = $this->Guru_model->edit_tugas($id);
-      $data['kelas'] = $this->Guru_model->getKelas();
       $this->template->utama('Guru/v_edit/v_edit_tugas',$data);
     }
     public function save_edit_tugas(){
@@ -143,7 +140,6 @@ class Page_guru extends CI_Controller{
       $desc = $this->input->post('deskripsi');
       $start = $this->input->post('start');
       $end = $this->input->post('end');
-      $kelas = $this->input->post('kelas');
       $id_meng = $this->input->post('mengajar');
   
             $data = array(
@@ -151,7 +147,6 @@ class Page_guru extends CI_Controller{
               'deskripsi'=>$desc,
               'waktu_mulai'=>$start,
               'waktu_selesai'=>$end,
-              'id_kelas' => $kelas,
               'id_mengajar'=>$id_meng
             );
        
