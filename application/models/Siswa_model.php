@@ -2,7 +2,6 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Siswa_model extends CI_Model {
-<<<<<<< HEAD
     
     function getLogin($username,$password){
         $this->db->select('*');
@@ -36,8 +35,8 @@ class Siswa_model extends CI_Model {
         $this->db->join('tb_mapel','tb_ujian.id_mapel = tb_mapel.id_mapel');
         $this->db->join('tb_kelas','tb_ujian.id_kelas = tb_kelas.id_kelas');
 		$query = $this->db->get();
-		return $query;
-=======
+        return $query;
+    }
     /*
      * Get rows from the users table
      */
@@ -64,9 +63,9 @@ class Siswa_model extends CI_Model {
         die(json_encode($response));
     }
     
-    mysqli_close();
->>>>>>> f46b43a2f52bfa675f9a68b2b6c9291b16d3ecae
+        mysqli_close();
     }
+}
 
     //=========================================================================================================//
     public function getById($id){
@@ -113,5 +112,4 @@ class Siswa_model extends CI_Model {
             echo 'false';
         }
     }
-}
 }
