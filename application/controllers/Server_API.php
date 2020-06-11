@@ -24,21 +24,22 @@ class Server_API extends CI_Controller {
         die(json_encode($response));
         }
         $this->Siswa_model->getRows($username,$password);
-    
+    }
     // public function LoginApi(){
     //     $username = $this->input->post('username');
     //     $password = $this->input->post('password');
     //     $this->Siswa_model->getLogin($username,$password);
     // }
     public function ApiMateri(){
-            $data = $this->Siswa_model->getAllMateri();
+            $username = $_GET["username"];
+            $data = $this->Siswa_model->getAllMateri($username);
             echo json_encode($data->result_array());
     }
-    public function ApiTugas(){
+     function ApiTugas(){
         $data = $this->Siswa_model->getAllTugas();
         echo json_encode($data->result_array());
     }
-    public function ApiUjian(){
+     function ApiUjian(){
         $data = $this->Siswa_model->getAllUjian();
         echo json_encode($data->result_array());
 

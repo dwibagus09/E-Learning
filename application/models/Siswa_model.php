@@ -32,6 +32,32 @@ class Siswa_model extends CI_Model {
     mysqli_close();
     }
 }
+function getAllMateri($username){
+        $this->db->select('*');
+        $this->db->from('tb_login');
+        $this->db->where('username', $username);
+        $a = $this->db->get()->row('id');
+        $this->db->select('*');
+        $this->db->from('tb_siswa');
+        $this->db->where('id', $a);
+        $b = $this->db->get()->row('id_kelas');
+        $this->db->select('*');
+        $this->db->from('tb_materi');
+        $this->db->where('id_kelas', $b);
+        return $this->db->get();
+    }
+    function getAllTugas(){
+        $this->db->select('*');
+        $this->db->from('tb_tugas');
+        $query = $this->db->get();
+        return $query;
+    }
+    function getAllUjian(){
+        $this->db->select('*');
+        $this->db->from('tb_ujian');
+        $query = $this->db->get();
+        return $query;
+    }
 }
 
 
@@ -85,38 +111,21 @@ class Siswa_model extends CI_Model {
     //     return $result;
     // }
     
-    function getLogin($username,$password){
-        $this->db->select('*');
-        $this->db->where('username',$username);
-        $this->db->where('password',$password);
-        $this->db->where('akses','3');
-        $check = $this->db->get('tb_login')->result_array();
-        if($check){
-            echo '1';
-        }
-        else{
-            echo 'false';
-        }
-    }
+    // function getLogin($username,$password){
+    //     $this->db->select('*');
+    //     $this->db->where('username',$username);
+    //     $this->db->where('password',$password);
+    //     $this->db->where('akses','3');
+    //     $check = $this->db->get('tb_login')->result_array();
+    //     if($check){
+    //         echo '1';
+    //     }
+    //     else{
+    //         echo 'false';
+    //     }
+    // }
 
-    function getAllMateri(){
-        $this->db->select('*');
-		$this->db->from('tb_materi');
-		$query = $this->db->get();
-		return $query;
-    }
-    function getAllTugas(){
-        $this->db->select('*');
-		$this->db->from('tb_tugas');
-		$query = $this->db->get();
-		return $query;
-    }
-    function getAllUjian(){
-        $this->db->select('*');
-		$this->db->from('tb_ujian');
-		$query = $this->db->get();
-		return $query;
-    }
-}
+    
+
 ?>
 
