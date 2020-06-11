@@ -35,7 +35,7 @@
 <input type="radio" value="c" name="jawaban[]">C
 <input type="radio" value="d" name="jawaban[]">D
 
-<input class="form-control" type="hidden" name="id_ujian[]" value="<?php echo $id['id_ujian'];?>">
+<input class="form-control" type="text" name="id_ujian[]" value="<?php echo $id['id_ujian'];?>">
 </td>
 </tr>
 

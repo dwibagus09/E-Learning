@@ -1,5 +1,0 @@
-SELECT tbldivisi.ket_divisi, tblpegawai.nama, tbljabatan.ket_jabatan, tblpenempatan.id_penempatan
-FROM tblpegawai
-JOIN tbljabatan ON tblpegawai.id_jabatan = tbljabatan.id_jabatan
-JOIN tbldivisi ON tblpegawai.id_divisi = tbldivisi.id_divisi
-JOIN tblpenempatan ON tblpegawai.id_penempatan = tblpenempatan.id_penempatan

@@ -126,8 +126,8 @@ class Page extends CI_Controller{
   }
   
   public function tambah_kelas(){
-	// $data['materi'] = $this->InputUser_model->getMateri();
-	  $this->template->utama('Admin/v_tambah/v_tambah_kelas',$data);
+	 
+	  $this->template->utama('Admin/v_tambah/v_tambah_kelas');
   }
  
   public function tambah_proses_kelas()
@@ -135,20 +135,18 @@ class Page extends CI_Controller{
 		$post = $this->input->post();
 		$result = array();
 		$total_post = count($post['kelas']);
-		$materi = $this->input->post('materi');
 		foreach($post['kelas'] AS $key => $val)
 		{
 			$result[] = array(
 			"kelas" => $post['kelas'][$key],
 			"nama_kelas" => $post['nama_kelas'][$key],
-			"id_jurusan" => $post['jurusan'][$key],
-			'id_materi' => $materi
+			"id_jurusan" => $post['jurusan'][$key]
 			
 		);
 	}
 	$this->InputUser_model->save_kelas($result);
 	$this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
-	redirect('Page/data_kelas');
+	redirect('data_kelas');
 	}
 
 	public function edit_kelas(){
@@ -217,7 +215,7 @@ class Page extends CI_Controller{
 	}
 	$this->InputUser_model->save_jurusan($result);
 	$this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
-	redirect('Page/data_jurusan');
+	redirect('data_jurusan');
 	}
 
 	public function edit_jurusan(){
@@ -364,7 +362,7 @@ class Page extends CI_Controller{
 	}
 	$this->InputUser_model->save_mapel($result);
 	$this->session->set_flashdata('notif', '<p style="color:green;font-weight:bold;">'.$total_post.' data berhasil di simpan!</p>');
-	redirect('Page/data_mapel');
+	redirect('data_mapel');
 	}
 
 	public function edit_mapel(){

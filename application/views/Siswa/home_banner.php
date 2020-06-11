@@ -6,7 +6,7 @@
 						<div class="banner_content">
 							<h2>
 								Selamat Datang <br>
-								<?php echo $this->session->userdata("ses_nama") ?>
+								Dwi Bagus Krisdianto Wicaksono
 							</h2>
 							<p>
 								Berdoa dulu Sebelum Belajar<br>
@@ -30,7 +30,7 @@
 							<span class="lnr lnr-book"></span>
 						</div>
 						<div class="desc">
-							<a class="nav-link" href="<?php echo base_url('Page_Siswa/Data_Materi/'.$this->session->userdata("ses_nama"))?>"><h4>Materi</h4></a>
+							<h4>Materi</h4>
 							<p>
 								In the history of modern astronomy, there is probably no one greater leap forward building and launch.
 							</p>
@@ -41,7 +41,7 @@
 							<span class="fa fa-trophy"></span>
 						</div>
 						<div class="desc">
-							<a class="nav-link" href="<?php echo base_url('Page_Siswa/Data_Tugas/'.$this->session->userdata("ses_nama"))?>"><h4>Tugas</h4></a>
+							<h4>Tugas</h4>
 							<p>
 								In the history of modern astronomy, there is probably no one greater leap forward building and launch.
 							</p>

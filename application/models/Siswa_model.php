@@ -2,6 +2,56 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Siswa_model extends CI_Model {
+
+    // public function __construct() {
+    //     parent::__construct();
+        
+    //     // Load the database library
+    //     $this->load->database();
+        
+    //     $this->userTbl = 'tb_login';
+    // }
+
+    // /*
+    //  * Get rows from the users table
+    //  */
+    // function getRows($params = array()){
+    //     $this->db->select('*');
+    //     $this->db->from($this->userTbl);
+        
+    //     //fetch data by conditions
+    //     if(array_key_exists("conditions",$params)){
+    //         foreach($params['conditions'] as $key => $value){
+    //             $this->db->where($key,$value);
+    //         }
+    //     }
+        
+    //     if(array_key_exists("id",$params)){
+    //         $this->db->where('id',$params['id']);
+    //         $query = $this->db->get();
+    //         $result = $query->row_array();
+    //     }else{
+    //         //set start and limit
+    //         if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
+    //             $this->db->limit($params['limit'],$params['start']);
+    //         }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
+    //             $this->db->limit($params['limit']);
+    //         }
+            
+    //         if(array_key_exists("returnType",$params) && $params['returnType'] == 'count'){
+    //             $result = $this->db->count_all_results();    
+    //         }elseif(array_key_exists("returnType",$params) && $params['returnType'] == 'single'){
+    //             $query = $this->db->get();
+    //             $result = ($query->num_rows() > 0)?$query->row_array():false;
+    //         }else{
+    //             $query = $this->db->get();
+    //             $result = ($query->num_rows() > 0)?$query->result_array():false;
+    //         }
+    //     }
+
+    //     //return fetched data
+    //     return $result;
+    // }
     
     function getLogin($username,$password){
         $this->db->select('*');
@@ -31,9 +81,7 @@ class Siswa_model extends CI_Model {
     }
     function getAllUjian(){
         $this->db->select('*');
-        $this->db->from('tb_ujian');
-        $this->db->join('tb_mapel','tb_ujian.id_mapel = tb_mapel.id_mapel');
-        $this->db->join('tb_kelas','tb_ujian.id_kelas = tb_kelas.id_kelas');
+		$this->db->from('tb_ujian');
 		$query = $this->db->get();
         return $query;
     }
@@ -62,6 +110,7 @@ class Siswa_model extends CI_Model {
         $response->message = "Username atau password salah";
         die(json_encode($response));
     }
+<<<<<<< HEAD
     
         mysqli_close();
     }
@@ -112,4 +161,6 @@ class Siswa_model extends CI_Model {
             echo 'false';
         }
     }
+=======
+>>>>>>> parent of eaeb904... updated
 }
