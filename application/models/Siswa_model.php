@@ -2,56 +2,6 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Siswa_model extends CI_Model {
-
-    // public function __construct() {
-    //     parent::__construct();
-        
-    //     // Load the database library
-    //     $this->load->database();
-        
-    //     $this->userTbl = 'tb_login';
-    // }
-
-    // /*
-    //  * Get rows from the users table
-    //  */
-    // function getRows($params = array()){
-    //     $this->db->select('*');
-    //     $this->db->from($this->userTbl);
-        
-    //     //fetch data by conditions
-    //     if(array_key_exists("conditions",$params)){
-    //         foreach($params['conditions'] as $key => $value){
-    //             $this->db->where($key,$value);
-    //         }
-    //     }
-        
-    //     if(array_key_exists("id",$params)){
-    //         $this->db->where('id',$params['id']);
-    //         $query = $this->db->get();
-    //         $result = $query->row_array();
-    //     }else{
-    //         //set start and limit
-    //         if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
-    //             $this->db->limit($params['limit'],$params['start']);
-    //         }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
-    //             $this->db->limit($params['limit']);
-    //         }
-            
-    //         if(array_key_exists("returnType",$params) && $params['returnType'] == 'count'){
-    //             $result = $this->db->count_all_results();    
-    //         }elseif(array_key_exists("returnType",$params) && $params['returnType'] == 'single'){
-    //             $query = $this->db->get();
-    //             $result = ($query->num_rows() > 0)?$query->row_array():false;
-    //         }else{
-    //             $query = $this->db->get();
-    //             $result = ($query->num_rows() > 0)?$query->result_array():false;
-    //         }
-    //     }
-
-    //     //return fetched data
-    //     return $result;
-    // }
     
     function getLogin($username,$password){
         $this->db->select('*');
@@ -81,9 +31,57 @@ class Siswa_model extends CI_Model {
     }
     function getAllUjian(){
         $this->db->select('*');
-		$this->db->from('tb_ujian');
+        $this->db->from('tb_ujian');
+        $this->db->join('tb_mapel','tb_ujian.id_mapel = tb_mapel.id_mapel');
+        $this->db->join('tb_kelas','tb_ujian.id_kelas = tb_kelas.id_kelas');
 		$query = $this->db->get();
 		return $query;
+    }
+
+    //=========================================================================================================//
+    public function getById($id){
+        $this->db->select('*');
+        $this->db->from('tb_login');
+        $this->db->where('username', $id);
+        $a = $this->db->get()->row('id');
+        $this->db->select('*');
+        $this->db->from('tb_siswa');
+        $this->db->where('id', $a);
+        $b = $this->db->get()->row('id_kelas');
+        $this->db->select('*');
+        $this->db->from('tb_kelas');
+        $this->db->where('id_kelas', $b);
+        $c = $this->db->get()->row('id_kelas');
+        $this->db->select('*');
+        $this->db->from('tb_mengajar');
+        $this->db->where('id_kelas', $c);
+        return $this->db->get()->row_array();
+    }
+    //=========================== End Of Awal Model Siswa =================//
+    public function getMateri(){
+        $query = "SELECT * from tb_materi Join tb_kelas on tb_materi.id_kelas = tb_kelas.id_kelas Join tb_siswa on tb_kelas.id_kelas = tb_siswa.id_kelas Join tb_login on tb_siswa.id = tb_login.id Where tb_login.id and tb_kelas.id_kelas";
+        return $this->db->query($query)->result();
+    }
+
+    
+
+    public function getTugas(){
+        $query = "SELECT * from tb_tugas Join tb_mengajar on tb_tugas.id_mengajar = tb_mengajar.id_mengajar Join tb_kelas on tb_mengajar.id_kelas = tb_kelas.id_kelas join tb_siswa on tb_kelas.id_kelas = tb_siswa.id_kelas Join tb_login on tb_siswa.id = tb_login.id Where tb_login.id and tb_kelas.id_kelas";
+        return $this->db->query($query)->result();
+    }
+
+    function Login($username,$password){
+        $this->db->select('*');
+        $this->db->where('username',$username);
+        $this->db->where('password',$password);
+        $this->db->where('akses','3');
+        $check = $this->db->get('tb_login')->result_array();
+        if($check){
+            echo '1';
+        }
+        else{
+            echo 'false';
+        }
     }
 }
 ?>

@@ -39,9 +39,9 @@
 </td>
 </tr>
 <tr>
-<td style="float: left; margin-left:20px; margin-top:15px; margin-bottom:40px;"> Id_Ujian &nbsp; :</td>
-<td style="float: left; margin-left: 10px; margin-top:15px;">
-<input class="form-control" type="text" name="id_ujian[]" value="<?php echo $id_ujian['id_ujian'];?>">
+<!-- <td style="float: left; margin-left:20px; margin-top:15px; margin-bottom:40px;"> Id_Ujian &nbsp; :</td> -->
+<!-- <td style="float: left; margin-left: 10px; margin-top:15px;"> -->
+<input class="form-control" type="hidden" name="id_ujian[]" value="<?php echo $id_ujian['id_ujian'];?>">
 </td>
 </tr>
 <?php

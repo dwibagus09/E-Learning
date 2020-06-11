@@ -40,7 +40,7 @@ Pilih Jenis Kelamin</option>
 </div> 
 <input type="submit" class="btn btn-success btn-icon-split" name="submit" value="Tambah"> 
 </form><hr> 
-<div class="text-center"> <a class="small" href="Index">Kembali</a> 
+<div class="text-center"> <a class="small" href="<?php echo base_url('Page/data_siswa')?>">Kembali</a> 
 </div>
 </div>
 </div>

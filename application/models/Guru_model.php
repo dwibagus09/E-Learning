@@ -96,6 +96,11 @@ class Guru_model extends CI_Model
 		$this->db->from('tb_kelas');
 		return $this->db->get()->result();
 	}
+	public function getMapel(){
+		$this->db->select('*');
+		$this->db->from('tb_mapel');
+		return $this->db->get()->result();
+	}
 	
 	public function getAll_mapel_dist($id)
 	{
@@ -223,6 +228,7 @@ class Guru_model extends CI_Model
 		$this->db->from('tb_ujian');
 		$this->db->join('tb_kelas','tb_kelas.id_kelas=tb_ujian.id_kelas');
 		$this->db->join('tb_mapel','tb_mapel.id_mapel=tb_ujian.id_mapel');
+		
 		return $this->db->get()->result();
 	}
 

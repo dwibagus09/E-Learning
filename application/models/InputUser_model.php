@@ -86,7 +86,11 @@ class InputUser_model extends CI_Model
 		return $this->db->get()->result();
 	}
 	
-	
+	public function getMateri(){
+		$this->db->select('*');
+		$this->db->from('tb_materi');
+		return $this->db->get()->row_array();
+	}
 	public function save_kelas($result)
 	{
 		$total_array = count($result);
