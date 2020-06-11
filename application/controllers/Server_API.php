@@ -1,8 +1,6 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-// Load the Rest Controller library
-require APPPATH . '/libraries/REST_Controller.php';
 
 class Server_API extends CI_Controller {
 
@@ -12,6 +10,7 @@ class Server_API extends CI_Controller {
         // Load the user model
         $this->load->model('Siswa_model');
     }
+<<<<<<< HEAD
 
     public function LoginApi(){
         $username = $this->input->post('username');
@@ -29,6 +28,20 @@ class Server_API extends CI_Controller {
     public function ApiUjian(){
         $data = $this->Siswa_model->getAllUjian();
         echo json_encode($data->result_array());
+=======
+    
+    public function login_post() {
+        // Get the post data
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+    
+        if ((empty($username)) || (empty($password))) { 
+        $response = new Siswa_model();
+        $response->success = 0;
+        $response->message = "Kolom tidak boleh kosong"; 
+        die(json_encode($response));
+        }
+        $this->Siswa_model->getRows($username,$password);
+>>>>>>> f46b43a2f52bfa675f9a68b2b6c9291b16d3ecae
     }
 }
-    

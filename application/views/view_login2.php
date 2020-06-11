@@ -30,7 +30,7 @@
 					<img src="<?php echo base_url('assets/images/logo.png')?>" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" method="POST" action="<?php echo base_url().'Server_API/LoginApi'?>">
+				<form class="login100-form validate-form" method="POST" action="<?php echo base_url().'index.php/Server_API/LoginApi'?>">
 					<span class="login100-form-title">
 						E-Learning Login
 					</span>

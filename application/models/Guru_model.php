@@ -91,6 +91,7 @@ class Guru_model extends CI_Model
 		return $this->db->get()->result();
 	}
 
+<<<<<<< HEAD
 	public function getKelas(){
 		$this->db->select('*');
 		$this->db->from('tb_kelas');
@@ -102,6 +103,8 @@ class Guru_model extends CI_Model
 		return $this->db->get()->result();
 	}
 	
+=======
+>>>>>>> f46b43a2f52bfa675f9a68b2b6c9291b16d3ecae
 	public function getAll_mapel_dist($id)
 	{
 		$this->db->select('*');
