@@ -21,6 +21,39 @@
 	<script src="<?php echo base_url('assets/siswa/js/jquery.ajaxchimp.min.js')?>"></script>
 	<script src="<?php echo base_url('assets/siswa/vendors/counter-up/jquery.counterup.js')?>"></script>
 	<script src="<?php echo base_url('assets/siswa/js/mail-script.js')?>"></script>
+	<!--===============================================================================================-->	
+	<script src="<?php echo base_url('assets/custom-table/vendor/jquery/jquery-3.2.1.min.js')?>"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo base_url('assets/custom-table/vendor/bootstrap/js/popper.js')?>"></script>
+	<script src="<?php echo base_url('assets/custom-table/vendor/bootstrap/js/bootstrap.min.js')?>"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo base_url('assets/custom-table/vendor/select2/select2.min.js')?>"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo base_url('assets/custom-table/vendor/perfect-scrollbar/perfect-scrollbar.min.js')?>"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+
+			$(this).on('ps-x-reach-start', function(){
+				$(this).parent().find('.table100-firstcol').removeClass('shadow-table100-firstcol');
+			});
+
+			$(this).on('ps-scroll-x', function(){
+				$(this).parent().find('.table100-firstcol').addClass('shadow-table100-firstcol');
+			});
+
+		});
+
+		
+		
+		
+	</script>
+<!--===============================================================================================-->
+	<script src="<?php echo base_url('assets/custom-table/js/main.js')?>"></script>
 	<!--gmaps Js-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 	<script src="<?php echo base_url('assets/siswa/js/gmaps.min.js')?>"></script>

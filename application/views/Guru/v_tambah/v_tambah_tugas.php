@@ -23,23 +23,14 @@
         <!-- <div class="form-group"> 
             <input type="file" class="form-control form-controluser" id="tugas" name="tugas" placeholder="Pilih Tugas" require> 
         /div>   -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <!-- <select class="form-control" name="kelas" id="category" required>
-=======
-        <select class="form-control" name="kelas" id="category" required>
->>>>>>> parent of eaeb904... updated
+        <!-- <select>
             <option value="">Kelas</option>
                 <?php foreach($kelas as $row ):?>
                 <option value="<?php echo $row->id_kelas;?>"><?php echo $row->kelas."&nbsp;".$row->nama_kelas;?></option>
                 <?php endforeach;?>
-<<<<<<< HEAD
 		</select>   -->
-=======
->>>>>>> f46b43a2f52bfa675f9a68b2b6c9291b16d3ecae
-=======
 		</select>  
->>>>>>> parent of eaeb904... updated
+
         <div class="form-group"> 
             <input type="hidden" class="form-control form-controluser" id="id" name="mengajar" value="<?php echo $get_id['id_mengajar']; ?>" require> 
         </div> 

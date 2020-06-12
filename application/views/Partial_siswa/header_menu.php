@@ -17,7 +17,7 @@
 						</a>
 					</div>
 					<div class="col-lg-6 col-sm-6 col-8 header-top-right">
-						<a href="#" class="text-uppercase">Log Out</a>
+						<a href="<?php echo base_url().'dashboard/logout'?>" class="text-uppercase">Log Out</a>
 					</div>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html">E-LEARNING</a>
+					<a class="navbar-brand logo_h" href="<?php echo base_url('Page_Siswa')?>">E-LEARNING</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -47,13 +47,13 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item active"><a class="nav-link" href="index.html">Beranda</a></li>
+							<li class="nav-item active"><a class="nav-link" href="<?php echo base_url('Page_Siswa')?>">Beranda</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Pembelajaran</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="courses.html">Materi</a></li>
-									<li class="nav-item"><a class="nav-link" href="course-details.html">Tugas</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?php echo base_url('Page_Siswa/Data_Materi/'.$this->session->userdata("ses_nama"))?>">Materi</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?php echo base_url('Page_Siswa/Data_Tugas/'.$this->session->userdata("ses_nama"))?>">Tugas</a></li>
 								</ul>
 							</li>
 							<li class="nav-item">
