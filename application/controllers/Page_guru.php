@@ -73,7 +73,7 @@ class Page_guru extends CI_Controller{
 
   public function download(){
   	$name = $this->uri->segment(3);
-	  $data = file_get_contents(base_url().'upload/Materi/'.$name);
+	  $data = file_get_contents(base_url().'upload/materi/'.$name);
 	  force_download($name, $data);
   }
 
@@ -134,6 +134,10 @@ class Page_guru extends CI_Controller{
   function hapus_tugas(){
       $id = $this->uri->segment(3);
       $this->Guru_model->delete_tugas($id);
+    }
+    function hapus_file(){
+      $id = $this->uri->segment(3);
+      $this->Guru_model->delete_file($id);
     }
     function edit_tugas(){
       $id = $this->uri->segment(3);

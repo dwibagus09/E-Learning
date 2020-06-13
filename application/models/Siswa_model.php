@@ -16,19 +16,20 @@ class Siswa_model extends CI_Model {
             echo 'false';
         }
     }
+//================================= Tugas Save =============================//
+    function getIdTugas(){
+        $this->db->select('*');
+        $this->db->from('tb_filetugas');
+        $this->db->join('tb_tugas','tb_tugas.id_tugas = tb_filetugas.id_tugas');
+		$query = $this->db->get()->result();
+        return $query;
+    }
+    public function save($data,$table){
+		
+        $this->db->insert($table,$data);
 
-    // function getAllMateri(){
-    //     $this->db->select('*');
-	// 	$this->db->from('tb_materi');
-	// 	$query = $this->db->get();
-	// 	return $query;
-    // }
-    // function getAllTugas(){
-    //     $this->db->select('*');
-	// 	$this->db->from('tb_tugas');
-	// 	$query = $this->db->get();
-	// 	return $query;
-    // }
+    }
+//================================= End Tugas Save =============================//
     function getAllUjian(){
         $this->db->select('*');
 		$this->db->from('tb_ujian');
@@ -92,7 +93,7 @@ class Siswa_model extends CI_Model {
         return $this->db->query($query)->result();
     }
 
-    
+    //======================== JSON ENCODE =======================//
     function getAllMateri($username){
         $this->db->select('*');
         $this->db->from('tb_login');
@@ -155,6 +156,28 @@ class Siswa_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('tb_tugas');
         $this->db->where('id_tugas',$c);
+		return $this->db->get()->result();
+    }
+    function getFile($id){
+		$this->db->select('*');
+		$this->db->from('tb_login');
+		$this->db->where('username', $id);
+		$a = $this->db->get()->row('id');
+		$this->db->select('*');
+		$this->db->from('tb_siswa');
+		$this->db->where('id', $a);
+		$b = $this->db->get()->row('id_kelas');
+		$this->db->select('*');
+		$this->db->from('tb_mengajar');
+		$this->db->where('id_kelas', $b);
+		$c = $this->db->get()->row('id_mengajar');
+        $this->db->select('*');
+        $this->db->from('tb_tugas');
+		$this->db->where('id_tugas',$c);
+		$d = $this->db->get()->row('id_tugas');
+		$this->db->select('*');
+		$this->db->from('tb_filetugas');
+		$this->db->where('id_tugas',$d);
 		return $this->db->get()->result();
 	}
 }

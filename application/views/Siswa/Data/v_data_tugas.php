@@ -17,6 +17,7 @@
 				<th style="text-align:center;">Held</th>
 				<th style="text-align:center;">Deadline</th>
 				<th style="text-align:center;">Option</th>
+				<th style="text-align:center;">Keterangan</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -33,10 +34,14 @@
 				<td width="50"><?php echo $row->waktu_mulai; ?></td>
 				<td width="50"><?php echo $row->waktu_selesai; ?></td>
 				<td style="text-align:center;" width="150">
-				<a href="<?php echo base_url().'Page_guru/tambah_tugas/'.$this->session->userdata("ses_nama") ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Submit</button></a>
+				<a href="<?php echo base_url().'Page_siswa/Submit_Tugas/'.$this->session->userdata("ses_nama") ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Submit</button></a>
 				</td>
+				<?php
+				foreach ($id as $row): ?>
+				<td width="50"><?php echo $row->file_tugas; ?></td>
+				<?php endforeach; ?>
+				
  			<?php endforeach; ?>
-			
 			</tr>
 			</tbody>
             </table>

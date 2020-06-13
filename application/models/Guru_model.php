@@ -212,6 +212,18 @@ class Guru_model extends CI_Model
             redirect('Page_guru/data_tugas/'.$this->session->userdata("ses_nama").'/'.$id.'/?delete=2','refresh');
 		}
 	}
+	function delete_file($id){
+		$this->db->where('id_file', $id);
+		$berhasil = $this->db->delete('tb_filetugas');
+		if($berhasil)
+		{
+            redirect('Page_guru/lihat_file_tugas/'.$this->session->userdata("ses_nama").'/'.$id.'/?delete=1','refresh');
+		}
+		else
+		{
+            redirect('Page_guru/lihat_file_tugas/'.$this->session->userdata("ses_nama").'/'.$id.'/?delete=2','refresh');
+		}
+	}
 // ================================ Akhir Tb_tugas ===============================
 
 
