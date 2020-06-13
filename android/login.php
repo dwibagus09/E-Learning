@@ -25,6 +25,10 @@
                 $index['id'] = $row['id'];
                 $index['nis'] = $row['nis'];
                 $index['nama_siswa'] = $row['nama_siswa'];
+                $index['foto'] = $row['foto'];
+                $index['No_Telepon'] = $row['No_Telepon'];
+                $index['alamat'] = $row['alamat'];
+                $index['jenis_kelamin'] = $row['jenis_kelamin'];
                 $index['kelas'] = $row['kelas'];
                 $index['nama_kelas'] = $row['nama_kelas'];
     

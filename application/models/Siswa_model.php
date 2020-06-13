@@ -17,10 +17,10 @@ class Siswa_model extends CI_Model {
         }
     }
 //================================= Tugas Save =============================//
-    function getIdTugas(){
+    function get_id_tugas(){
         $this->db->select('*');
         $this->db->from('tb_filetugas');
-        $this->db->join('tb_tugas','tb_tugas.id_tugas = tb_filetugas.id_tugas');
+        $this->db->join('tb_tugas','tb_filetugas.id_tugas = tb_tugas.id_tugas');
 		$query = $this->db->get()->result();
         return $query;
     }
