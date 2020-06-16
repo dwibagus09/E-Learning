@@ -182,7 +182,11 @@ class Page_guru extends CI_Controller{
 //   }
 //   return $this->upload->data('file_name');
 // }
-  
+public function downloadTugas(){
+  $name = $this->uri->segment(3);
+  $data = file_get_contents(base_url().'upload/tugas/'.$name);
+  force_download($name, $data);
+}
   // =============================AKhir Proses Upload Tugas=====================//
 
 

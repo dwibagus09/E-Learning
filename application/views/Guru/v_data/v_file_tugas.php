@@ -22,7 +22,7 @@
 			<tr>
 				<td width="50"><?php echo $no++ ?></td>
 				<td width="150">
-				<a href="<?php echo base_url().'Page_guru/download/'.$row->file_tugas ?>"><?php echo $row->file_tugas?></a> 
+				<a href="<?php echo base_url().'Page_guru/downloadTugas/'.$row->file_tugas ?>"><?php echo $row->file_tugas?></a> 
 				</td>
 
 				<td style="text-align:center;" width="150">
