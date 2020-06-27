@@ -19,8 +19,23 @@ class Siswa_model extends CI_Model {
 //================================= Tugas Save =============================//
     function get_id_tugas(){
         $this->db->select('*');
+        $this->db->from('tb_login');
+        $this->db->where('username', $id);
+        $a = $this->db->get()->row('id');
+        $this->db->select('*');
+        $this->db->from('tb_siswa');
+        $this->db->where('id', $a);
+        $b = $this->db->get()->row('id_kelas');
+        $this->db->select('*');
+        $this->db->from('tb_mengajar');
+        $this->db->where('id_kelas', $b);
+        $c = $this->db->get()->row('id_mengajar');
+        $this->db->select('*');
+        $this->db->from('tb_tugas');
+        $this->db->where('id_mengajar',$c);
+        return $this->db->get()->result();
+        $this->db->select('*');
         $this->db->from('tb_filetugas');
-        $this->db->join('tb_tugas','tb_filetugas.id_tugas = tb_tugas.id_tugas');
 		$query = $this->db->get()->result();
         return $query;
     }
@@ -31,6 +46,7 @@ class Siswa_model extends CI_Model {
     }
 //================================= End Tugas Save =============================//
     function getAllUjian(){
+
         $this->db->select('*');
 		$this->db->from('tb_ujian');
 		$query = $this->db->get();
@@ -110,26 +126,26 @@ class Siswa_model extends CI_Model {
     }
     function getAllTugas($username){
 		$this->db->select('*');
-		$this->db->from('tb_login');
-		$this->db->where('username', $username);
-		$a = $this->db->get()->row('id');
-		$this->db->select('*');
-		$this->db->from('tb_siswa');
-		$this->db->where('id', $a);
-		$b = $this->db->get()->row('id_kelas');
-		$this->db->select('*');
-		$this->db->from('tb_mengajar');
-		$this->db->where('id_kelas', $b);
-		$c = $this->db->get()->row('id_mengajar');
-        $this->db->select('*');
-        $this->db->from('tb_tugas');
-        $this->db->where('id_tugas',$c);
-		return $this->db->get();
-    }
-    function getMateriWeb($username){
-        $this->db->select('*');
         $this->db->from('tb_login');
         $this->db->where('username', $username);
+        $a = $this->db->get()->row('id');
+        $this->db->select('*');
+        $this->db->from('tb_siswa');
+        $this->db->where('id', $a);
+        $b = $this->db->get()->row('id_kelas');
+        $this->db->select('*');
+        $this->db->from('tb_mengajar');
+        $this->db->where('id_kelas', $b);
+        $c = $this->db->get()->row('id_mengajar');
+        $this->db->select('*');
+        $this->db->from('tb_tugas');
+        $this->db->where('id_mengajar',$c);
+        return $this->db->get();
+    }
+    function getMateriWeb($id){
+        $this->db->select('*');
+        $this->db->from('tb_login');
+        $this->db->where('username', $id);
         $a = $this->db->get()->row('id');
         $this->db->select('*');
         $this->db->from('tb_siswa');
@@ -140,10 +156,10 @@ class Siswa_model extends CI_Model {
         $this->db->where('id_kelas', $b);
         return $this->db->get()->result();
     }
-    function getTugasWeb($username){
+    function getTugasWeb($id){
 		$this->db->select('*');
 		$this->db->from('tb_login');
-		$this->db->where('username', $username);
+		$this->db->where('username', $id);
 		$a = $this->db->get()->row('id');
 		$this->db->select('*');
 		$this->db->from('tb_siswa');
@@ -155,7 +171,7 @@ class Siswa_model extends CI_Model {
 		$c = $this->db->get()->row('id_mengajar');
         $this->db->select('*');
         $this->db->from('tb_tugas');
-        $this->db->where('id_tugas',$c);
+        $this->db->where('id_mengajar',$c);
 		return $this->db->get()->result();
     }
     function getFile($id){

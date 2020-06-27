@@ -29,18 +29,15 @@
 			<tr>
 				<td width="50"><?php echo $no++ ?></td>
 				<td width="150">
-				<textarea style="text-align:center; background:#db66df; border:none;" cols="30" rows="10" readonly><?php echo $row->deskripsi;?></textarea> 
+				<?php echo $row->deskripsi;?>
 				</td>
 				<td width="50"><?php echo $row->waktu_mulai; ?></td>
 				<td width="50"><?php echo $row->waktu_selesai; ?></td>
 				<td style="text-align:center;" width="150">
 				<a href="<?php echo base_url().'Page_siswa/Submit_Tugas/'.$this->session->userdata("ses_nama") ?>"><button class="btn btn-primary btn-icon-split" ><i class="fa fa-plus"></i>&nbsp;Submit</button></a>
 				</td>
-				<td width="50">
-				<?php
-				foreach ($id as $row): ?>
-				<?php echo $row->file_tugas.'/'; ?>
-				<?php endforeach; ?>
+				 <td width="50">
+				Telah Mengumpulkan !
 				</td>
  			<?php endforeach; ?>
 			</tr>

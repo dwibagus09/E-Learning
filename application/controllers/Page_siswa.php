@@ -28,12 +28,13 @@ class Page_siswa extends CI_Controller{
     //Function data Tugas
       $id = $this->uri->segment(3);
       $data['tugas'] = $this->Siswa_model->getTugasWeb($id);
-      $data['id'] = $this->Siswa_model->get_id_tugas();
+      $data['id'] = $this->Siswa_model->get_id_tugas($id);
       $this->template2->utama('Siswa/Data/v_data_tugas',$data);
   }
 
   function Submit_Tugas(){
-    $data['id'] = $this->Siswa_model->get_id_tugas();
+    $id = $this->uri->segment(3);
+    $data['id'] = $this->Siswa_model->getTugasWeb($id);
     $this->template2->utama('Siswa/Tambah/tambah_file_tugas',$data);
   }
 
@@ -49,7 +50,7 @@ class Page_siswa extends CI_Controller{
         }
           $this->Siswa_model->save($data,"tb_filetugas");
           
-          redirect('Page_siswa/data_tugas/'.$this->session->userdata("ses_nama"),$data);
+          redirect('Page_siswa/Data_Tugas/'.$this->session->userdata("ses_nama"),$data);
       }
       private function do_upload(){
 		$config['upload_path'] 		= 'upload/tugas';
