@@ -17,16 +17,18 @@ if (isset($_POST["file_tugas"]))
         // $result = mysqli_query($conn,$query);
         // $data = mysqli_fetch_array($result);
         // $id_tugas = $_POST['id_tugas'];
-        function acak($panjang){
-                $karakter= '123456';
-                $string = '';
-                    for ($i = 0; $i < $panjang; $i++) {
-                $pos = rand(0, strlen($karakter)-1);
-                $string .= $karakter{$pos};
-                }
-            return $string;
-        }
-        $id_tugas = acak(1);
+
+        // function acak($panjang){
+        //         $karakter= '123456';
+        //         $string = '';
+        //             for ($i = 0; $i < $panjang; $i++) {
+        //         $pos = rand(0, strlen($karakter)-1);
+        //         $string .= $karakter{$pos};
+        //         }
+        //     return $string;
+        // }
+
+        $id_tugas = 1;
         $sql= "INSERT INTO tb_filetugas VALUES(NULL, '$id_tugas','$namafile')";
         $query = mysqli_query($conn,$sql);
 
